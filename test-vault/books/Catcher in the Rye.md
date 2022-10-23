@@ -1,2 +1,0 @@
-- Author: [[J.D. Salinger]]
-- Tag: [[Fiction]]
