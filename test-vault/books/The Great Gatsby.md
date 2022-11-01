@@ -1,2 +1,0 @@
-- Author: [[Scott Fitzgerald]]
-- Tag: [[Fiction]]

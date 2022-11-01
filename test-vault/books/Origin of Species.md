@@ -1,2 +1,0 @@
-- Author: [[Charles Darwin]]
-- Tag: [[Non-Fiction]]
