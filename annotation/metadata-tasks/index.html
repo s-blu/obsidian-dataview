@@ -862,29 +862,102 @@ with:</p>
 <p class="admonition-title">Inheritance of Fields</p>
 <p>Tasks inherit <em>all fields</em> from their parent page - so if you have a <code>rating</code> field in your page, you can also access it on your task in a <code>TASK</code> Query. </p>
 </div>
-<ul>
-<li><code>status</code>: A text. The completion status of this task, as determined by the character inside the <code>[ ]</code> brackets. Generally a
-  space <code>" "</code> for incomplete tasks and a <code>"x"</code> for complete tasks, but allows for plugins which support alternative
-  task statuses.</li>
-<li><code>checked</code>: A boolean. Whether or not this task status is empty, meaning it has a space in its <code>[ ]</code> brackets</li>
-<li><code>completed</code>: A boolean. Whether or not this <em>specific</em> task has been completed; this does not consider the
-  completion/non-completion of any child tasks. A task is explicitly considered "completed" if it has been marked with
-  an 'x'. If you use a custom status, i.e. <code>[-]</code>, <code>checked</code> will be true, whereas <code>completed</code> will be false.</li>
-<li><code>fullyCompleted</code>: A boolean. Whether or not this task and <strong>all</strong> of its subtasks are completed.</li>
-<li><code>text</code>: A text. The plain text of this task, including any metadata field annotations.</li>
-<li><code>line</code>: A number. The line of the file this task shows up on.</li>
-<li><code>lineCount</code>: A number. The number of Markdown lines that this task takes up.</li>
-<li><code>path</code>: A text. The full path of the file this task is in. Equals to <code>file.path</code> for <a href="../metadata-pages/">pages</a></li>
-<li><code>section</code>: A link to the section this task is contained in.</li>
-<li><code>tags</code>: A list. Any tags inside of the text task.</li>
-<li><code>outlinks</code>: A list. Any links defined in this task.</li>
-<li><code>link</code>: A link. A link to the closest linkable block near this task; useful for making links which go to the task.</li>
-<li><code>children</code>: A list. Any subtasks or sublists of this task.</li>
-<li><code>task</code>: A boolean. If true, this is a task; otherwise, it is a regular list element.</li>
-<li><code>annotated</code>: A boolean. True if the task text contains any metadata fields, false otherwise.</li>
-<li><code>parent</code>: A number. The line number of the task above this task, if present; will be null if this is a root-level task.</li>
-<li><code>blockId</code>: A text.The block ID of this task / list element, if one has been defined with the <code>^blockId</code> syntax; otherwise null.</li>
-</ul>
+<table>
+<thead>
+<tr>
+<th>Field name</th>
+<th>Data Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>status</code></td>
+<td>Text</td>
+<td>The completion status of this task, as determined by the character inside the <code>[ ]</code> brackets. Generally a space <code>" "</code> for incomplete tasks and a <code>"x"</code> for complete tasks, but allows for plugins which support alternative task statuses.</td>
+</tr>
+<tr>
+<td><code>checked</code></td>
+<td>Boolean</td>
+<td>Whether or not this task status is empty, meaning it has a space in its <code>[ ]</code> brackets</td>
+</tr>
+<tr>
+<td><code>completed</code></td>
+<td>Boolean</td>
+<td>Whether or not this <em>specific</em> task has been completed; this does not consider the completionnon-completion of any child tasks. A task is explicitly considered "completed" if it has been marked with an 'x'. If you use a custom status, i.e. <code>[-]</code>, <code>checked</code> will be true, whereas <code>completed</code> will be false.</td>
+</tr>
+<tr>
+<td><code>fullyCompleted</code></td>
+<td>Boolean</td>
+<td>Whether or not this task and <strong>all</strong> of its subtasks are completed.</td>
+</tr>
+<tr>
+<td><code>text</code></td>
+<td>Text</td>
+<td>The plain text of this task, including any metadata field annotations.</td>
+</tr>
+<tr>
+<td><code>line</code></td>
+<td>Number</td>
+<td>The line of the file this task shows up on.</td>
+</tr>
+<tr>
+<td><code>lineCount</code></td>
+<td>Number</td>
+<td>The number of Markdown lines that this task takes up.</td>
+</tr>
+<tr>
+<td><code>path</code></td>
+<td>Text</td>
+<td>The full path of the file this task is in. Equals to <code>file.path</code> for <a href="../metadata-pages/">pages</a></td>
+</tr>
+<tr>
+<td><code>section</code></td>
+<td>Link</td>
+<td>link to the section this task is contained in.</td>
+</tr>
+<tr>
+<td><code>tags</code></td>
+<td>List</td>
+<td>Any tags inside of the text task.</td>
+</tr>
+<tr>
+<td><code>outlinks</code></td>
+<td>List</td>
+<td>Any links defined in this task.</td>
+</tr>
+<tr>
+<td><code>link</code></td>
+<td>Link</td>
+<td>link to the closest linkable block near this task; useful for making links which go to the task.</td>
+</tr>
+<tr>
+<td><code>children</code></td>
+<td>List</td>
+<td>ny subtasks or sublists of this task.</td>
+</tr>
+<tr>
+<td><code>task</code></td>
+<td>Boolean</td>
+<td>If true, this is a task; otherwise, it is a regular list element.</td>
+</tr>
+<tr>
+<td><code>annotated</code></td>
+<td>Boolean</td>
+<td>True if the task text contains any metadata fields, false otherwise.</td>
+</tr>
+<tr>
+<td><code>parent</code></td>
+<td>Number</td>
+<td>The line number of the task above this task, if present; will be null if this is a root-level task.</td>
+</tr>
+<tr>
+<td><code>blockId</code></td>
+<td>Text</td>
+<td>The block ID of this task / list element, if one has been defined with the <code>^blockId</code> syntax; otherwise null.</td>
+</tr>
+</tbody>
+</table>
 <p>With usage of the <a href="#field-shorthands">shorthand syntax</a>, following additional properties may be available:</p>
 <ul>
 <li><code>completion</code>: The date a task was completed.</li>
