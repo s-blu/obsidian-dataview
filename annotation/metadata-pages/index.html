@@ -801,21 +801,21 @@
 <li><code>file.name</code>: A text. The file name as seen in Obsidians sidebar.</li>
 <li><code>file.folder</code>: A text. The path of the folder this file belongs to.</li>
 <li><code>file.path</code>: A text. The full file path, including the files name.</li>
-<li><code>file.ext</code>: A text. The extension of the file type; generally 'md'.</li>
-<li><code>file.link</code>: A link. A link to the file.</li>
+<li><code>file.ext</code>: A text. The extension of the file type; generally <code>md</code>.</li>
+<li><code>file.link</code>: A link to the file.</li>
 <li><code>file.size</code>: A number. The size (in bytes) of the file.</li>
-<li><code>file.ctime</code>: A Date+Time. The date that the file was created.</li>
+<li><code>file.ctime</code>: A Date with Time. The date that the file was created.</li>
 <li><code>file.cday</code>: A Date. The date that the file was created.</li>
-<li><code>file.mtime</code>: A Date+Time.The date that the file was last modified.</li>
-<li><code>file.mday</code>: A Date.The date that the file was last modified.</li>
+<li><code>file.mtime</code>: A Date with Time. The date that the file was last modified.</li>
+<li><code>file.mday</code>: A Date. The date that the file was last modified.</li>
 <li><code>file.tags</code>: A list of all unique tags in the note. Subtags are broken down by each level, so <code>#Tag/1/A</code> will be stored in
   the list as <code>[#Tag, #Tag/1, #Tag/1/A]</code>.</li>
-<li><code>file.etags</code>: An list of all explicit tags in the note; unlike <code>file.tags</code>, does not break subtags down, i.e. <code>[#Tag/1/A]</code></li>
-<li><code>file.inlinks</code>: An list of all incoming links to this file, meaning all files that contain a link to this file.</li>
-<li><code>file.outlinks</code>: An list of all outgoing links from this file, meaning all links the file contains.</li>
-<li><code>file.aliases</code>: An list of all aliases for the note as defined via the <a href="https://help.obsidian.md/How+to/Add+aliases+to+note">YAML frontmatter</a>.</li>
-<li><code>file.tasks</code>: An list of all tasks (I.e., <code>- [ ] some task</code>) in this file.</li>
-<li><code>file.lists</code>: An list of all list elements in the file (including tasks); these elements are effectively tasks and can be rendered in task views.</li>
+<li><code>file.etags</code>: A list of all explicit tags in the note; unlike <code>file.tags</code>, does not break subtags down, i.e. <code>[#Tag/1/A]</code></li>
+<li><code>file.inlinks</code>: A list of all incoming links to this file, meaning all files that contain a link to this file.</li>
+<li><code>file.outlinks</code>: A list of all outgoing links from this file, meaning all links the file contains.</li>
+<li><code>file.aliases</code>: A list of all aliases for the note as defined via the <a href="https://help.obsidian.md/How+to/Add+aliases+to+note">YAML frontmatter</a>.</li>
+<li><code>file.tasks</code>: A list of all tasks (I.e., <code>- [ ] some task</code>) in this file.</li>
+<li><code>file.lists</code>: A list of all list elements in the file (including tasks); these elements are effectively tasks and can be rendered in task views.</li>
 <li><code>file.frontmatter</code>: A list. Contains the raw values of all frontmatter in form of <code>key: value</code> text values; mainly useful for checking raw frontmatter values or
   for dynamically listing frontmatter keys.</li>
 <li><code>file.day</code>: A Date. Only available if the file has a date inside its file name (of form <code>yyyy-mm-dd</code> or <code>yyyymmdd</code>), or has a <code>Date</code> field/inline field.</li>

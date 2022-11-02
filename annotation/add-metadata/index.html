@@ -868,7 +868,7 @@
 <p>You can add any number of fields to a <strong>note</strong>, a <strong>list item</strong> or a <strong>task</strong>. </p>
 <h2 id="how-do-i-add-fields">How do I add fields?</h2>
 <p>You can add fields to a <strong>note</strong> in three different ways. How a field look like depends on the way you add it.</p>
-<p>On tasks or list items in general, you cannot use YAML Frontmatter to add information - Frontmatter always applies to the whole page. For these, use the Inline Fields or available implicit fields.</p>
+<p>On <strong>tasks or list items</strong>, you will have YAML Frontmatter information available, but won't be able to add them to a specific list item. If you want to add metadata to one list item or task only, use <a href="#inline-fields">Inline Fields</a>.</p>
 <h3 id="frontmatter">Frontmatter</h3>
 <p>Frontmatter is a common Markdown extension which allows for YAML metadata to be added to the top of a page. It is natively supported by Obsidian and explained in its <a href="https://help.obsidian.md/Advanced+topics/YAML+front+matter">official documentation</a>. All YAML Frontmatter fields will be automatically available as Dataview fields.</p>
 <div class="highlight"><pre><span></span><code><span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">---</span><span class="w"></span>
@@ -882,9 +882,9 @@
 
 <p>With this your note has metadata fields named <code>alias</code>, <code>last-reviewed</code>, and <code>thoughts</code>. Each of these have different <strong>data types</strong>:</p>
 <ul>
-<li><code>alias</code> is a <a href="./types-of-metadata/#text">text</a>, because its wrapped in ""</li>
-<li><code>last-reviewed</code> a <a href="./types-of-metadata/#date">date</a>, because it follows the ISO date format</li>
-<li><code>thoughts</code> a <a href="./types-of-metadata/#object">object</a> field, because it uses the YAML Frontmatter object syntax</li>
+<li><code>alias</code> is a <a href="../types-of-metadata/#text">text</a>, because its wrapped in ""</li>
+<li><code>last-reviewed</code> is a <a href="../types-of-metadata/#date">date</a>, because it follows the ISO date format</li>
+<li><code>thoughts</code> is a <a href="../types-of-metadata/#object">object</a> field, because it uses the YAML Frontmatter object syntax</li>
 </ul>
 <p>You could i.e. query for this note with the following query, because <code>thoughts</code> is a object with the value <code>rating</code>:</p>
 <div class="highlight"><pre><span></span><code>```dataview
@@ -894,7 +894,7 @@ WHERE thoughts.rating = 8
 </code></pre></div>
 
 <h3 id="inline-fields">Inline Fields</h3>
-<p>For those wanting a more natural-looking annotation, Dataview supports "inline" fields via a <code>Key:: Value</code> syntax that you can use everywhere in your file. This allows you do write your queryable data right where you need it - for example in the middle of a sentence. </p>
+<p>For those wanting a more natural-looking annotation, Dataview supports "inline" fields via a <code>Key:: Value</code> syntax that you can use everywhere in your file. This allows you to write your queryable data right where you need it - for example in the middle of a sentence. </p>
 <p>If your inline field has an own line, without any content beforehand, you can write it like this: </p>
 <div class="highlight"><pre><span></span><code><span class="gh"># Markdown Page</span>
 
@@ -902,7 +902,7 @@ Basic Field:: Some random Value
 <span class="gs">**Bold Field**</span>:: Nice!
 </code></pre></div>
 
-<p>All content after the <code>::</code> is the value of the field, until the next line break.</p>
+<p>All content after the <code>::</code> is the value of the field until the next line break.</p>
 <div class="admonition hint">
 <p class="admonition-title">Mind the <code>::</code></p>
 <p>Note that you need to use a double colon <code>::</code> between key and value when using inline fields, contrary to YAML Frontmatter fields where one colon is enough. </p>
@@ -927,7 +927,7 @@ rendered in Reader mode:</p>
 <div class="highlight"><pre><span></span><code>This will not show the key.
 </code></pre></div>
 
-<p>You can use YAML Frontmatter and Inline fields with all syntax variants in the same file. You do not need to decide for one.</p>
+<p>You can use YAML Frontmatter and Inline fields with all syntax variants together in one file. You do not need to decide for one and can mix them to fit your workflow.</p>
 <h2 id="field-names">Field names</h2>
 <p>Imagine you used all the examples for Inline fields you see above in one note, then following metadata would be available to you:</p>
 <table>
@@ -980,18 +980,22 @@ rendered in Reader mode:</p>
 </table>
 <p>Like you can see in the table, if you are using <strong>spaces or capitalized letters</strong> in your metadata key name, dataview will provide you with a <strong>sanitized version</strong> of the key. </p>
 <p><strong>Keys with spaces</strong> cannot be used in a query as-is. You have two possibilities here: Either use the sanitized name, that is always all lowercase and with dashes instead of spaces or use the <strong>row</strong> variable syntax. Find out more <a href="../../resources/faq/">in the FAQ</a>.</p>
-<p><strong>Keys with capitalized letters</strong> can be used as-is, if you wish. The sanitized version allows you to query for a key independent of its capitalization and makes it easier to use: You can query the same field thats, for example, in one file named <code>someMetadata</code> and in another <code>someMetaDate</code> when using the sanitized key <code>somemetadata</code>. </p>
+<p><strong>Keys with capitalized letters</strong> can be used as-is, if you wish. The sanitized version allows you to query for a key independent of its capitalization and makes it easier to use: You can query the same field thats, for example, in one file named <code>someMetadata</code> and in another <code>someMetaData</code> when using the sanitized key <code>somemetadata</code>. </p>
 <p>In addition, the <strong>bold field key is missing its formatting tokens</strong>. Even though the <code>**</code> used to make it appear bold are part of the key name in the file, they are left out when indexing your note. The same goes for all other built-in formatting, like strike through or italic. This means formatted keys can only be queried without their formatting. This allows you to format the key in context of the note without worrying that you might create different keys for the same type of information. </p>
 <h3 id="usage-of-emojis-and-non-latin-characters">Usage of emojis and non-latin characters</h3>
-<p>You are not limited to latin characters when naming your metadata fields. </p>
+<p>You are not limited to latin characters when naming your metadata fields. You can use all characters available in UTF-8:</p>
 <div class="highlight"><pre><span></span><code>Noël:: Un jeu de console
 クリスマス:: 家庭用ゲーム機
 [🎅:: a console game]
 [xmas🎄:: a console game]
 </code></pre></div>
 
-<p>While <strong>using emojis as metadata keys</strong> is possible, it comes with some limitations. When using emojis in field names, you need to put them into square brackets so that dataview recognize them correctly. </p>
-<p>Also, please be aware when switching i.e. the OS, the same emoji could use another character code and you maybe don't find your metadata when querying it. </p>
+<p><strong>Using emojis as metadata keys</strong> is possible, but it comes with some limitations. When using emojis in field names, you need to put them into square brackets so that dataview recognize them correctly. 
+Also, please be aware when switching the OS (i.e. from Windows to Android), the same emoji could use another character code and you might don't find your metadata when querying it.</p>
+<div class="admonition info">
+<p class="admonition-title">Task Field Shorthands</p>
+<p>An exception to this are the <a href="../metadata-tasks/#field-shorthands">shorthand syntax</a> in Tasks. You can use shorthands without bracketing. Please mind though that this only counts for listed shorthands - every other field (if with emojis or not) need to use the <code>[key:: value]</code> syntax.</p>
+</div>
 <h2 id="implicit-fields">Implicit fields</h2>
 <p>Even if you do not add any metadata explicitly to your note, dataview provides you with a big amount of indexed data out of the box. Some examples for implicit fields are:</p>
 <ul>

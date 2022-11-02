@@ -892,11 +892,11 @@
 
 
 <h1 id="field-types">Field Types</h1>
-<p>All fields in dataview have a <em>type</em>, which determines how dataview will render, sort, and operate on that field.
+<p>All fields in dataview have a <strong>type</strong>, which determines how dataview will render, sort, and operate on that field.
 Read more about how to create fields on <a href="../add-metadata/">"Adding metadata"</a> and which information you have automatically available on <a href="../metadata-pages/">metadata on pages</a> and <a href="../metadata-tasks/">metadata on tasks and lists</a>.</p>
-<p>Dataview knows several field types to cover common use cases:</p>
 <h2 id="why-does-the-type-matter">Why does the type matter?</h2>
 <p>Dataview provides <a href="../../reference/functions/">functions</a> you can use to modify your metadata and allows you to write all sorts of complex queries. Specific functions need specific data types to work correctly. That means the data type of your field determines which functions you can use on these fields and how the functions behave. Furthermore, depending on the type, the output dataview renders can be different.</p>
+<p>Most of the time you do not need to worry too much about the type of your fields, but if you want to perform calculations and other magical operations on your data, you should be aware of them.</p>
 <div class="admonition example">
 <p class="admonition-title">Different rendering based on type</p>
 <p>If you have this file:
@@ -925,10 +925,10 @@ Read more about how to create fields on <a href="../add-metadata/">"Adding metad
 </tr>
 </tbody>
 </table>
-<p><code>date1</code> is recognized as a <strong>Date</strong> while <code>date2</code> is a normal <strong>Text</strong> to dataview, that's why <code>date1</code> is parsed differently for you. Find out more on Dates below. </p>
+<p><code>date1</code> is recognized as a <strong>Date</strong> while <code>date2</code> is a normal <strong>Text</strong> to dataview, that's why <code>date1</code> is parsed differently for you. Find out more on <a href="#date">Dates below</a>. </p>
 </div>
-<p>Most of the time you do not need to worry too much about the type of your fields, but if you want to perform calculations and other magical operations on your data, you should be aware of them.</p>
 <h2 id="available-field-types">Available Field Types</h2>
+<p>Dataview knows several field types to cover common use cases.</p>
 <h3 id="text">Text</h3>
 <p>The default catch-all. If a field doesn't match a more specific type, it is plain text.</p>
 <div class="highlight"><pre><span></span><code>Example:: This is some normal text.
@@ -989,7 +989,7 @@ Example:: 2021-04-18T04:19:35.000+06:30
 <li>field.second</li>
 <li>field.millisecond</li>
 </ul>
-<p>For example, if you're interested in which month your date lies, you can access it via `datefield.mo:</p>
+<p>For example, if you're interested in which month your date lies, you can access it via <code>datefield.month</code>:</p>
 <div class="highlight"><pre><span></span><code>birthday:: 2001-06-11
 
 <span class="sb">```dataview</span>
@@ -1060,7 +1060,7 @@ Please be aware that this is only a link for dataview, but not for Obsidian anym
 Example2:: &quot;yes&quot;, &quot;or&quot;, &quot;no&quot;
 </code></pre></div>
 
-<p>Please be aware that in Inline fields, you need to wrap <strong>text values into quotes</strong> to be recognized as a list (see <code>Example2</code>). <code>yes, or, no</code> is recognized as text.</p>
+<p>Please be aware that in Inline fields, you need to wrap <strong>text values into quotes</strong> to be recognized as a list (see <code>Example2</code>). <code>yes, or, no</code> is recognized as plain text.</p>
 <div class="admonition info">
 <p class="admonition-title">Duplicated metadata keys in the same file lead to lists</p>
 <p>If you're using a metadata key twice or more in the same note, dataview will collect all values and give you a list. For example

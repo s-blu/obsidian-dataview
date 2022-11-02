@@ -576,8 +576,50 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#product" class="md-nav__link">
-    product()
+  <a href="#mina-b" class="md-nav__link">
+    min(a, b, ..)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#maxa-b" class="md-nav__link">
+    max(a, b, ...)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sumarray" class="md-nav__link">
+    sum(array)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#productarray" class="md-nav__link">
+    product(array)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#averagearray" class="md-nav__link">
+    average(array)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#minbyarray-function" class="md-nav__link">
+    minby(array, function)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#maxbyarray-function" class="md-nav__link">
+    maxby(array, function)
   </a>
   
 </li>
@@ -665,8 +707,8 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#sumarray" class="md-nav__link">
-    sum(array)
+  <a href="#nonnullarray" class="md-nav__link">
+    nonnull(array)
   </a>
   
 </li>
@@ -693,8 +735,8 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#joinarray" class="md-nav__link">
-    join(array)
+  <a href="#joinarray-delimiter" class="md-nav__link">
+    join(array, [delimiter])
   </a>
   
 </li>
@@ -1268,8 +1310,50 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#product" class="md-nav__link">
-    product()
+  <a href="#mina-b" class="md-nav__link">
+    min(a, b, ..)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#maxa-b" class="md-nav__link">
+    max(a, b, ...)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sumarray" class="md-nav__link">
+    sum(array)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#productarray" class="md-nav__link">
+    product(array)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#averagearray" class="md-nav__link">
+    average(array)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#minbyarray-function" class="md-nav__link">
+    minby(array, function)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#maxbyarray-function" class="md-nav__link">
+    maxby(array, function)
   </a>
   
 </li>
@@ -1357,8 +1441,8 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#sumarray" class="md-nav__link">
-    sum(array)
+  <a href="#nonnullarray" class="md-nav__link">
+    nonnull(array)
   </a>
   
 </li>
@@ -1385,8 +1469,8 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#joinarray" class="md-nav__link">
-    join(array)
+  <a href="#joinarray-delimiter" class="md-nav__link">
+    join(array, [delimiter])
   </a>
   
 </li>
@@ -1720,9 +1804,61 @@ otherwise, rounds to the given number of digits.</p>
 round(16.555555, 2) = 16.56
 </code></pre></div>
 
-<h3 id="product"><code>product()</code></h3>
-<p>Calculates the product of a list of numbers.</p>
+<h3 id="mina-b"><code>min(a, b, ..)</code></h3>
+<p>Compute the minimum value of a list of arguments, or an array.</p>
+<div class="highlight"><pre><span></span><code>min(1, 2, 3) = 1
+min([1, 2, 3]) = 1
+
+min(&quot;a&quot;, &quot;ab&quot;, &quot;abc&quot;) = &quot;a&quot;
+</code></pre></div>
+
+<h3 id="maxa-b"><code>max(a, b, ...)</code></h3>
+<p>Compute the maximum value of a list of arguments, or an array.</p>
+<div class="highlight"><pre><span></span><code>max(1, 2, 3) = 3
+max([1, 2, 3]) = 3
+
+max(&quot;a&quot;, &quot;ab&quot;, &quot;abc&quot;) = &quot;abc&quot;
+</code></pre></div>
+
+<h3 id="sumarray"><code>sum(array)</code></h3>
+<p>Sums all numeric values in the array. If you have null values in your average, you can eliminate them via the <code>nonnull</code> function.</p>
+<div class="highlight"><pre><span></span><code>sum([1, 2, 3]) = 6
+sum([]) = null
+
+sum(nonnull([null, 1, 8])) = 9
+</code></pre></div>
+
+<h3 id="productarray"><code>product(array)</code></h3>
+<p>Calculates the product of a list of numbers. If you have null values in your average, you can eliminate them via the <code>nonnull</code> function.</p>
 <div class="highlight"><pre><span></span><code>product([1,2,3]) = 6
+product([]) = null
+
+product(nonnull([null, 1, 2, 4])) = 8
+</code></pre></div>
+
+<h3 id="averagearray"><code>average(array)</code></h3>
+<p>Computes the numeric average of numeric values. If you have null values in your average, you can eliminate them via the
+<code>nonnull</code> function.</p>
+<div class="highlight"><pre><span></span><code>average([1, 2, 3]) = 2
+average([]) = null
+
+average(nonnull([null, 1, 2])) = 1.5
+</code></pre></div>
+
+<h3 id="minbyarray-function"><code>minby(array, function)</code></h3>
+<p>Compute the minimum value of an array, using the provided function.</p>
+<div class="highlight"><pre><span></span><code>minby([1, 2, 3], (k) =&gt; k) = 1
+minby([1, 2, 3], (k) =&gt; 0 - k) =&gt; 3
+
+minby(this.file.tasks, (k) =&gt; k.due) =&gt; (earliest due)
+</code></pre></div>
+
+<h3 id="maxbyarray-function"><code>maxby(array, function)</code></h3>
+<p>Compute the maximum value of an array, using the provided function.</p>
+<div class="highlight"><pre><span></span><code>maxby([1, 2, 3], (k) =&gt; k) = 3
+maxby([1, 2, 3], (k) =&gt; 0 - k) =&gt; 1
+
+maxby(this.file.tasks, (k) =&gt; k.due) =&gt; (latest due)
 </code></pre></div>
 
 <p>--</p>
@@ -1832,29 +1968,31 @@ reverse(list(&quot;a&quot;, &quot;b&quot;, &quot;c&quot;)) = list(&quot;c&quot;,
 
 <h3 id="lengthobjectarray"><code>length(object|array)</code></h3>
 <p>Returns the number of fields in an object, or the number of entries in an array.</p>
-<div class="highlight"><pre><span></span><code>length(list()) = 0
-length(list(1, 2, 3)) = 3
+<div class="highlight"><pre><span></span><code>length([]) = 0
+length([1, 2, 3]) = 3
 length(object(&quot;hello&quot;, 1, &quot;goodbye&quot;, 2)) = 2
 </code></pre></div>
 
-<h3 id="sumarray"><code>sum(array)</code></h3>
-<p>Sums all numeric values in the array</p>
-<div class="highlight"><pre><span></span><code>sum(list(1, 2, 3)) = 6
+<h3 id="nonnullarray"><code>nonnull(array)</code></h3>
+<p>Return a new array with all null values removed.</p>
+<div class="highlight"><pre><span></span><code>nonnull([]) = []
+nonnull([null, false]) = [false]
+nonnull([1, 2, 3]) = [1, 2, 3]
 </code></pre></div>
 
 <h3 id="allarray"><code>all(array)</code></h3>
 <p>Returns <code>true</code> only if ALL values in the array are truthy. You can also pass multiple arguments to this function, in
 which case it returns <code>true</code> only if all arguments are truthy.</p>
-<div class="highlight"><pre><span></span><code>all(list(1, 2, 3)) = true
-all(list(true, false)) = false
+<div class="highlight"><pre><span></span><code>all([1, 2, 3]) = true
+all([true, false]) = false
 all(true, false) = false
 all(true, true, true) = true
 </code></pre></div>
 
 <p>You can pass a function as second argument to return only true if all elements in the array matches the predicate.</p>
-<div class="highlight"><pre><span></span><code>all(list(1, 2, 3), (x) =&gt; x &gt; 0) = true
-all(list(1, 2, 3), (x) =&gt; x &gt; 1) = false
-all(list(&quot;apple&quot;, &quot;pie&quot;, 3), (x) =&gt; typeof(x) = &quot;string&quot;) = false
+<div class="highlight"><pre><span></span><code>all([1, 2, 3], (x) =&gt; x &gt; 0) = true
+all([1, 2, 3], (x) =&gt; x &gt; 1) = false
+all([&quot;apple&quot;, &quot;pie&quot;, 3], (x) =&gt; typeof(x) = &quot;string&quot;) = false
 </code></pre></div>
 
 <h3 id="anyarray"><code>any(array)</code></h3>
@@ -1886,7 +2024,7 @@ none([true, true], (x) =&gt; x = false) = true
 none([&quot;Apple&quot;, &quot;Pi&quot;, &quot;Banana&quot;], (x) =&gt; startswith(x, &quot;A&quot;)) = false
 </code></pre></div>
 
-<h3 id="joinarray"><code>join(array)</code></h3>
+<h3 id="joinarray-delimiter"><code>join(array, [delimiter])</code></h3>
 <p>Joins elements in an array into a single string (i.e., rendering them all on the same line). If provided with a second
 argument, then each element will be separated by the given separator.</p>
 <div class="highlight"><pre><span></span><code>join(list(1, 2, 3)) = &quot;1, 2, 3&quot;

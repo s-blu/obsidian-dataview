@@ -794,7 +794,7 @@
 
 
 <h1 id="metadata-on-tasks-and-lists">Metadata on Tasks and Lists</h1>
-<p>Just like pages, you can also add <strong>fields</strong> on list item and task level to bind it to a specific task as context. For this you need to use the <a href="../add-metadata/">inline field syntax</a>:</p>
+<p>Just like pages, you can also add <strong>fields</strong> on list item and task level to bind it to a specific task as context. For this you need to use the <a href="../add-metadata/#inline-fields">inline field syntax</a>:</p>
 <div class="highlight"><pre><span></span><code><span class="k">- [ ]</span> Hello, this is some [metadata:: value]!
 <span class="k">- [X]</span> I finished this on [completion:: 2021-08-15].
 </code></pre></div>
@@ -849,6 +849,11 @@ with:</p>
 <span class="s">TASK</span>
 <span class="s">WHERE completion = date(&quot;2021-08-22&quot;)</span>
 <span class="sb">```</span>
+</code></pre></div>
+
+<p>Which will list both variants - shorthands and textual annotation:</p>
+<div class="highlight"><pre><span></span><code><span class="k">- [x]</span> Completed last saturday ✅2021-08-22
+<span class="k">- [x]</span> Some Done Task [completion:: 2021-08-22]
 </code></pre></div>
 
 <h2 id="implicit-fields">Implicit Fields</h2>
