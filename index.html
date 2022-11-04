@@ -1,0 +1,1012 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      <link rel="icon" href="assets/obsidian.png">
+      <meta name="generator" content="mkdocs-1.3.1, mkdocs-material-8.4.2">
+    
+    
+      
+        <title>Dataview</title>
+      
+    
+    
+      <link rel="stylesheet" href="assets/stylesheets/main.69437709.min.css">
+      
+        
+        <link rel="stylesheet" href="assets/stylesheets/palette.cbb835fc.min.css">
+        
+          
+          
+          <meta name="theme-color" content="#7e56c2">
+        
+      
+      
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="deep-purple" data-md-color-accent="">
+  
+    
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#overview" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="." title="Dataview" class="md-header__button md-logo" aria-label="Dataview" data-md-component="logo">
+      
+  <img src="assets/obsidian.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Dataview
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Overview
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/blacksmithgu/obsidian-dataview" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.1.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="." title="Dataview" class="md-nav__button md-logo" aria-label="Dataview" data-md-component="logo">
+      
+  <img src="assets/obsidian.png" alt="logo">
+
+    </a>
+    Dataview
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/blacksmithgu/obsidian-dataview" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.1.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Overview
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="." class="md-nav__link md-nav__link--active">
+        Overview
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#how-to-use-dataview" class="md-nav__link">
+    How to Use Dataview
+  </a>
+  
+    <nav class="md-nav" aria-label="How to Use Dataview">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#data-indexing" class="md-nav__link">
+    Data Indexing
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#data-querying" class="md-nav__link">
+    Data Querying
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#resources-and-help" class="md-nav__link">
+    Resources and Help
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2">
+          Metadata
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Metadata" data-md-level="1">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          Metadata
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="annotation/add-metadata/" class="md-nav__link">
+        Adding Metadata
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="annotation/types-of-metadata/" class="md-nav__link">
+        Data Types
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="annotation/metadata-pages/" class="md-nav__link">
+        Metadata on Pages
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="annotation/metadata-tasks/" class="md-nav__link">
+        Metadata on Tasks and Lists
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="queries/dql-js-inline/" class="md-nav__link">
+        DQL, JS and Inlines
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4" type="checkbox" id="__nav_4" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4">
+          Query Language Reference
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Query Language Reference" data-md-level="1">
+        <label class="md-nav__title" for="__nav_4">
+          <span class="md-nav__icon md-icon"></span>
+          Query Language Reference
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="queries/structure/" class="md-nav__link">
+        Structure of a Query
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="queries/query-types/" class="md-nav__link">
+        Query Types
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="queries/data-commands/" class="md-nav__link">
+        Data Commands
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="reference/sources/" class="md-nav__link">
+        Sources
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="reference/expressions/" class="md-nav__link">
+        Expressions
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="reference/literals/" class="md-nav__link">
+        Literals
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="reference/functions/" class="md-nav__link">
+        Functions
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5" type="checkbox" id="__nav_5" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_5">
+          JavaScript Reference
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="JavaScript Reference" data-md-level="1">
+        <label class="md-nav__title" for="__nav_5">
+          <span class="md-nav__icon md-icon"></span>
+          JavaScript Reference
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="api/intro/" class="md-nav__link">
+        Overview
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="api/data-array/" class="md-nav__link">
+        Data Arrays
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="api/code-reference/" class="md-nav__link">
+        Codeblock Reference
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="api/code-examples/" class="md-nav__link">
+        Codeblock Examples
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6" type="checkbox" id="__nav_6" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_6">
+          FAQ and Resources
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="FAQ and Resources" data-md-level="1">
+        <label class="md-nav__title" for="__nav_6">
+          <span class="md-nav__icon md-icon"></span>
+          FAQ and Resources
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="resources/faq/" class="md-nav__link">
+        Frequently Asked Questions
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="resources/examples/" class="md-nav__link">
+        Examples
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="resources/develop-against-dataview/" class="md-nav__link">
+        Developing Against Dataview
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="resources/resources-and-support/" class="md-nav__link">
+        Resources and Support
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="friends/" class="md-nav__link">
+        Friends of Dataview
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="changelog/" class="md-nav__link">
+        Changelog
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#how-to-use-dataview" class="md-nav__link">
+    How to Use Dataview
+  </a>
+  
+    <nav class="md-nav" aria-label="How to Use Dataview">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#data-indexing" class="md-nav__link">
+    Data Indexing
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#data-querying" class="md-nav__link">
+    Data Querying
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#resources-and-help" class="md-nav__link">
+    Resources and Help
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+  <a href="https://github.com/blacksmithgu/obsidian-dataview/edit/master/docs/docs/index.md" title="Edit this page" class="md-content__button md-icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25Z"/></svg>
+  </a>
+
+
+
+<h1 id="overview">Overview</h1>
+<p>Dataview is a live index and query engine over your personal knowledge base. You can <strong>add metadata</strong> to your notes and <strong>query</strong> them to list, filter, sort or group them - dataview keeps your queries always up to date and makes data aggregation a breeze.
+You could</p>
+<ul>
+<li>Track your sleep by recording it in daily notes, and automatically create weekly tables of your sleep schedule.</li>
+<li>Automatically collect links to books in your notes, and render them all sorted by rating.</li>
+<li>Automatically collect pages associated with today's date and show them in your daily note.</li>
+<li>Find pages with no tags for follow-up, or show pretty views of specifically-tagged pages.</li>
+<li>Create dynamic views which show upcoming birthdays or events recorded in your notes</li>
+</ul>
+<p>and many, many things more.</p>
+<p>Dataview is highly generic and high performance, scaling up to hundreds of thousands of annotated notes without issue. 
+<strong>Dataview gives you a fast way to search, display and operate on indexed data</strong>. </p>
+<p>If the built in <a href="query/queries/">query language</a> is insufficient for your purpose, you can run arbitrary
+JavaScript against the <a href="api/intro/">dataview API</a> and build whatever utility you might need yourself, right in your notes.</p>
+<div class="admonition info">
+<p class="admonition-title">Dataview is about displaying, not editing</p>
+<p>Dataview is meant for displaying and calculating data. It is no utility to edit data in your source files and will keep your notes always untouched (... except you're checking a <a href="queries/query-types/#task-queries">Task</a> through Dataview.)</p>
+</div>
+<h2 id="how-to-use-dataview">How to Use Dataview</h2>
+<p>Dataview consists out of two big building blocks: <strong>Data Indexing</strong> and <strong>Data Querying</strong>. </p>
+<div class="admonition info">
+<p class="admonition-title">More details on the linked documentation pages</p>
+<p>The following sections should give you a broad overview about what you can do with dataview and how. Be sure to visit the linked pages to find out more about the individual parts.</p>
+</div>
+<h3 id="data-indexing">Data Indexing</h3>
+<p>Dataview cannot read all your vault, but operates on specific data. Some of your content, like tags and bullet points (including tasks), are <a href="annotation/add-metadata/#implicit-fields">available automatically</a> in Dataview, and you can add other through <strong>fields</strong>, either on top of your file <a href="annotation/add-metadata/#frontmatter">per YAML Frontmatter</a> or in the middle of your content with <a href="annotation/add-metadata/#inline-fields">Inline Fields</a> via the <code>[key:: value]</code> syntax. Dataview <em>indexes</em> these data to make it available for you to query. </p>
+<div class="admonition hint">
+<p class="admonition-title">Only indexed data is available through Dataview!</p>
+</div>
+<p>For example, a file might look like this:</p>
+<div class="highlight"><pre><span></span><code>---
+author: &quot;Edgar Allan Poe&quot;
+published: 1845
+<span class="gu">tags: poems</span>
+<span class="gu">---</span>
+
+<span class="gh"># The Raven</span>
+
+Once upon a midnight dreary, while I pondered, weak and weary,
+Over many a quaint and curious volume of forgotten lore—
+</code></pre></div>
+
+<p>Or like this:</p>
+<div class="highlight"><pre><span></span><code><span class="gh">#poems</span>
+
+<span class="gh"># The Raven</span>
+
+From [author:: Edgar Allan Poe], written in (published:: 1845)
+
+Once upon a midnight dreary, while I pondered, weak and weary,
+Over many a quaint and curious volume of forgotten lore—
+</code></pre></div>
+
+<p>Data-wise, they are identical and only differ in your preffered way how you want to add your <a href="annotation/add-metadata/">metadata</a>. With this file, you'd have the <strong>metadata field</strong> <code>author</code> available and everything Dataview provides you <a href="annotation/metadata-pages/">automatically as implicit fields</a>, like the tag or note title.</p>
+<h3 id="data-querying">Data Querying</h3>
+<p>You can access <strong>indexed data</strong> with the help of <strong>Queries</strong>.</p>
+<p>There are <strong>three different ways</strong> you can write a Query: With help of the <a href="queries/dql-js-inline/#dataview-query-language-dql">Dataview Query Language</a>, as an <a href="queries/dql-js-inline#inline-dql">inline statement</a> or in the most flexible and most complex way: as a <a href="queries/dql-js-inline#dataview-js">Javascript Query</a>. </p>
+<p>The <strong>Dataview Query Language</strong> (short <strong>DQL</strong>) gives you a broad and powerful toolbelt to query, display and operate on your data. An <a href="queries/dql-js-inline#inline-dql"><strong>inline query</strong></a> gives you the possibility to display exactly one indexed value anywhere in your note. You can also do calculations this way. With <strong>DQL</strong> at your hands, you'll be probably fine without any Javascript throurough your data journey.</p>
+<p>Let's concentrate on the Dataview Query Language (DQL).</p>
+<p>A DQL Query consists of several parts:</p>
+<ul>
+<li>Exactly one <a href="queries/query-types/"><strong>Query Type</strong></a> that determines how your Query Output looks like</li>
+<li>None or one <a href="queries/data-commands#from"><strong>FROM statement</strong></a> to pick a specific tag or folder (or another <a href="reference/sources/">source</a>) to look at</li>
+<li>None to multiple <a href="queries/data-commands/"><strong>other Data Commands</strong></a> that help you filter, group and sort your wanted output</li>
+</ul>
+<p>For example, a Query can look like this:</p>
+<div class="highlight"><pre><span></span><code><span class="sb">```dataview</span>
+<span class="s">LIST</span>
+<span class="sb">```</span>
+</code></pre></div>
+
+<p>which list all files in your vault. </p>
+<div class="admonition info">
+<p class="admonition-title">Everything but the Query Type is optional</p>
+<p>The only thing you need for a valid DQL Query is the Query Type (and on <a href="queries/query-types#calendar-queries">CALENDAR</a>s, a date field.)</p>
+</div>
+<p>A more restricted Query might look like this:</p>
+<div class="highlight"><pre><span></span><code><span class="sb">```dataview</span>
+<span class="s">LIST</span>
+<span class="s">FROM #poems</span>
+<span class="s">WHERE author = &quot;Edgar Allan Poe&quot;</span>
+<span class="sb">```</span>
+</code></pre></div>
+
+<p>which lists all files in your vault that have the tag <code>#poems</code> and a <a href="annotation/add-metadata/">field</a> named <code>author</code> with the value <code>Edgar Allan Poe</code>. This query would find our example page from above. </p>
+<p><code>LIST</code> is only one out of four <a href="queries/query-types/">Query Types</a> you can use. For example, with a <code>TABLE</code>, we could add some more information to our output: </p>
+<div class="highlight"><pre><span></span><code><span class="sb">```dataview</span>
+<span class="s">TABLE author, published, file.inlinks AS &quot;Mentions&quot;</span>
+<span class="s">FROM #poems</span>
+<span class="sb">```</span>
+</code></pre></div>
+
+<p>This'll give you back a result like:</p>
+<table>
+<thead>
+<tr>
+<th>File (1)</th>
+<th>author</th>
+<th>published</th>
+<th>Mentions</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>The Raven</td>
+<td>Edgar Allan Poe</td>
+<td>1845</td>
+<td>- [[Favorite Poems]]</td>
+</tr>
+</tbody>
+</table>
+<p>That's not where the capabilities of dataview end, though. You can also <strong>perform operations</strong> on your values. Mind that these operations are only made inside your query - your <strong>data in your files stays untouched</strong>.</p>
+<div class="highlight"><pre><span></span><code><span class="sb">```dataview</span>
+<span class="s">TABLE author, date(now).year - published AS &quot;Age in Yrs&quot;, length(file.inlinks) AS &quot;Counts of Mentions&quot;</span>
+<span class="s">FROM #poems</span>
+<span class="sb">```</span>
+</code></pre></div>
+
+<p>gives you back</p>
+<table>
+<thead>
+<tr>
+<th>File (1)</th>
+<th>author</th>
+<th>Age in Yrs</th>
+<th>Count of Mentions</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>The Raven</td>
+<td>Edgar Allan Poe</td>
+<td>177</td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
+<p>As you can see, dataview doesn't only allow you to aggregate your data swiftly and always up to date, it also can help you with operations to give you new insights on your dataset. Browse through the documentation to find out more on how to interact with your data - have fun exploring your vault! </p>
+<h2 id="resources-and-help">Resources and Help</h2>
+<p>This documentation is not the only place that can help you out on your data journey. Take a look at <a href="resources/resources-and-support/">Resources and Support</a> for a list of helpful pages and places.</p>
+
+
+
+
+              
+            </article>
+            
+          </div>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+    <nav class="md-footer__inner md-grid" aria-label="Footer" >
+      
+      
+        
+        <a href="annotation/add-metadata/" class="md-footer__link md-footer__link--next" aria-label="Next: Adding Metadata" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              Adding Metadata
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": ".", "features": [], "search": "assets/javascripts/workers/search.ecf98df9.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
+    
+    
+      <script src="assets/javascripts/bundle.9c69f0bc.min.js"></script>
+      
+    
+  </body>
+</html>
