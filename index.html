@@ -806,8 +806,8 @@
 
 
 <h1 id="overview">Overview</h1>
-<p>Dataview is a live index and query engine over your personal knowledge base. You can <strong>add metadata</strong> to your notes and <strong>query</strong> them to list, filter, sort or group them - dataview keeps your queries always up to date and makes data aggregation a breeze.
-You could</p>
+<p>Dataview is a live index and query engine over your personal knowledge base. You can <a href="annotation/add-metadata/"><strong>add metadata</strong></a> to your notes and <strong>query</strong> them with the <a href="queries/structure/"><strong>Dataview Query Language</strong></a> to list, filter, sort or group your data. Dataview keeps your queries always up to date and makes data aggregation a breeze.</p>
+<p>You could</p>
 <ul>
 <li>Track your sleep by recording it in daily notes, and automatically create weekly tables of your sleep schedule.</li>
 <li>Automatically collect links to books in your notes, and render them all sorted by rating.</li>
@@ -816,13 +816,15 @@ You could</p>
 <li>Create dynamic views which show upcoming birthdays or events recorded in your notes</li>
 </ul>
 <p>and many, many things more.</p>
-<p>Dataview is highly generic and high performance, scaling up to hundreds of thousands of annotated notes without issue. 
-<strong>Dataview gives you a fast way to search, display and operate on indexed data</strong>. </p>
+<div class="admonition hint">
+<p class="admonition-title">Dataview gives you a fast way to search, display and operate on indexed data in your vault!</p>
+</div>
+<p>Dataview is highly generic and high performance, scaling up to hundreds of thousands of annotated notes without issue. </p>
 <p>If the built in <a href="query/queries/">query language</a> is insufficient for your purpose, you can run arbitrary
 JavaScript against the <a href="api/intro/">dataview API</a> and build whatever utility you might need yourself, right in your notes.</p>
 <div class="admonition info">
 <p class="admonition-title">Dataview is about displaying, not editing</p>
-<p>Dataview is meant for displaying and calculating data. It is no utility to edit data in your source files and will keep your notes always untouched (... except you're checking a <a href="queries/query-types/#task-queries">Task</a> through Dataview.)</p>
+<p>Dataview is meant for displaying and calculating data. It is no utility to edit data in your source files and will keep your notes always untouched (... except if you're checking a <a href="queries/query-types/#task-queries">Task</a> through Dataview.)</p>
 </div>
 <h2 id="how-to-use-dataview">How to Use Dataview</h2>
 <p>Dataview consists out of two big building blocks: <strong>Data Indexing</strong> and <strong>Data Querying</strong>. </p>
@@ -831,7 +833,7 @@ JavaScript against the <a href="api/intro/">dataview API</a> and build whatever 
 <p>The following sections should give you a broad overview about what you can do with dataview and how. Be sure to visit the linked pages to find out more about the individual parts.</p>
 </div>
 <h3 id="data-indexing">Data Indexing</h3>
-<p>Dataview cannot read all your vault, but operates on specific data. Some of your content, like tags and bullet points (including tasks), are <a href="annotation/add-metadata/#implicit-fields">available automatically</a> in Dataview, and you can add other through <strong>fields</strong>, either on top of your file <a href="annotation/add-metadata/#frontmatter">per YAML Frontmatter</a> or in the middle of your content with <a href="annotation/add-metadata/#inline-fields">Inline Fields</a> via the <code>[key:: value]</code> syntax. Dataview <em>indexes</em> these data to make it available for you to query. </p>
+<p>Dataview cannot read all your vault, but operates on specific data. Some of your content, like tags and bullet points (including tasks), are <a href="annotation/add-metadata/#implicit-fields">available automatically</a> in Dataview. You can add other data through <strong>fields</strong>, either on top of your file <a href="annotation/add-metadata/#frontmatter">per YAML Frontmatter</a> or in the middle of your content with <a href="annotation/add-metadata/#inline-fields">Inline Fields</a> via the <code>[key:: value]</code> syntax. Dataview <em>indexes</em> these data to make it available for you to query. </p>
 <div class="admonition hint">
 <p class="admonition-title">Only indexed data is available through Dataview!</p>
 </div>
@@ -864,7 +866,6 @@ Over many a quaint and curious volume of forgotten lore—
 <p>You can access <strong>indexed data</strong> with the help of <strong>Queries</strong>.</p>
 <p>There are <strong>three different ways</strong> you can write a Query: With help of the <a href="queries/dql-js-inline/#dataview-query-language-dql">Dataview Query Language</a>, as an <a href="queries/dql-js-inline#inline-dql">inline statement</a> or in the most flexible and most complex way: as a <a href="queries/dql-js-inline#dataview-js">Javascript Query</a>. </p>
 <p>The <strong>Dataview Query Language</strong> (short <strong>DQL</strong>) gives you a broad and powerful toolbelt to query, display and operate on your data. An <a href="queries/dql-js-inline#inline-dql"><strong>inline query</strong></a> gives you the possibility to display exactly one indexed value anywhere in your note. You can also do calculations this way. With <strong>DQL</strong> at your hands, you'll be probably fine without any Javascript throurough your data journey.</p>
-<p>Let's concentrate on the Dataview Query Language (DQL).</p>
 <p>A DQL Query consists of several parts:</p>
 <ul>
 <li>Exactly one <a href="queries/query-types/"><strong>Query Type</strong></a> that determines how your Query Output looks like</li>
@@ -902,7 +903,7 @@ Over many a quaint and curious volume of forgotten lore—
 <table>
 <thead>
 <tr>
-<th>File (1)</th>
+<th>File (2)</th>
 <th>author</th>
 <th>published</th>
 <th>Mentions</th>
@@ -915,9 +916,21 @@ Over many a quaint and curious volume of forgotten lore—
 <td>1845</td>
 <td>- [[Favorite Poems]]</td>
 </tr>
+<tr>
+<td>The Bells</td>
+<td>Edgar Allan Poe</td>
+<td>1849</td>
+<td></td>
+</tr>
+<tr>
+<td>The New Colossus</td>
+<td>Emma Lazarus</td>
+<td>1883</td>
+<td>- [[Favorite Poems]]</td>
+</tr>
 </tbody>
 </table>
-<p>That's not where the capabilities of dataview end, though. You can also <strong>perform operations</strong> on your values. Mind that these operations are only made inside your query - your <strong>data in your files stays untouched</strong>.</p>
+<p>That's not where the capabilities of dataview end, though. You can also <strong>perform operations</strong> with help of <a href="reference/functions/"><strong>functions</strong></a> on your values. Mind that these operations are only made inside your query - your <strong>data in your files stays untouched</strong>.</p>
 <div class="highlight"><pre><span></span><code><span class="sb">```dataview</span>
 <span class="s">TABLE author, date(now).year - published AS &quot;Age in Yrs&quot;, length(file.inlinks) AS &quot;Counts of Mentions&quot;</span>
 <span class="s">FROM #poems</span>
@@ -928,7 +941,7 @@ Over many a quaint and curious volume of forgotten lore—
 <table>
 <thead>
 <tr>
-<th>File (1)</th>
+<th>File (2)</th>
 <th>author</th>
 <th>Age in Yrs</th>
 <th>Count of Mentions</th>
@@ -939,6 +952,18 @@ Over many a quaint and curious volume of forgotten lore—
 <td>The Raven</td>
 <td>Edgar Allan Poe</td>
 <td>177</td>
+<td>1</td>
+</tr>
+<tr>
+<td>The Bells</td>
+<td>Edgar Allan Poe</td>
+<td>173</td>
+<td>0</td>
+</tr>
+<tr>
+<td>The New Colossus</td>
+<td>Emma Lazarus</td>
+<td>139</td>
 <td>1</td>
 </tr>
 </tbody>
