@@ -629,6 +629,13 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#can-i-save-the-result-of-a-query-for-reusability" class="md-nav__link">
+    Can I save the result of a query for reusability?
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -763,6 +770,13 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#can-i-save-the-result-of-a-query-for-reusability" class="md-nav__link">
+    Can I save the result of a query for reusability?
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -801,6 +815,48 @@ Dataview keywords:</p>
 </ol>
 <h3 id="do-you-have-a-list-of-resources-to-learn-from">Do you have a list of resources to learn from?</h3>
 <p>Yes! Please see the <a href="../resources-and-support/">Resources</a> page.</p>
+<h3 id="can-i-save-the-result-of-a-query-for-reusability">Can I save the result of a query for reusability?</h3>
+<p>You can write reusable Javascript Queries with the <a href="../../api/code-reference/#dvviewpath-input">dv.view</a> function. In DQL, beside the possibility of writing your Query inside a Template and using this template (either with the <a href="https://help.obsidian.md/Plugins/Templates">Core Plugin Templates</a> or the popular Community Plugin <a href="https://obsidian.md/plugins?id=templater-obsidian">Templater</a>), you can <strong>save calculations in metadata fields via <a href="../../queries/dql-js-inline#inline-dql">Inline DQL</a></strong>, for example:</p>
+<div class="highlight"><pre><span></span><code>start:: 07h00m
+end:: 18h00m
+pause:: 01h30m
+duration:: <span class="sb">`= this.end - this.start - this.pause`</span>
+</code></pre></div>
+
+<p>You can list the value (9h 30m in our example) then i.e. in a TABLE without needing to repeat the calculation:</p>
+<div class="highlight"><pre><span></span><code><span class="sb">```dataview</span>
+<span class="s">TABLE start, end, duration</span>
+<span class="s">WHERE duration</span>
+<span class="sb">```</span>
+</code></pre></div>
+
+<p>Gives you</p>
+<table>
+<thead>
+<tr>
+<th>File (1)</th>
+<th>start</th>
+<th>end</th>
+<th>duration</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Example</td>
+<td>7 hours</td>
+<td>18 hours</td>
+<td>9 hours, 30 minutes</td>
+</tr>
+</tbody>
+</table>
+<p><strong>But storing a Inline DQL in a field comes with a limitation</strong>: While the value that gets displayed in the result is the calculated one, <strong>the saved value inside the Inline DQL is still your calculation</strong>. This means you cannot filter for the Inlines' result like:</p>
+<div class="highlight"><pre><span></span><code><span class="sb">```dataview</span>
+<span class="s">TABLE start, end, duration</span>
+<span class="s">WHERE duration &gt; dur(&quot;10h&quot;)</span>
+<span class="sb">```</span>
+</code></pre></div>
+
+<p>This will give you the Example page back, even though the result does'nt fulfill the <code>WHERE</code> clause, because the value you are comparing against is no duration (yet).</p>
 
 
 

@@ -64,7 +64,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#creating-queries" class="md-skip">
+        <a href="#dql-js-and-inlines" class="md-skip">
           Skip to content
         </a>
       
@@ -793,31 +793,56 @@
 
 
 
-<h1 id="creating-queries">Creating Queries</h1>
+<h1 id="dql-js-and-inlines">DQL, JS and Inlines</h1>
 <p>Once you've added <a href="../../annotation/add-metadata/">useful data to relevant pages</a>, you'll want to actually display it somewhere or operate on it. Dataview
 allows this in four different ways, all of which are written in codeblocks directly in your Markdown and live-reloaded
 when your vault changes.</p>
 <h2 id="dataview-query-language-dql">Dataview Query Language (DQL)</h2>
-<p>The dataview <a href="../../queries/structure">query language</a> is a simplistic, SQL-like language for quickly creating views. It
-supports basic arithmetic and comparison operations, and is good for basic applications. You create dataview queries
-using <code>dataview</code>-annotated codeblocks:</p>
+<p>The <a href="../../queries/structure"><strong>Dataview Query Language</strong></a> (for short <strong>DQL</strong>) is a SQL-like language and Dataviews core functionality. It supports <a href="../query-types/">four Query Types</a> to produce different outputs, <a href="../data-commands/">data commands</a> to refine, resort or group your result and <a href="../../reference/functions/">plentiful functions</a> which allow numerous operations and adjustments to achieve your wanted output. </p>
+<p>You create a <strong>DQL</strong> query with a codeblock that uses <code>dataview</code> as type:</p>
 <div class="highlight"><pre><span></span><code>```dataview
 TABLE rating AS &quot;Rating&quot;, summary AS &quot;Summary&quot; FROM #games
 SORT rating DESC
 ```
 </code></pre></div>
 
-<p>The details of how to write a query are explained in the <a href="../../queries/structure">query language
-reference</a>; if you learn better by example, take a look at the <a href="../../resources/examples">query examples</a>.</p>
+<div class="admonition attention">
+<p class="admonition-title">Use backticks</p>
+<p>A valid codeblock needs to use backticks (`) on start and end (three each). Do not confuse the backtick with the similar looking apostrophe ' !</p>
+</div>
+<p>Find a explanation how to write a DQL Query under the <a href="../../queries/structure">query language
+reference</a>. If you learn better by example, take a look at the <a href="../../resources/examples">query examples</a>.</p>
 <h2 id="inline-dql">Inline DQL</h2>
-<p>The query language also provides inline queries, which allow you to embed single values
-directly inside a page - for example, todays date via <code>= date(today)</code>, or a field from another page via <code>=
-[[Page]].value</code>. You create inline queries using inline codeblocks:</p>
+<p>A Inline DQL uses a inline block format instead of a code block and a configurable prefix to mark this inline code block as a DQL block.</p>
 <div class="highlight"><pre><span></span><code>`= this.file.name`
 </code></pre></div>
 
-<p>Inline DQL expressions are written using the <a href="../../reference/expressions">query language expression language</a>. You can
-configure inline queries to use a different prefix (like <code>dv:</code> or <code>~</code>) in the Dataview settings.</p>
+<div class="admonition info">
+<p class="admonition-title">Change of DQL prefix</p>
+<p>You can change the <code>=</code> to another token (like <code>dv:</code> or <code>~</code>) in Dataviews' settings under "Codeblock Settings" &gt; "Inline Query Prefix"</p>
+</div>
+<p>Inline DQL Queries display <strong>exactly one value</strong> somewhere in the middle of your note. They seamlessly blend into the content of your note:</p>
+<div class="highlight"><pre><span></span><code>Today is <span class="sb">`= date(today)`</span> - <span class="sb">`= [[exams]].deadline - date(today)`</span> until exams!
+</code></pre></div>
+
+<p>would, for example, render to </p>
+<div class="highlight"><pre><span></span><code>Today is November 07, 2022 - 2 months, 5 days until exams!
+</code></pre></div>
+
+<p><strong>Inline DQL</strong> cannot query multiple pages. They always display exactly one value, not a list (or table) of values. You can either access the properties of the <strong>current page</strong> via prefix <code>this.</code> or a different page via <code>[[linkToPage]]</code>.</p>
+<div class="highlight"><pre><span></span><code><span class="sb">`= this.file.name`</span>
+<span class="sb">`= this.file.mtime`</span>
+<span class="sb">`= this.someMetadataField`</span>
+<span class="sb">`= [[secondPage]].file.name`</span>
+<span class="sb">`= [[secondPage]].file.mtime`</span>
+<span class="sb">`= [[secondPage]].someMetadataField`</span>
+</code></pre></div>
+
+<p>You can use everything available as <a href="../../reference/expressions">expressions</a> and <a href="../../reference/literals">literals</a> in a Inline DQL, including <a href="../../reference/functions">functions</a>. Query Types and Data Commands on the other hand are <strong>not available in Inlines.</strong></p>
+<div class="admonition hint">
+<p class="admonition-title">Saving Inline DQL in metadata fields</p>
+<p>You can store a Inline DQL inside a field for reusability with some limitations. Read more about it in <a href="../../resources/faq#can-i-save-the-result-of-a-query-for-reusability">the FAQ</a>.</p>
+</div>
 <h2 id="dataview-js">Dataview JS</h2>
 <p>The dataview <a href="../../api/intro">JavaScript API</a> gives you the full power of JavaScript and provides a DSL for pulling
 Dataview data and executing queries, allowing you to create arbitrarily complex queries and views. Similar to the query
@@ -834,6 +859,10 @@ language, you create Dataview JS blocks via a <code>dataviewjs</code>-annotated 
 <p>Inside of a JS dataview block, you have access to the full dataview API via the <code>dv</code> variable. For an explanation of
 what you can do with it, see the <a href="../../api/code-reference">API documentation</a>, or the <a href="../../api/code-examples">API
 examples</a>.</p>
+<div class="admonition attention">
+<p class="admonition-title">Advanced usage</p>
+<p>Writing Javascript queries is a advanced technique that requires understanding in programming and JS. Please be aware that JS Queries have access to your file system and be cautious when using other peopless' JS Queries, especially when they are not publicy shared through the Obsidian Community.</p>
+</div>
 <h2 id="inline-dataview-js">Inline Dataview JS</h2>
 <p>Similar to the query language, you can write JS inline queries, which let you embed a computed JS value directly. You
 create JS inline queries via inline code blocks:</p>
@@ -842,6 +871,11 @@ create JS inline queries via inline code blocks:</p>
 
 <p>In inline DataviewJS, you have access to the <code>dv</code> variable, as in <code>dataviewjs</code> codeblocks, and can make all of the same calls. The result
 should be something which evaluates to a JavaScript value, which Dataview will automatically render appropriately.</p>
+<p>Unline Inline DQL queries, Inline JS queries do have access to everything a Dataview JS Query has available and can hence query and output multiple pages.</p>
+<div class="admonition info">
+<p class="admonition-title">Change of Inline JS prefix</p>
+<p>You can change the <code>$=</code> to another token (like <code>dvjs:</code> or <code>$~</code>) in Dataviews' settings under "Codeblock Settings" &gt; "Javascript Inline Query Prefix"</p>
+</div>
 
 
 
