@@ -849,14 +849,14 @@ duration:: <span class="sb">`= this.end - this.start - this.pause`</span>
 </tr>
 </tbody>
 </table>
-<p><strong>But storing a Inline DQL in a field comes with a limitation</strong>: While the value that gets displayed in the result is the calculated one, <strong>the saved value inside the Inline DQL is still your calculation</strong>. This means you cannot filter for the Inlines' result like:</p>
+<p><strong>But storing a Inline DQL in a field comes with a limitation</strong>: While the value that gets displayed in the result is the calculated one, <strong>the saved value inside your metadata field is still your Inline DQL calculation</strong>. The value literally is <code>= this.end - this.start - this.pause</code>. This means you cannot filter for the Inlines' result like:</p>
 <div class="highlight"><pre><span></span><code><span class="sb">```dataview</span>
 <span class="s">TABLE start, end, duration</span>
 <span class="s">WHERE duration &gt; dur(&quot;10h&quot;)</span>
 <span class="sb">```</span>
 </code></pre></div>
 
-<p>This will give you the Example page back, even though the result does'nt fulfill the <code>WHERE</code> clause, because the value you are comparing against is no duration (yet).</p>
+<p>This will give you the Example page back, even though the result doesn't fulfill the <code>WHERE</code> clause, because the value you are comparing against is <code>= this.end - this.start - this.pause</code> and no duration (yet).</p>
 
 
 

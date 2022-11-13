@@ -387,8 +387,36 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#general-format" class="md-nav__link">
-    General Format
+  <a href="#general-format-of-a-dql-query" class="md-nav__link">
+    General Format of a DQL Query
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#choose-a-output-format" class="md-nav__link">
+    Choose a Output Format
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#choose-your-source" class="md-nav__link">
+    Choose your source
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#filter-sort-group-or-limit-results" class="md-nav__link">
+    Filter, sort, group or limit results
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#examples" class="md-nav__link">
+    Examples
   </a>
   
 </li>
@@ -729,8 +757,36 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#general-format" class="md-nav__link">
-    General Format
+  <a href="#general-format-of-a-dql-query" class="md-nav__link">
+    General Format of a DQL Query
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#choose-a-output-format" class="md-nav__link">
+    Choose a Output Format
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#choose-your-source" class="md-nav__link">
+    Choose your source
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#filter-sort-group-or-limit-results" class="md-nav__link">
+    Filter, sort, group or limit results
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#examples" class="md-nav__link">
+    Examples
   </a>
   
 </li>
@@ -754,41 +810,186 @@
 
 
 <h1 id="structure-of-a-query">Structure of a Query</h1>
-<p>The dataview query language is a simple, structured, custom query language for quickly creating views on your data. It
+<p>Dataview provides <a href="../dql-js-inline/">multiple ways</a> to create queries and the way you need to write a query differs for each.</p>
+<p>This page provides information on how to write a <strong>Dataview Query Language</strong> (<strong>DQL</strong>) query. If you're interested in how to write Inline Queries, refer to the <a href="../dql-js-inline/#inline-dql">inline section on DQL, JS and Inlines</a>. You'll find more information about <strong>Javascript Queries</strong> on the <a href="../../api/intro/">Javascript Reference</a>.</p>
+<p><strong>DQL</strong> is a SQL like query language for creating different views or calculations on your data. It
 supports:</p>
 <ul>
-<li>Fetching pages associated with tags, folders, links, and so on.</li>
-<li>Filtering pages / data by simple operations on fields, like comparison, existence checks, and so on.</li>
-<li>Sorting results based on fields.</li>
+<li>Choosing a <strong>output format</strong> of your output (the <a href="../query-types/">Query Type</a>)</li>
+<li>Fetch pages <strong>from a certain <a href="../../reference/sources/">source</a></strong>, i.e. a tag, folder or link</li>
+<li><strong>Filtering pages/data</strong> by simple operations on fields, like comparison, existence checks, and so on</li>
+<li><strong>Transforming fields</strong> for displaying, i.e. with calculations or splitting up multi-value fields</li>
+<li><strong>Sorting</strong> results based on fields</li>
+<li><strong>Grouping</strong> results based on fields</li>
+<li><strong>Limiting</strong> your result count</li>
 </ul>
-<p>The query language supports the following view types, described below:</p>
-<ol>
-<li><strong>TABLE</strong>: The traditional view type; one row per data point, with several columns of field data.</li>
-<li><strong>LIST</strong>: A list of pages which match the query. You can output a single associated value for each page.</li>
-<li><strong>TASK</strong>: A list of tasks whose pages match the given query.</li>
-<li><strong>CALENDAR</strong>: A calendar view displaying each hit via a dot on its referred date</li>
-</ol>
-<p>Read more about the available types <a href="../query-types/">here</a></p>
-<h2 id="general-format">General Format</h2>
-<p>The general format for queries is:</p>
+<p>Let's have a look at how  we can put DQL to use.</p>
+<h2 id="general-format-of-a-dql-query">General Format of a DQL Query</h2>
+<p>Every query follows the same structure and consists of</p>
+<ul>
+<li>exactly one <strong>Query Type</strong> with, depending on your Query type, zero, one or many <a href="../../annotation/add-metadata/">fields</a> for displaying</li>
+<li>zero or one <strong>FROM</strong> data command with one to many <a href="../../reference/sources/">sources</a></li>
+<li>zero to many other <strong>data commands</strong> with one to many <a href="../../reference/expressions/">expressions</a> and/or other infos depending on the data command </li>
+</ul>
+<p>Abstractly speaking, a query conforms the following pattern:</p>
 <div class="highlight"><pre><span></span><code>```dataview
-TABLE|LIST|TASK &lt;field&gt; [AS &quot;Column Name&quot;], &lt;field&gt;, ..., &lt;field&gt; 
+&lt;QUERY-TYPE&gt; &lt;fields&gt;
 FROM &lt;source&gt;
-WHERE &lt;expression&gt;
-SORT &lt;expression&gt; [ASC/DESC]
-... other data commands
+&lt;DATA COMMAND&gt; &lt;expression&gt;
 ```
 </code></pre></div>
 
-<p>Only the <a href="../query-types/"><strong>Query Type</strong></a> (table/list/task/calendar) statement is required - if the "from" statement is omitted, the query runs for all files in
-your vault. You can specify <a href="../data-commands/">data commands</a> like <code>WHERE</code> multiple times; they will run in the order they are written. </p>
-<p>The most basic example of a dataview query is:</p>
-<div class="highlight"><pre><span></span><code>```dataview
+<div class="admonition hint">
+<p class="admonition-title">Only the Query Type is mandatory.</p>
+</div>
+<p>The following sections will walk through the theory in more detail.</p>
+<h2 id="choose-a-output-format">Choose a Output Format</h2>
+<p>The final output appareance of a query is determined by its <strong>Query Type</strong>. There are four available:</p>
+<ol>
+<li><strong>TABLE</strong>: The traditional view type; one row per result, with several columns of field data.</li>
+<li><strong>LIST</strong>: A list of pages which match the query. You can output one field for each page alongside their file links.</li>
+<li><strong>TASK</strong>: A list of tasks that match the given query.</li>
+<li><strong>CALENDAR</strong>: A calendar view displaying each hit via a dot on its referred date.</li>
+</ol>
+<p>The Query Type is the <strong>only mandatory command in a query</strong>. Everything else is optional.</p>
+<div class="highlight"><pre><span></span><code>Lists all pages in your vault as a table with one column containing the page link
+```dataview
+TABLE
+```
+
+Lists all pages in your vault as a bullet point list
+```dataview
 LIST
 ```
+
+Lists all tasks (completed or not) in your vault
+```dataview
+TASK
+```
+
+Renders a Calendar view where each page is represented as a dot on its creation date.
+```dataview
+CALENDAR file.cday
+```
 </code></pre></div>
 
-<p>which will list <strong>all files in your vault</strong>. Find more examples <a href="../../resources/examples/">here</a>.</p>
+<div class="admonition info">
+<p class="admonition-title">Read more about the available types and how to use them <a href="../query-types/">here</a>.</p>
+</div>
+<h2 id="choose-your-source">Choose your source</h2>
+<p>Additionally to the Query Types, you have several <strong>Data Commands</strong> available that help you restrict, refine, sort or group your query. One of these query commands is the <strong>FROM</strong> statement, which is a bit special.</p>
+<div class="admonition info">
+<p class="admonition-title"><code>FROM</code> determines which set of notes should be included in your query depending on given <a href="../../reference/sources">sources</a>.</p>
+</div>
+<p>You can add <strong>zero or one</strong> <code>FROM</code> data command to your query, right after your Query Type. You cannot add multiple FROM statements and you cannot add it after other Data Commands.</p>
+<p><code>FROM</code> takes <a href="../../reference/sources">sources</a> as argument and <strong>restricts the pages your query will collect to the given sources</strong>.</p>
+<div class="highlight"><pre><span></span><code>Lists all pages inside the folder Books and its sub folders
+```dataview
+LIST
+FROM &quot;Books&quot;
+```
+
+Lists all pages that include the tag #status/open or #status/wip
+```dataview
+LIST
+FROM #status/open OR #status/wip
+```
+
+Lists all pages that have either the tag #assignment and are inside folder &quot;30 School&quot; (or its sub folders), or are inside folder &quot;30 School/32 Homeworks&quot; and are linked on the page School Dashboard Current To Dos
+```dataview
+LIST
+FROM (#assignment AND &quot;30 School&quot;) OR (&quot;30 School/32 Homeworks&quot; AND outgoing([[School Dashboard Current To Dos]]))
+```
+</code></pre></div>
+
+<div class="admonition info">
+<p class="admonition-title">Read more about <code>FROM</code> <a href="../data-commands/#from">here</a>.</p>
+</div>
+<h2 id="filter-sort-group-or-limit-results">Filter, sort, group or limit results</h2>
+<p>Additionally to the Query Types and the <strong>Data command</strong> <code>FROM</code> that's explained above, you have several other <strong>Data Commands</strong> available that help you restrict, refine, sort or group your query. </p>
+<p>All data commands except the <code>FROM</code> command can be used <strong>multiple times in any order</strong> (as long as they come after the Query Type and <code>FROM</code>, if <code>FROM</code> is used at all). They'll be excuted in the order they are written.</p>
+<p>Available are:</p>
+<ol>
+<li><strong>FROM</strong> like explained <a href="#choose-your-source">above</a>.</li>
+<li><strong>WHERE</strong>: Filter notes based on information <strong>inside</strong> notes, the meta data fields.</li>
+<li><strong>SORT</strong>: Sorts your results depending on a field and a direction.</li>
+<li><strong>GROUP BY</strong>: Bundles up several results into one result row.</li>
+<li><strong>LIMIT</strong>: Limits the output of your query to the given (maximum) number.</li>
+<li><strong>FLATTEN</strong>: Splits up one result into multiple results based on a field or calculation.</li>
+</ol>
+<div class="highlight"><pre><span></span><code>Lists all pages that have a metadata field `due` and where `due` is smaller than today
+```dataview
+LIST
+WHERE due AND due &lt; date(today)
+```
+
+Lists the first 10 pages with the newest creation date and time, that have the tag #status/open
+```dataview
+LIST
+FROM #status/open
+SORT file.ctime DESC
+LIMIT 10
+```
+
+Lists files that have the metadata field `contacts` and where `contacts` is a list (a multi value), as well as contain the page `Mr. L`. Sort after the length (count) of contacts and sort the contacts itself after the contact&#39;s age in ascending order.
+```dataview
+LIST rows.c
+WHERE typeof(contacts) = &quot;array&quot; AND contains(contacts, [[Mr. L]])
+SORT length(contacts)
+FLATTEN contacts as c
+SORT link(c).age ASC
+GROUP BY file.link
+```
+</code></pre></div>
+
+<div class="admonition info">
+<p class="admonition-title">Find out more about available <a href="../data-commands/">data commands</a>.</p>
+</div>
+<h2 id="examples">Examples</h2>
+<p>Following some examples of valid query structures. Find more examples <a href="../../resources/examples/">here</a>.</p>
+<div class="highlight"><pre><span></span><code>```dataview
+TASK
+```
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code>```dataview
+TABLE recipe-type AS &quot;type&quot;, portions, length
+FROM #recipes
+```
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code>```dataview
+LIST
+FROM #assignments
+WHERE status = &quot;open&quot;
+```
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code>```dataview
+TABLE file.ctime, appointment.type, appointment.time, follow-ups
+FROM &quot;30 Protocols/32 Management&quot;
+WHERE follow-ups
+SORT appointment.time
+```
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code>```dataview
+TASK
+WHERE !completed
+SORT created DESC
+LIMIT 10
+GROUP BY file.link
+SORT file.ctime ASC
+```
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code>```dataview
+TABLE L.text AS &quot;My lists&quot;
+FROM &quot;dailys&quot;
+FLATTEN file.lists AS L
+WHERE contains(L.author, &quot;Surname&quot;)
+```
+</code></pre></div>
 
 
 
