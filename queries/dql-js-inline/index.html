@@ -838,7 +838,7 @@ reference</a>. If you learn better by example, take a look at the <a href="../..
 <span class="sb">`= [[secondPage]].someMetadataField`</span>
 </code></pre></div>
 
-<p>You can use everything available as <a href="../../reference/expressions">expressions</a> and <a href="../../reference/literals">literals</a> in a Inline DQL, including <a href="../../reference/functions">functions</a>. Query Types and Data Commands on the other hand are <strong>not available in Inlines.</strong></p>
+<p>You can use everything available as <a href="../../reference/expressions">expressions</a> and <a href="../../reference/literals">literals</a> in an Inline DQL Query, including <a href="../../reference/functions">functions</a>. Query Types and Data Commands, on the other hand, are <strong>not available in Inlines.</strong></p>
 <div class="highlight"><pre><span></span><code>Assignment due in <span class="sb">`= this.due - date(today)`</span>
 Final paper due in <span class="sb">`= [[Computer Science Theory]].due - date(today)`</span>
 
@@ -847,10 +847,6 @@ Final paper due in <span class="sb">`= [[Computer Science Theory]].due - date(to
 You have <span class="sb">`= length(filter(link(dateformat(date(today), &quot;yyyy-MM-dd&quot;)).file.tasks, (t) =&gt; !t.completed))`</span> tasks to do. <span class="sb">`= choice(date(today).weekday &gt; 5, &quot;Take it easy!&quot;, &quot;Time to get work done!&quot;)`</span> 
 </code></pre></div>
 
-<div class="admonition hint">
-<p class="admonition-title">Saving Inline DQL in metadata fields</p>
-<p>You can store a Inline DQL inside a field for reusability with some limitations. Read more about it in <a href="../../resources/faq#can-i-save-the-result-of-a-query-for-reusability">the FAQ</a>.</p>
-</div>
 <h2 id="dataview-js">Dataview JS</h2>
 <p>The dataview <a href="../../api/intro">JavaScript API</a> gives you the full power of JavaScript and provides a DSL for pulling
 Dataview data and executing queries, allowing you to create arbitrarily complex queries and views. Similar to the query

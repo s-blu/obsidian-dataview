@@ -636,6 +636,13 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#how-can-i-hide-the-result-count-on-table-queries" class="md-nav__link">
+    How can I hide the result count on TABLE Queries?
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -777,6 +784,13 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#how-can-i-hide-the-result-count-on-table-queries" class="md-nav__link">
+    How can I hide the result count on TABLE Queries?
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -849,14 +863,22 @@ duration:: <span class="sb">`= this.end - this.start - this.pause`</span>
 </tr>
 </tbody>
 </table>
-<p><strong>But storing a Inline DQL in a field comes with a limitation</strong>: While the value that gets displayed in the result is the calculated one, <strong>the saved value inside your metadata field is still your Inline DQL calculation</strong>. The value literally is <code>= this.end - this.start - this.pause</code>. This means you cannot filter for the Inlines' result like:</p>
+<p><strong>But storing a Inline DQL in a field comes with a limitation</strong>: While the value that gets displayed in the result is the calculated one, <strong>the saved value inside your metadata field is still your Inline DQL calculation</strong>. The value is literally <code>= this.end - this.start - this.pause</code>. This means you cannot filter for the Inlines' result like:</p>
 <div class="highlight"><pre><span></span><code><span class="sb">```dataview</span>
 <span class="s">TABLE start, end, duration</span>
 <span class="s">WHERE duration &gt; dur(&quot;10h&quot;)</span>
 <span class="sb">```</span>
 </code></pre></div>
 
-<p>This will give you the Example page back, even though the result doesn't fulfill the <code>WHERE</code> clause, because the value you are comparing against is <code>= this.end - this.start - this.pause</code> and no duration (yet).</p>
+<p>This will give you back the example page, even though the result doesn't fulfill the <code>WHERE</code> clause, because the value you are comparing against is <code>= this.end - this.start - this.pause</code> and is not a duration.</p>
+<h3 id="how-can-i-hide-the-result-count-on-table-queries">How can I hide the result count on TABLE Queries?</h3>
+<p>There is no built-in Dataview Setting to do so, but you can use a CSS Snippet for that:</p>
+<div class="highlight"><pre><span></span><code><span class="p">.</span><span class="nc">dataview</span><span class="w"> </span><span class="nt">th</span><span class="p">:</span><span class="nd">first-of-type</span><span class="w"> </span><span class="p">.</span><span class="nc">small-text</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="k">visibility</span><span class="p">:</span><span class="w"> </span><span class="kc">hidden</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</code></pre></div>
+
+<p>Create a .css file (i.e. <code>hide-dataview-count.css</code>) inside the folder <code>.obsidian/snippets</code> in your vault, copy &amp; paste the above code and and activate the snippet in the appareance settings. To read more about CSS Snippets and how to apply them refer to the <a href="https://help.obsidian.md/How+to/Add+custom+styles">official Obsidian documentation</a>.</p>
 
 
 

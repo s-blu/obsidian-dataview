@@ -401,12 +401,26 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#list-queries" class="md-nav__link">
-    List Queries
+  <a href="#list" class="md-nav__link">
+    LIST
   </a>
   
-    <nav class="md-nav" aria-label="List Queries">
+    <nav class="md-nav" aria-label="LIST">
       <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#output-an-additional-information" class="md-nav__link">
+    Output an additional information
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#grouping" class="md-nav__link">
+    Grouping
+  </a>
+  
+</li>
         
           <li class="md-nav__item">
   <a href="#list-without-id" class="md-nav__link">
@@ -421,12 +435,19 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#table-queries" class="md-nav__link">
-    Table Queries
+  <a href="#table" class="md-nav__link">
+    TABLE
   </a>
   
-    <nav class="md-nav" aria-label="Table Queries">
+    <nav class="md-nav" aria-label="TABLE">
       <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#custom-column-headers" class="md-nav__link">
+    Custom Column Headers
+  </a>
+  
+</li>
         
           <li class="md-nav__item">
   <a href="#table-without-id" class="md-nav__link">
@@ -441,15 +462,28 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#task-queries" class="md-nav__link">
-    Task Queries
+  <a href="#task" class="md-nav__link">
+    TASK
   </a>
+  
+    <nav class="md-nav" aria-label="TASK">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#child-tasks" class="md-nav__link">
+    Child Tasks
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#calendar-queries" class="md-nav__link">
-    Calendar Queries
+  <a href="#calendar" class="md-nav__link">
+    CALENDAR
   </a>
   
 </li>
@@ -776,12 +810,26 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#list-queries" class="md-nav__link">
-    List Queries
+  <a href="#list" class="md-nav__link">
+    LIST
   </a>
   
-    <nav class="md-nav" aria-label="List Queries">
+    <nav class="md-nav" aria-label="LIST">
       <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#output-an-additional-information" class="md-nav__link">
+    Output an additional information
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#grouping" class="md-nav__link">
+    Grouping
+  </a>
+  
+</li>
         
           <li class="md-nav__item">
   <a href="#list-without-id" class="md-nav__link">
@@ -796,12 +844,19 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#table-queries" class="md-nav__link">
-    Table Queries
+  <a href="#table" class="md-nav__link">
+    TABLE
   </a>
   
-    <nav class="md-nav" aria-label="Table Queries">
+    <nav class="md-nav" aria-label="TABLE">
       <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#custom-column-headers" class="md-nav__link">
+    Custom Column Headers
+  </a>
+  
+</li>
         
           <li class="md-nav__item">
   <a href="#table-without-id" class="md-nav__link">
@@ -816,15 +871,28 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#task-queries" class="md-nav__link">
-    Task Queries
+  <a href="#task" class="md-nav__link">
+    TASK
   </a>
+  
+    <nav class="md-nav" aria-label="TASK">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#child-tasks" class="md-nav__link">
+    Child Tasks
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#calendar-queries" class="md-nav__link">
-    Calendar Queries
+  <a href="#calendar" class="md-nav__link">
+    CALENDAR
   </a>
   
 </li>
@@ -848,286 +916,570 @@
 
 
 <h1 id="query-types">Query Types</h1>
-<p>Your <strong>Query Type</strong> determines how the output of your dataview query looks like. LIST, TABLE and CALENDAR always operates on page level, whereas TASK queries operate on <code>file.tasks</code> level.</p>
-<h2 id="list-queries">List Queries</h2>
-<p>Lists are the simplest view, and simply render a list of pages (or custom fields) which match the query.
-To obtain a list of pages matching the query, simply use:</p>
-<div class="tabbed-set" data-tabs="1:3"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><label for="__tabbed_1_1">Syntax</label><div class="tabbed-content">
-<div class="highlight"><pre><span></span><code>LIST FROM &lt;source&gt;
+<p>The <strong>Query Type</strong> determines how the output of your dataview query looks like. It is the <strong>first and only mandatory</strong> specification you give to a dataview query. There are four available: <code>LIST</code>, <code>TABLE</code>, <code>TASK</code> and <code>CALENDAR</code>.</p>
+<p>The Query Type also determine on which <strong>information level</strong> a query is executed.  <code>LIST</code>, <code>TABLE</code> and <code>CALENDAR</code> operate on <strong>page level</strong>, whereas <code>TASK</code> queries operate on <code>file.tasks</code> level. More on that on the <code>TASK</code> Query Type. </p>
+<p>You can combine <strong>every Query Type with all available <a href="../data-commands/">Data Commands</a></strong> to refine your result set. Read more about the interconnection between Query Types and Data Commands on <a href="../..#how-to-use-dataview">How to Use Dataview</a> and the <a href="../structure/">structure page</a>.</p>
+<div class="admonition summary">
+<p class="admonition-title">Query Type</p>
+<p>The Query Type determines the output format of a query. It's the only mandatory information for a query.</p>
+</div>
+<h2 id="list">LIST</h2>
+<p><code>LIST</code> queries output a bullet point list consisting out of your file links or the group name, if you decided to <a href="../data-commands/#group-by">group</a>. You can specify up to <strong>one additional information</strong> to output alongside with your file or group information.</p>
+<div class="admonition summary">
+<p class="admonition-title">Query Type <code>LIST</code></p>
+<p><code>LIST</code> outputs a bullet point list of page links or Group keys. You can specify one additional information to show for each result.</p>
+</div>
+<p>The most minimal LIST query outputs a bullet point list of all files in your vault:</p>
+<div class="highlight"><pre><span></span><code>```dataview 
+LIST
+```
 </code></pre></div>
 
-</div>
-<input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><label for="__tabbed_1_2">Query</label><div class="tabbed-content">
-<div class="highlight"><pre><span></span><code><span class="n">LIST</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="o">#</span><span class="n">games</span><span class="o">/</span><span class="n">mobas</span><span class="w"> </span><span class="k">OR</span><span class="w"> </span><span class="o">#</span><span class="n">games</span><span class="o">/</span><span class="n">crpg</span><span class="w"></span>
+<p><strong>Output</strong></p>
+<ul>
+<li><a href="#">Classic Cheesecake</a></li>
+<li><a href="#">Git Basics</a></li>
+<li><a href="#">How to fix Git Cheatsheet</a></li>
+<li><a href="#">League of Legends</a></li>
+<li><a href="#">Pillars of Eternity 2</a></li>
+<li><a href="#">Stardew Valley</a></li>
+<li><a href="#">Dashboard</a></li>
+</ul>
+<p>but you can, of course, use <a href="../data-commands/">data commands</a> to restrict which pages you want to have listed:</p>
+<div class="highlight"><pre><span></span><code>```dataview
+LIST 
+FROM #games/mobas OR #games/crpg
+```
 </code></pre></div>
 
-</div>
-<input id="__tabbed_1_3" name="__tabbed_1" type="radio" /><label for="__tabbed_1_3">Output</label><div class="tabbed-content">
+<p><strong>Output</strong></p>
 <ul>
 <li><a href="#">League of Legends</a></li>
 <li><a href="#">Pillars of Eternity 2</a></li>
 </ul>
-</div>
-</div>
-<p>You can render a single computed value in addition to each matching file, by adding an expression after <code>LIST</code>:</p>
-<div class="tabbed-set" data-tabs="2:3"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><label for="__tabbed_2_1">Syntax</label><div class="tabbed-content">
-<div class="highlight"><pre><span></span><code>LIST &lt;expression&gt; FROM &lt;source&gt;
+<h3 id="output-an-additional-information">Output an additional information</h3>
+<p>To add a <strong>additional information</strong> to your query, specify it right after the <code>LIST</code> command and before possibly available data commands:</p>
+<div class="highlight"><pre><span></span><code>```dataview 
+LIST file.folder
+```
 </code></pre></div>
 
-</div>
-<input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><label for="__tabbed_2_2">Query</label><div class="tabbed-content">
-<div class="highlight"><pre><span></span><code><span class="n">LIST</span><span class="w"> </span><span class="ss">&quot;File Path: &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">file</span><span class="p">.</span><span class="n">path</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="ss">&quot;4. Archive&quot;</span><span class="w"></span>
-</code></pre></div>
-
-</div>
-<input id="__tabbed_2_3" name="__tabbed_2" type="radio" /><label for="__tabbed_2_3">Output</label><div class="tabbed-content">
+<p><strong>Output</strong></p>
 <ul>
-<li><a href="#">2020-12-18 DN</a>: File path: 4. Archive/Daily Notes/2020-12-18 DN.md</li>
-<li><a href="#">2020-12-16 DN</a>: File path: 4. Archive/Daily Notes/2020-12-16 DN.md</li>
-<li><a href="#">2020-12-17 DN</a>: File path: 4. Archive/Daily Notes/2020-12-17 DN.md</li>
-<li><a href="#">2020-12-15 DN</a>: File path: 4. Archive/Daily Notes/2020-12-15 DN.md</li>
+<li><a href="#">Classic Cheesecake</a>: Baking/Recipes</li>
+<li><a href="#">Git Basics</a>: Coding</li>
+<li><a href="#">How to fix Git Cheatsheet</a>: Coding/Cheatsheets</li>
+<li><a href="#">League of Legends</a>: Games</li>
+<li><a href="#">Pillars of Eternity 2</a>: Games</li>
+<li><a href="#">Stardew Valley</a>: Games/finished</li>
+<li><a href="#">Dashboard</a>: </li>
 </ul>
-</div>
-</div>
+<p>You can only add <strong>one</strong> additional information, not multiple. But you can <strong>specify a computed value</strong> instead of a plain meta data field, which can contain information of multiple fields:</p>
+<div class="highlight"><pre><span></span><code>```dataview 
+LIST &quot;File Path: &quot; + file.folder + &quot; _(created: &quot; + file.cday + &quot;)_&quot;
+FROM &quot;Games&quot;
+```
+</code></pre></div>
+
+<p><strong>Output</strong></p>
+<ul>
+<li><a href="#">League of Legends</a>: File Path: Games <em>(created: May 13, 2021)</em></li>
+<li><a href="#">Pillars of Eternity 2</a>: File Path: Games <em>(created: Februrary 02, 2022)</em></li>
+<li><a href="#">Stardew Valley</a>: File Path: Games/finished <em>(created: April 04, 2021)</em></li>
+</ul>
+<h3 id="grouping">Grouping</h3>
+<p>A <strong>grouped list</strong> shows their group keys, and only the group keys, by default:</p>
+<div class="highlight"><pre><span></span><code>```dataview 
+LIST
+GROUP BY type
+```
+</code></pre></div>
+
+<p><strong>Output</strong></p>
+<ul>
+<li>game</li>
+<li>knowledge</li>
+<li>moc</li>
+<li>recipe</li>
+<li>summary</li>
+</ul>
+<p>A common use-case on grouped <code>LIST</code> queries is to add the file links to the output by specifying them as the additional information:</p>
+<div class="highlight"><pre><span></span><code>```dataview 
+LIST rows.file.link
+GROUP BY type
+```
+</code></pre></div>
+
+<ul>
+<li>game:<ul>
+<li><a href="#">Stardew Valley</a></li>
+<li><a href="#">League of Legends</a></li>
+<li><a href="#">Pillars of Eternity 2</a></li>
+</ul>
+</li>
+<li>knowledge:<ul>
+<li><a href="#">Git Basics</a></li>
+</ul>
+</li>
+<li>moc:<ul>
+<li><a href="#">Dashboard</a></li>
+</ul>
+</li>
+<li>recipe:<ul>
+<li><a href="#">Classic Cheesecake</a></li>
+</ul>
+</li>
+<li>summary:<ul>
+<li><a href="#">How to fix Git Cheatsheet</a></li>
+</ul>
+</li>
+</ul>
 <h3 id="list-without-id">LIST WITHOUT ID</h3>
-<p>If you don't want the file name / group key included in the list view, you can use <code>LIST WITHOUT ID</code>:</p>
-<div class="tabbed-set" data-tabs="3:3"><input checked="checked" id="__tabbed_3_1" name="__tabbed_3" type="radio" /><label for="__tabbed_3_1">Syntax</label><div class="tabbed-content">
-<div class="highlight"><pre><span></span><code>LIST WITHOUT ID &lt;expression&gt; FROM &lt;source&gt;
+<p>If you don't want the file name or group key included in the list view, you can use <code>LIST WITHOUT ID</code>. <code>LIST WITHOUT ID</code> works the same as <code>LIST</code>, but it does not output the file link or group name if you add an additional information. </p>
+<div class="highlight"><pre><span></span><code>```dataview
+LIST WITHOUT ID
+```
 </code></pre></div>
 
-</div>
-<input id="__tabbed_3_2" name="__tabbed_3" type="radio" /><label for="__tabbed_3_2">Query</label><div class="tabbed-content">
-<div class="highlight"><pre><span></span><code><span class="n">LIST</span><span class="w"> </span><span class="k">WITHOUT</span><span class="w"> </span><span class="n">ID</span><span class="w"> </span><span class="n">file</span><span class="p">.</span><span class="n">path</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="ss">&quot;4. Archive&quot;</span><span class="w"></span>
-</code></pre></div>
-
-</div>
-<input id="__tabbed_3_3" name="__tabbed_3" type="radio" /><label for="__tabbed_3_3">Output</label><div class="tabbed-content">
+<p><strong>Output</strong></p>
 <ul>
-<li>
-<ol>
-<li>Archive/Daily Notes/2020-12-18 DN.md</li>
-</ol>
-</li>
-<li>
-<ol>
-<li>Archive/Daily Notes/2020-12-16 DN.md</li>
-</ol>
-</li>
-<li>
-<ol>
-<li>Archive/Daily Notes/2020-12-17 DN.md</li>
-</ol>
-</li>
-<li>
-<ol>
-<li>Archive/Daily Notes/2020-12-15 DN.md</li>
-</ol>
-</li>
+<li><a href="#">Classic Cheesecake</a></li>
+<li><a href="#">Git Basics</a></li>
+<li><a href="#">How to fix Git Cheatsheet</a></li>
+<li><a href="#">League of Legends</a></li>
+<li><a href="#">Pillars of Eternity 2</a></li>
+<li><a href="#">Stardew Valley</a></li>
+<li><a href="#">Dashboard</a></li>
 </ul>
-</div>
-</div>
-<hr />
-<h2 id="table-queries">Table Queries</h2>
-<p>Tables support tabular views of page data. You construct a table by giving a comma separated list of the YAML frontmatter fields you want to render, as so:</p>
-<div class="highlight"><pre><span></span><code>TABLE file.day, file.mtime FROM &lt;source&gt;
+<p>It's the same as <code>LIST</code>, because it does not contain an additional information!</p>
+<div class="highlight"><pre><span></span><code>```dataview
+LIST WITHOUT ID type
+```
 </code></pre></div>
 
-<p>You can choose a heading name to render computed fields by using the <code>AS</code> syntax:</p>
-<div class="highlight"><pre><span></span><code>TABLE (file.mtime + dur(1 day)) AS next_mtime, ... FROM &lt;source&gt;
+<p><strong>Output</strong></p>
+<ul>
+<li>moc</li>
+<li>recipe</li>
+<li>summary</li>
+<li>knowledge</li>
+<li>game</li>
+<li>game</li>
+<li>game</li>
+</ul>
+<p><code>LIST WITHOUT ID</code> can be handy if you want to output computed values, for example.</p>
+<div class="highlight"><pre><span></span><code>```dataview
+LIST WITHOUT ID length(rows) + &quot; pages of type &quot; + key
+GROUP BY type
+```
 </code></pre></div>
 
-<p>An example table query:</p>
-<div class="tabbed-set" data-tabs="4:2"><input checked="checked" id="__tabbed_4_1" name="__tabbed_4" type="radio" /><label for="__tabbed_4_1">Query</label><div class="tabbed-content">
-<div class="highlight"><pre><span></span><code><span class="k">TABLE</span><span class="w"></span>
-<span class="w">  </span><span class="k">time</span><span class="o">-</span><span class="n">played</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="ss">&quot;Time Played&quot;</span><span class="p">,</span><span class="w"></span>
-<span class="w">  </span><span class="k">length</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="ss">&quot;Length&quot;</span><span class="p">,</span><span class="w"></span>
-<span class="w">  </span><span class="n">rating</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="ss">&quot;Rating&quot;</span><span class="w"></span>
-<span class="k">FROM</span><span class="w"> </span><span class="o">#</span><span class="n">game</span><span class="w"></span>
-<span class="n">SORT</span><span class="w"> </span><span class="n">rating</span><span class="w"> </span><span class="k">DESC</span><span class="w"></span>
-</code></pre></div>
-
+<p><strong>Output</strong></p>
+<ul>
+<li>3 pages of type game</li>
+<li>1 pages of type knowledge</li>
+<li>1 pages of type moc</li>
+<li>1 pages of type recipe</li>
+<li>1 pages of type summary</li>
+</ul>
+<h2 id="table">TABLE</h2>
+<p>The <code>TABLE</code> query types outputs page data as a tabular view. You can add zero to multiple meta data fields to your <code>TABLE</code> query by adding them as a <strong>comma separated list</strong>. You can not only use plain meta data fields as columns, but specify <strong>calculations</strong> as well. Optionally, you can specify a <strong>table header</strong> via the <code>AS &lt;header&gt;</code> syntax. Like all other query types, you can refine your result set for your query with <a href="../data-commands/">data commands</a>.</p>
+<div class="admonition summary">
+<p class="admonition-title"><code>TABLE</code> Query Type</p>
+<p><code>TABLE</code> queries render a tabular view of any number of meta data values or calculations. It is possible to specify column headers via <code>AS &lt;header&gt;</code>.</p>
 </div>
-<input id="__tabbed_4_2" name="__tabbed_4" type="radio" /><label for="__tabbed_4_2">Output</label><div class="tabbed-content">
+<div class="highlight"><pre><span></span><code>```dataview
+TABLE
+```
+</code></pre></div>
+
+<p><strong>Output</strong></p>
 <table>
 <thead>
 <tr>
-<th>File</th>
-<th>Time Played</th>
-<th>Length</th>
-<th>Rating</th>
+<th>File (7)</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td><a href="#">Outer Wilds</a></td>
-<td>November 19th - 21st, 2020</td>
-<td>15h</td>
-<td>9.5</td>
+<td><a href="#">Classic Cheesecake</a></td>
 </tr>
 <tr>
-<td><a href="#">Minecraft</a></td>
-<td>All the time.</td>
-<td>2000h</td>
-<td>9.5</td>
+<td><a href="#">Git Basics</a></td>
+</tr>
+<tr>
+<td><a href="#">How to fix Git Cheatsheet</a></td>
+</tr>
+<tr>
+<td><a href="#">League of Legends</a></td>
 </tr>
 <tr>
 <td><a href="#">Pillars of Eternity 2</a></td>
-<td>August - October 2019</td>
-<td>100h</td>
-<td>9</td>
+</tr>
+<tr>
+<td><a href="#">Stardew Valley</a></td>
+</tr>
+<tr>
+<td><a href="#">Dashboard</a></td>
 </tr>
 </tbody>
 </table>
+<div class="admonition hint">
+<p class="admonition-title">Changing the first column header name</p>
+<p>You can change the name of the first column header (by default "File" or "Group") via the Dataview Settings under Table Settings -&gt; Primary Column Name / Group Column Name.
+If you want to change the name only for one specific <code>TABLE</code> query, have a look at <code>TABLE WITHOUT ID</code>.</p>
 </div>
+<div class="admonition info">
+<p class="admonition-title">Disabling Result count</p>
+<p>The first column always shows the result count. If you do not want to get it displayed, you can use a CSS Snippet to hide it. Head over to the <a href="../../resources/faq/#how-can-i-hide-the-result-count-on-table-queries">FAQ</a> for more info.</p>
 </div>
-<h3 id="table-without-id">TABLE WITHOUT ID</h3>
-<p>If you don't want the default "File" or "Group" field in your output (either to replace it or because it is unneeded), you can use
-<code>TABLE WITHOUT ID</code>:</p>
-<div class="tabbed-set" data-tabs="5:2"><input checked="checked" id="__tabbed_5_1" name="__tabbed_5" type="radio" /><label for="__tabbed_5_1">Query</label><div class="tabbed-content">
-<div class="highlight"><pre><span></span><code><span class="k">TABLE</span><span class="w"> </span><span class="k">WITHOUT</span><span class="w"> </span><span class="n">ID</span><span class="w"></span>
-<span class="w">  </span><span class="k">time</span><span class="o">-</span><span class="n">played</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="ss">&quot;Time Played&quot;</span><span class="p">,</span><span class="w"></span>
-<span class="w">  </span><span class="k">length</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="ss">&quot;Length&quot;</span><span class="p">,</span><span class="w"></span>
-<span class="w">  </span><span class="n">rating</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="ss">&quot;Rating&quot;</span><span class="w"></span>
-<span class="k">FROM</span><span class="w"> </span><span class="o">#</span><span class="n">game</span><span class="w"></span>
-<span class="n">SORT</span><span class="w"> </span><span class="n">rating</span><span class="w"> </span><span class="k">DESC</span><span class="w"></span>
+<p>Of course, a <code>TABLE</code> is made for specifying one to multiple additional informations:  </p>
+<div class="highlight"><pre><span></span><code>```dataview
+TABLE started, file.folder, file.etags
+FROM #games
+```
 </code></pre></div>
 
-</div>
-<input id="__tabbed_5_2" name="__tabbed_5" type="radio" /><label for="__tabbed_5_2">Output</label><div class="tabbed-content">
+<p><strong>Output</strong></p>
 <table>
 <thead>
 <tr>
-<th>Time Played</th>
-<th>Length</th>
-<th>Rating</th>
+<th>File (3)</th>
+<th>started</th>
+<th>file.folder</th>
+<th>file.etags</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>November 19th - 21st, 2020</td>
-<td>15h</td>
-<td>9.5</td>
+<td><a href="#">League of Legends</a></td>
+<td>May 16, 2021</td>
+<td>Games</td>
+<td>- #games/moba</td>
 </tr>
 <tr>
-<td>All the time.</td>
-<td>2000h</td>
-<td>9.5</td>
+<td><a href="#">Pillars of Eternity 2</a></td>
+<td>April 21, 2022</td>
+<td>Games</td>
+<td>- #games/crpg</td>
 </tr>
 <tr>
-<td>August - October 2019</td>
-<td>100h</td>
-<td>9</td>
+<td><a href="#">Stardew Valley</a></td>
+<td>April 04, 2021</td>
+<td>Games/finished</td>
+<td>- #games/simulation</td>
 </tr>
 </tbody>
 </table>
+<div class="admonition hint">
+<p class="admonition-title">Implicit fields</p>
+<p>Curious about <code>file.folder</code> and <code>file.etags</code>? Learn more about <a href="../../annotation/metadata-pages/">implicit fields on pages</a>.</p>
 </div>
-</div>
-<hr />
-<h2 id="task-queries">Task Queries</h2>
-<p>Task views render all tasks whose pages match the given predicate.</p>
-<div class="tabbed-set" data-tabs="6:3"><input checked="checked" id="__tabbed_6_1" name="__tabbed_6" type="radio" /><label for="__tabbed_6_1">Syntax</label><div class="tabbed-content">
-<div class="highlight"><pre><span></span><code>TASK FROM &lt;source&gt;
+<h3 id="custom-column-headers">Custom Column Headers</h3>
+<p>You can specify <strong>custom headings</strong> for your columns by using the <code>AS</code> syntax:</p>
+<div class="highlight"><pre><span></span><code>```dataview
+TABLE started, file.folder AS Path, file.etags AS &quot;File Tags&quot;
+FROM #games
+```
 </code></pre></div>
 
+<p><strong>Output</strong></p>
+<table>
+<thead>
+<tr>
+<th>File (3)</th>
+<th>started</th>
+<th>Path</th>
+<th>File Tags</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#">League of Legends</a></td>
+<td>May 16, 2021</td>
+<td>Games</td>
+<td>- #games/moba</td>
+</tr>
+<tr>
+<td><a href="#">Pillars of Eternity 2</a></td>
+<td>April 21, 2022</td>
+<td>Games</td>
+<td>- #games/crpg</td>
+</tr>
+<tr>
+<td><a href="#">Stardew Valley</a></td>
+<td>April 04, 2021</td>
+<td>Games/finished</td>
+<td>- #games/simulation</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition info">
+<p class="admonition-title">Custom headers with spaces</p>
+<p>If you want to use a custom header with spaces, like <code>File Tags</code>, you need to wrap it into double quotes: <code>"File Tags"</code>. </p>
 </div>
-<input id="__tabbed_6_2" name="__tabbed_6" type="radio" /><label for="__tabbed_6_2">Query</label><div class="tabbed-content">
-<div class="highlight"><pre><span></span><code><span class="n">TASK</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="ss">&quot;dataview&quot;</span><span class="w"></span>
+<p>This is especially useful when you want to use <strong>calculations or expressions as column values</strong>:</p>
+<div class="highlight"><pre><span></span><code>```dataview
+TABLE 
+default(finished, date(today)) - started AS &quot;Played for&quot;, 
+file.folder AS Path, 
+file.etags AS &quot;File Tags&quot;
+FROM #games
+```
 </code></pre></div>
 
+<p><strong>Output</strong></p>
+<table>
+<thead>
+<tr>
+<th>File (3)</th>
+<th>Played for</th>
+<th>Path</th>
+<th>File Tags</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#">League of Legends</a></td>
+<td>1 years, 6 months, 1 weeks</td>
+<td>Games</td>
+<td>- #games/moba</td>
+</tr>
+<tr>
+<td><a href="#">Pillars of Eternity 2</a></td>
+<td>7 months, 2 days</td>
+<td>Games</td>
+<td>- #games/crpg</td>
+</tr>
+<tr>
+<td><a href="#">Stardew Valley</a></td>
+<td>4 months, 3 weeks, 3 days</td>
+<td>Games/finished</td>
+<td>- #games/simulation</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition hint">
+<p class="admonition-title">Calculations and expressions</p>
+<p>Learn more about the capability of computing expressions and calculations under <a href="../../reference/expressions/">expressions</a> and <a href="../../reference/functions/">functions</a>.</p>
 </div>
-<input id="__tabbed_6_3" name="__tabbed_6" type="radio" /><label for="__tabbed_6_3">Output</label><div class="tabbed-content">
+<h3 id="table-without-id">TABLE WITHOUT ID</h3>
+<p>If you don't want the first column ("File" or "Group" by default), you can use <code>TABLE WITHOUT ID</code>. <code>TABLE WITHOUT ID</code> works the same as <code>TABLE</code>, but it does not output the file link or group name as a first column if you add additional information.</p>
+<p>You can use this if you, for example, output another identifying value: </p>
+<div class="highlight"><pre><span></span><code>```dataview
+TABLE WITHOUT ID
+steamid,
+file.etags AS &quot;File Tags&quot;
+FROM #games
+```
+</code></pre></div>
+
+<p><strong>Output</strong></p>
+<table>
+<thead>
+<tr>
+<th>steamid (3)</th>
+<th>File Tags</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>560130</td>
+<td>- #games/crog</td>
+</tr>
+<tr>
+<td>-</td>
+<td>- #games/moba</td>
+</tr>
+<tr>
+<td>413150</td>
+<td>- #games/simulation</td>
+</tr>
+</tbody>
+</table>
+<p>Also, you can use <code>TABLE WITHOUT ID</code> if you want to <strong>rename the first column for one specific query</strong>.</p>
+<div class="highlight"><pre><span></span><code>```dataview
+TABLE WITHOUT ID
+file.link AS &quot;Game&quot;,
+file.etags AS &quot;File Tags&quot;
+FROM #games
+```
+</code></pre></div>
+
+<p><strong>Output</strong></p>
+<table>
+<thead>
+<tr>
+<th>Game (3)</th>
+<th>File Tags</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#">League of Legends</a></td>
+<td>- #games/moba</td>
+</tr>
+<tr>
+<td><a href="#">Pillars of Eternity 2</a></td>
+<td>- #games/crpg</td>
+</tr>
+<tr>
+<td><a href="#">Stardew Valley</a></td>
+<td>- #games/simulation</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition info">
+<p class="admonition-title">Renaming the first column in general</p>
+<p>If you want to rename the first column in all cases, change the name in Dataviews settings under Table Settings.</p>
+</div>
+<h2 id="task">TASK</h2>
+<p>The <code>TASK</code> Query outputs <strong>a interactive list of all tasks in your vault</strong> that match the given <a href="../data-commands/">data commands</a> (if any). <code>TASK</code> Queries are special compared to the other Query Types because they do give back <strong>Tasks as results and not pages</strong>. This implies that all <a href="../data-commands/">data commands</a> operate on <strong>Task level</strong> and makes it possible to fine granularly filter your tasks for i.e. their status or a meta data specified on the task itself.  </p>
+<p>Also, <code>TASK</code> Queries are the only possibility to <strong>manipulate your files through DQL</strong>. Normally, Dataview does not touch the content of your files; however, if you check a task through a dataview query, it'll get <strong>checked in its original file, too</strong>. In the Dataview Settings under "Task Settings", you can opt-in to automatically set a <code>completion</code> meta data field when checking a task in dataview. Mind though that this only works if you check the task inside a dataview block. </p>
+<div class="admonition summary">
+<p class="admonition-title"><code>TASK</code> Query Type</p>
+<p><code>TASK</code> queries render an interactive list of all tasks in your vault. <code>TASK</code> Queries are executed on <strong>task level</strong>, not page level, allowing for task-specific filtering. This is the only command in dataview that modifies your original files if interacted with.</p>
+</div>
+<div class="highlight"><pre><span></span><code>```dataview
+TASK
+```
+</code></pre></div>
+
+<p><strong>Output</strong></p>
 <ul class="task-list">
-<li class="task-list-item"><input type="checkbox" disabled/> I am a task.</li>
-<li class="task-list-item"><input type="checkbox" disabled/> I am another task.</li>
-<li class="task-list-item"><input type="checkbox" disabled/> I could be a task, though who knows.<ul class="task-list">
-<li class="task-list-item"><input type="checkbox" disabled checked/> Determine if this is a task.</li>
+<li class="task-list-item"><input type="checkbox" disabled/> Buy new shoes #shopping</li>
+<li class="task-list-item"><input type="checkbox" disabled/> Mail Paul about training schedule </li>
+<li class="task-list-item"><input type="checkbox" disabled/> Finish the math assignment<ul class="task-list">
+<li class="task-list-item"><input type="checkbox" disabled checked/> Finish Paper 1 [due:: 2022-08-13]</li>
+<li class="task-list-item"><input type="checkbox" disabled/> Read again through chapter 3 [due:: 2022-09-01]</li>
+<li class="task-list-item"><input type="checkbox" disabled checked/> Write a cheatsheet [due:: 2022-08-02]</li>
+<li class="task-list-item"><input type="checkbox" disabled/> Write a summary of chapter 1-4 [due:: 2022-09-12]</li>
 </ul>
 </li>
-<li class="task-list-item"><input type="checkbox" disabled checked/> I'm a finished task.</li>
+<li class="task-list-item"><input type="checkbox" disabled checked/> Hand in physics</li>
+<li class="task-list-item"><input type="checkbox" disabled/> Get new pillows for mom #shopping</li>
+<li class="task-list-item"><input type="checkbox" disabled checked/> Buy some working pencils #shopping</li>
 </ul>
-</div>
-</div>
-<p>You can filter (<code>WHERE</code>), group (<code>GROUP BY</code>), sort (<code>SORT</code>) tasks in these queries as desired using typical dataview
-statements:</p>
-<div class="tabbed-set" data-tabs="7:3"><input checked="checked" id="__tabbed_7_1" name="__tabbed_7" type="radio" /><label for="__tabbed_7_1">Syntax</label><div class="tabbed-content">
-<div class="highlight"><pre><span></span><code>TASK FROM &lt;source&gt;
-WHERE &lt;predicate&gt;
-...
+<p>You can use <a href="../data-commands/">data commands</a> like for all other Query Types. Data Commands are executed on task level, making <a href="../../annotation/metadata-tasks/">implicit fields on tasks</a> directly available. </p>
+<div class="highlight"><pre><span></span><code>```dataview
+TASK
+WHERE !completed AND contains(tags, &quot;#shopping&quot;)
+```
 </code></pre></div>
 
-</div>
-<input id="__tabbed_7_2" name="__tabbed_7" type="radio" /><label for="__tabbed_7_2">Query</label><div class="tabbed-content">
-<div class="highlight"><pre><span></span><code>TASK FROM &quot;dataview&quot;
+<p><strong>Output</strong></p>
+<ul class="task-list">
+<li class="task-list-item"><input type="checkbox" disabled/> Buy new shoes #shopping</li>
+<li class="task-list-item"><input type="checkbox" disabled/> Get new pillows for mom #shopping</li>
+</ul>
+<p>A common use case for tasks is to <strong>group tasks by their originating file</strong>:</p>
+<div class="highlight"><pre><span></span><code>```dataview
+TASK
 WHERE !completed
-GROUP BY file.folder
-</code></pre></div>
-
-</div>
-<input id="__tabbed_7_3" name="__tabbed_7" type="radio" /><label for="__tabbed_7_3">Output</label><div class="tabbed-content">
-<p>Folder 1</p>
-<ul class="task-list">
-<li class="task-list-item"><input type="checkbox" disabled/> I am a task.</li>
-<li class="task-list-item"><input type="checkbox" disabled/> I am another task.</li>
-<li class="task-list-item"><input type="checkbox" disabled/> I am yet another task in another file in the same folder.</li>
-</ul>
-<p>Folder 2</p>
-<ul class="task-list">
-<li class="task-list-item"><input type="checkbox" disabled/> I could be a task, though who knows.</li>
-</ul>
-<p>Folder 3</p>
-<ul class="task-list">
-<li class="task-list-item"><input type="checkbox" disabled/> What even is a task, anyway?</li>
-</ul>
-</div>
-</div>
-<p>A common use case for tasks is to group them by their originating file:</p>
-<div class="tabbed-set" data-tabs="8:3"><input checked="checked" id="__tabbed_8_1" name="__tabbed_8" type="radio" /><label for="__tabbed_8_1">Syntax</label><div class="tabbed-content">
-<div class="highlight"><pre><span></span><code>TASK FROM &lt;source&gt;
 GROUP BY file.link
+```
 </code></pre></div>
 
-</div>
-<input id="__tabbed_8_2" name="__tabbed_8" type="radio" /><label for="__tabbed_8_2">Query</label><div class="tabbed-content">
-<div class="highlight"><pre><span></span><code><span class="n">TASK</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="ss">&quot;dataview&quot;</span><span class="w"></span>
-<span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">file</span><span class="p">.</span><span class="n">link</span><span class="w"></span>
-</code></pre></div>
-
-</div>
-<input id="__tabbed_8_3" name="__tabbed_8" type="radio" /><label for="__tabbed_8_3">Output</label><div class="tabbed-content">
-<p><a href="#">dataview/Project A</a></p>
+<p><strong>Output</strong></p>
+<p><a href="#">2022-07-30</a> (1)</p>
 <ul class="task-list">
-<li class="task-list-item"><input type="checkbox" disabled/> I am a task.</li>
-<li class="task-list-item"><input type="checkbox" disabled/> I am another task.</li>
-</ul>
-<p><a href="#">dataview/Project A</a></p>
-<ul class="task-list">
-<li class="task-list-item"><input type="checkbox" disabled/> I could be a task, though who knows.<ul class="task-list">
-<li class="task-list-item"><input type="checkbox" disabled checked/> Determine if this is a task.</li>
+<li class="task-list-item"><input type="checkbox" disabled/> Finish the math assignment<ul class="task-list">
+<li class="task-list-item"><input type="checkbox" disabled/> Read again through chapter 3 [due:: 2022-09-01]</li>
+<li class="task-list-item"><input type="checkbox" disabled/> Write a summary of chapter 1-4 [due:: 2022-09-12]</li>
 </ul>
 </li>
-<li class="task-list-item"><input type="checkbox" disabled checked/> I'm a finished task.</li>
 </ul>
+<p><a href="#">2022-09-21</a> (2)</p>
+<ul class="task-list">
+<li class="task-list-item"><input type="checkbox" disabled/> Buy new shoes #shopping</li>
+<li class="task-list-item"><input type="checkbox" disabled/> Mail Paul about training schedule</li>
+</ul>
+<p><a href="#">2022-09-27</a> (1)</p>
+<ul class="task-list">
+<li class="task-list-item"><input type="checkbox" disabled/> Get new pillows for mom #shopping</li>
+</ul>
+<div class="admonition hint">
+<p class="admonition-title">Counting tasks with subtask</p>
+<p>Noticing the (1) on the header of <code>2022-07-30</code>? Child tasks belong to their parent task and are not counted separately. Also, they do <strong>behave differently</strong> on filtering.</p>
 </div>
+<h3 id="child-tasks">Child Tasks</h3>
+<p>A task is considered <strong>child task</strong> if it is <strong>intended by a tab</strong> and below a not indented task list item.</p>
+<ul class="task-list">
+<li class="task-list-item"><input type="checkbox" disabled/> clean up the house<ul class="task-list">
+<li class="task-list-item"><input type="checkbox" disabled/> kitchen</li>
+<li class="task-list-item"><input type="checkbox" disabled checked/> living room</li>
+<li class="task-list-item"><input type="checkbox" disabled/> Bedroom [urgent:: true]</li>
+</ul>
+</li>
+</ul>
+<div class="admonition info">
+<p class="admonition-title">Childs of a bullet point item</p>
+<p>While intended tasks under a bullet point item are strictly speaking also children task, dataview will handle them like normal tasks in most cases.</p>
 </div>
-<h2 id="calendar-queries">Calendar Queries</h2>
-<p>Calendar views render all pages which match the query in a calendar view, using
-the given date expression to chose which date to render a page on.</p>
-<div class="tabbed-set" data-tabs="9:3"><input checked="checked" id="__tabbed_9_1" name="__tabbed_9" type="radio" /><label for="__tabbed_9_1">Syntax</label><div class="tabbed-content">
-<div class="highlight"><pre><span></span><code>CALENDAR &lt;date&gt;
-FROM &lt;source&gt;
+<p>Child Tasks <strong>belong to their parent</strong>. This means if you're querying for tasks, you'll get child tasks as part of their parent back.</p>
+<div class="highlight"><pre><span></span><code>```dataview
+TASK
+```
 </code></pre></div>
 
-</div>
-<input id="__tabbed_9_2" name="__tabbed_9" type="radio" /><label for="__tabbed_9_2">Query</label><div class="tabbed-content">
-<div class="highlight"><pre><span></span><code><span class="n">CALENDAR</span><span class="w"> </span><span class="n">file</span><span class="p">.</span><span class="n">mtime</span><span class="w"></span>
-<span class="k">FROM</span><span class="w"> </span><span class="ss">&quot;dataview&quot;</span><span class="w"></span>
+<p><strong>Output</strong></p>
+<ul class="task-list">
+<li class="task-list-item"><input type="checkbox" disabled/> clean up the house<ul class="task-list">
+<li class="task-list-item"><input type="checkbox" disabled/> kitchen</li>
+<li class="task-list-item"><input type="checkbox" disabled checked/> living room</li>
+<li class="task-list-item"><input type="checkbox" disabled/> Bedroom [urgent:: true]</li>
+</ul>
+</li>
+<li class="task-list-item"><input type="checkbox" disabled/> Call the insurance about the car</li>
+<li class="task-list-item"><input type="checkbox" disabled checked/> Find out the transaction number</li>
+</ul>
+<p>This especially means that child task will be part of your result set <strong>as long as the parent matches the query</strong> - even if the child task itself doesn't.</p>
+<div class="highlight"><pre><span></span><code>```dataview
+TASK
+WHERE !completed
+```
 </code></pre></div>
 
+<p><strong>Output</strong></p>
+<ul class="task-list">
+<li class="task-list-item"><input type="checkbox" disabled/> clean up the house<ul class="task-list">
+<li class="task-list-item"><input type="checkbox" disabled/> kitchen</li>
+<li class="task-list-item"><input type="checkbox" disabled checked/> living room</li>
+<li class="task-list-item"><input type="checkbox" disabled/> Bedroom [urgent:: true]</li>
+</ul>
+</li>
+<li class="task-list-item"><input type="checkbox" disabled/> Call the insurance about the car</li>
+</ul>
+<p>Mind that you'll get individual children tasks back, if the child matches your predicate but the parent doesn't:</p>
+<div class="highlight"><pre><span></span><code>```dataview
+TASK
+WHERE urgent
+```
+</code></pre></div>
+
+<p><strong>Output</strong></p>
+<ul class="task-list">
+<li class="task-list-item"><input type="checkbox" disabled/> Bedroom [urgent:: true]</li>
+</ul>
+<h2 id="calendar">CALENDAR</h2>
+<p>The <code>CALENDAR</code> Query outputs a monthly based calendar where every result is depicted as a dot on it reffering date. The <code>CALENDAR</code> is the only Query Type that requires an additional information. This additional information needs to be a <a href="../../annotation/types-of-metadata/#date">date</a> (or unset) on all queried pages. </p>
+<div class="admonition summary">
+<p class="admonition-title"><code>CALENDAR</code> Query Type</p>
+<p>The <code>CALENDAR</code> Query Types renders a calendar view where every result is represented by a dot on the given meta data field date.</p>
 </div>
-<input id="__tabbed_9_3" name="__tabbed_9" type="radio" /><label for="__tabbed_9_3">Output</label><div class="tabbed-content"></div>
-</div>
-<p>The output will be a calendar that displays a dot per file in the dataview
-directory. The dot will be placed on the date that the file was modified on.</p>
+<div class="highlight"><pre><span></span><code>```dataview
+CALENDAR file.ctime
+```
+</code></pre></div>
+
+<p><strong>Output</strong></p>
+<p><img alt="" src="../../assets/calendar_query_type.png" /></p>
+<p>While it is possible to use <code>SORT</code> and <code>GROUP BY</code> in combination with <code>CALENDAR</code>, it has <strong>no effect</strong>. Additionally, the calendar query does not render if the given meta data field contains something else than a valid <a href="../../annotation/types-of-metadata/#date">date</a> (but the field can be empty). To make sure you're only taking valid pages into account, you can filter for valid meta data values:</p>
+<div class="highlight"><pre><span></span><code>```dataview
+CALENDAR due
+WHERE typeof(due) = &quot;date&quot;
+```
+</code></pre></div>
 
 
 
