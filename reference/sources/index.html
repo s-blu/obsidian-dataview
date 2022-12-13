@@ -404,9 +404,81 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Sources
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         Sources
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#types-of-sources" class="md-nav__link">
+    Types of Sources
+  </a>
+  
+    <nav class="md-nav" aria-label="Types of Sources">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#tags" class="md-nav__link">
+    Tags
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#folders" class="md-nav__link">
+    Folders
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#specific-files" class="md-nav__link">
+    Specific Files
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#links" class="md-nav__link">
+    Links
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#combining-sources" class="md-nav__link">
+    Combining Sources
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -691,6 +763,62 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#types-of-sources" class="md-nav__link">
+    Types of Sources
+  </a>
+  
+    <nav class="md-nav" aria-label="Types of Sources">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#tags" class="md-nav__link">
+    Tags
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#folders" class="md-nav__link">
+    Folders
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#specific-files" class="md-nav__link">
+    Specific Files
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#links" class="md-nav__link">
+    Links
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#combining-sources" class="md-nav__link">
+    Combining Sources
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -708,23 +836,53 @@
 
 
 <h1 id="sources">Sources</h1>
-<p>A dataview "source" is something that identifies a set of files, tasks, or other data object. Sources are indexed internally by
-Dataview, so they are fast to query. Dataview currently supports four source types:</p>
-<ol>
-<li><strong>Tags</strong>: Sources of the form <code>#tag</code>. These match all files / sections / tasks with the given tag.</li>
-<li><strong>Folders</strong>: Sources of the form <code>"folder"</code>. These match all files / sections / tasks contained in the given folder. The full vault path is expected instead of just the folder name. Note that trailing slashes are not supported, i.e. <code>"Path/To/Folder/"</code> will not work but <code>"Path/To/Folder"</code> will.</li>
-<li><strong>Specific Files</strong>: You can select from a specific file by specifying it's full path: <code>"folder/File"</code>.<ul>
-<li>If you have both a file and a folder with the exact same path, Dataview will prefer the folder. You can force
-it to read from the file by specifying an extension: <code>folder/File.md</code>.</li>
-</ul>
-</li>
-<li><strong>Links</strong>: You can either select links <strong>to</strong> a file, or all links <strong>from</strong> a file.<ul>
-<li>To obtain all pages which link <strong>to</strong> <code>[[note]]</code>, use <code>[[note]]</code>.</li>
-<li>To obtain all pages which link <strong>from</strong> <code>[[note]]</code> (i.e., all the links in that file), use <code>outgoing([[note]])</code>.</li>
-<li>You can implicitly reference the current file via <code>[[#]]</code> or <code>[[]]</code>, i.e. <code>[[]]</code> lets you query from all files linking to the current file.</li>
-</ul>
-</li>
-</ol>
+<p>A dataview <strong>source</strong> is something that identifies a set of files, tasks, or other data. Sources are indexed internally by
+Dataview, so they are fast to query. The most prominent use of sources is the <a href="../queries#from">FROM data command</a>. They are also used in various JavaScript API query calls.</p>
+<h2 id="types-of-sources">Types of Sources</h2>
+<p>Dataview currently supports <strong>four source types</strong>.</p>
+<h3 id="tags">Tags</h3>
+<p>Sources of the form <code>#tag</code>. These match all files / sections / tasks with the given tag.</p>
+<div class="highlight"><pre><span></span><code>```dataview
+LIST
+FROM #homework
+```
+</code></pre></div>
+
+<h3 id="folders">Folders</h3>
+<p>Sources of the form <code>"folder"</code>. These match all files / sections / tasks contained in the given folder and its sub folders. The full vault path is expected instead of just the folder name. Note that trailing slashes are not supported, i.e. <code>"Path/To/Folder/"</code> will not work but <code>"Path/To/Folder"</code> will.</p>
+<div class="highlight"><pre><span></span><code>```dataview
+TABLE file.ctime, status
+FROM &quot;projects/brainstorming&quot;
+```
+</code></pre></div>
+
+<h3 id="specific-files">Specific Files</h3>
+<p>You can select from a specific file by specifying it's full path: <code>"folder/File"</code>.
+    - If you have both a file and a folder with the exact same path, Dataview will prefer the folder. You can force
+    it to read from the file by specifying an extension: <code>folder/File.md</code>.</p>
+<div class="highlight"><pre><span></span><code>```dataview
+LIST WITHOUT ID next-in-line
+FROM &quot;30 Hobbies/Games/Dashboard&quot;
+```
+</code></pre></div>
+
+<h3 id="links">Links</h3>
+<p>You can either select links <strong>to</strong> a file, or all links <strong>from</strong> a file.
+    - To obtain all pages which link <strong>to</strong> <code>[[note]]</code>, use <code>[[note]]</code>.
+    - To obtain all pages which link <strong>from</strong> <code>[[note]]</code> (i.e., all the links in that file), use <code>outgoing([[note]])</code>.
+    - You can implicitly reference the current file via <code>[[#]]</code> or <code>[[]]</code>, i.e. <code>[[]]</code> lets you query from all files linking to the current file.</p>
+<div class="highlight"><pre><span></span><code>```dataview
+LIST
+FROM [[]]
+```
+
+```dataview
+LIST
+FROM outgoing([[Dashboard]])
+```
+</code></pre></div>
+
+<h2 id="combining-sources">Combining Sources</h2>
 <p>You can compose these filters in order to get more advanced sources using <code>and</code> and <code>or</code>.</p>
 <ul>
 <li>For example, <code>#tag and "folder"</code> will return all pages in <code>folder</code> and with <code>#tag</code>.</li>
@@ -736,7 +894,6 @@ it to read from the file by specifying an extension: <code>folder/File.md</code>
 <li><code>#tag and ("folder" or #other-tag)</code></li>
 <li><code>(#tag1 or #tag2) and (#tag3 or #tag4)</code></li>
 </ul>
-<p>Sources are used in both the <a href="../queries#from">FROM query statement</a>, as well as various JavaScript API query calls.</p>
 
 
 

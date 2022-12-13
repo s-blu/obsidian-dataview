@@ -471,8 +471,15 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#function-vectorization" class="md-nav__link">
-    Function Vectorization
+  <a href="#how-functions-work" class="md-nav__link">
+    How functions work
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#calling-functions-on-lists-of-values" class="md-nav__link">
+    Calling functions on lists of values
   </a>
   
 </li>
@@ -767,6 +774,13 @@
   
     <nav class="md-nav" aria-label="String Operations">
       <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#regextestpattern-string" class="md-nav__link">
+    regextest(pattern, string)
+  </a>
+  
+</li>
         
           <li class="md-nav__item">
   <a href="#regexmatchpattern-string" class="md-nav__link">
@@ -1205,8 +1219,15 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#function-vectorization" class="md-nav__link">
-    Function Vectorization
+  <a href="#how-functions-work" class="md-nav__link">
+    How functions work
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#calling-functions-on-lists-of-values" class="md-nav__link">
+    Calling functions on lists of values
   </a>
   
 </li>
@@ -1503,6 +1524,13 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
+  <a href="#regextestpattern-string" class="md-nav__link">
+    regextest(pattern, string)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#regexmatchpattern-string" class="md-nav__link">
     regexmatch(pattern, string)
   </a>
@@ -1706,93 +1734,100 @@
 
 
 <h1 id="functions">Functions</h1>
-<p>Dataview functions provide more advanced ways to manipulate data.</p>
-<h2 id="function-vectorization">Function Vectorization</h2>
+<p>Dataview functions provide more advanced ways to manipulate data. You can use functions <strong>in <a href="../../queries/data-commands/">data commands</a></strong> (except FROM) to filter or group or use them <strong>as <a href="../../queries/query-types/">additional informations</a></strong> like TABLE columns or extra output for LIST queries to see your data in a new light.</p>
+<h2 id="how-functions-work">How functions work</h2>
+<p>Functions are another form of <a href="../expressions/">expression</a> and can be used everywhere you can use an expression. A function always gives you back a new value and follows this format:</p>
+<div class="highlight"><pre><span></span><code>functionname(parameter1, parameter2)
+</code></pre></div>
+
+<p>Parameters are again <a href="../expressions/">expressions</a> and you can use literals, meta data fields, or even another function as parameter. You'll find out which <a href="../../annotation/types-of-metadata/">data type</a> your parameters need to have on the documentation of this page. Pay attention to the information inside the function brackets. Parameters in square brackets, i.e. <code>link(path, [display])</code> means they are <em>optional</em> and can be omitted. Find out more about the default behaviour of each function on their explanation. </p>
+<h2 id="calling-functions-on-lists-of-values">Calling functions on lists of values</h2>
 <p>Most functions can be applied either to single values (like <code>number</code>, <code>string</code>, <code>date</code>, etc.) OR to lists of those
 values. If a function is applied to a list, it also returns a list after the function is applied to each element
 in the list. For example:</p>
-<div class="highlight"><pre><span></span><code>lower(&quot;YES&quot;) = &quot;yes&quot;
-lower([&quot;YES&quot;, &quot;NO&quot;]) = [&quot;yes&quot;, &quot;no&quot;]
+<div class="highlight"><pre><span></span><code><span class="nx">lower</span><span class="p">(</span><span class="s2">&quot;YES&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;yes&quot;</span><span class="w"></span>
+<span class="nx">lower</span><span class="p">([</span><span class="s2">&quot;YES&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;NO&quot;</span><span class="p">])</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;yes&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;no&quot;</span><span class="p">]</span><span class="w"></span>
 
-replace(&quot;yes&quot;, &quot;e&quot;, &quot;a&quot;) = &quot;yas&quot;
-replace([&quot;yes&quot;, &quot;ree&quot;], &quot;e&quot;, &quot;a&quot;) = [&quot;yas&quot;, &quot;raa&quot;]
+<span class="nx">replace</span><span class="p">(</span><span class="s2">&quot;yes&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;e&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;a&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;yas&quot;</span><span class="w"></span>
+<span class="nx">replace</span><span class="p">([</span><span class="s2">&quot;yes&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;ree&quot;</span><span class="p">],</span><span class="w"> </span><span class="s2">&quot;e&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;a&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;yas&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;raa&quot;</span><span class="p">]</span><span class="w"></span>
 </code></pre></div>
 
+<p>This so-called "function vectorization" will not be mentioned explicitly on the following definitions and is possible for a wide range of these functionalities implicitly. </p>
 <h2 id="constructors">Constructors</h2>
 <p>Constructors which create values.</p>
 <h3 id="objectkey1-value1"><code>object(key1, value1, ...)</code></h3>
 <p>Creates a new object with the given keys and values. Keys and values should alternate in the call, and keys should
 always be strings/text.</p>
-<div class="highlight"><pre><span></span><code>object() =&gt; empty object
-object(&quot;a&quot;, 6) =&gt; object which maps &quot;a&quot; to 6
-object(&quot;a&quot;, 4, &quot;c&quot;, &quot;yes&quot;) =&gt; object which maps a to 4, and c to &quot;yes&quot;
+<div class="highlight"><pre><span></span><code><span class="nx">object</span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">empty</span><span class="w"> </span><span class="nx">object</span><span class="w"></span>
+<span class="nx">object</span><span class="p">(</span><span class="s2">&quot;a&quot;</span><span class="p">,</span><span class="w"> </span><span class="mf">6</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">object</span><span class="w"> </span><span class="nx">which</span><span class="w"> </span><span class="nx">maps</span><span class="w"> </span><span class="s2">&quot;a&quot;</span><span class="w"> </span><span class="nx">to</span><span class="w"> </span><span class="mf">6</span><span class="w"></span>
+<span class="nx">object</span><span class="p">(</span><span class="s2">&quot;a&quot;</span><span class="p">,</span><span class="w"> </span><span class="mf">4</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;c&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;yes&quot;</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">object</span><span class="w"> </span><span class="nx">which</span><span class="w"> </span><span class="nx">maps</span><span class="w"> </span><span class="nx">a</span><span class="w"> </span><span class="nx">to</span><span class="w"> </span><span class="mf">4</span><span class="p">,</span><span class="w"> </span><span class="nx">and</span><span class="w"> </span><span class="nx">c</span><span class="w"> </span><span class="nx">to</span><span class="w"> </span><span class="s2">&quot;yes&quot;</span><span class="w"></span>
 </code></pre></div>
 
 <h3 id="listvalue1-value2"><code>list(value1, value2, ...)</code></h3>
 <p>Creates a new list with the given values in it.</p>
-<div class="highlight"><pre><span></span><code>list() =&gt; empty list
-list(1, 2, 3) =&gt; list with 1, 2, and 3
-list(&quot;a&quot;, &quot;b&quot;, &quot;c&quot;) =&gt; list with &quot;a&quot;, &quot;b&quot;, and &quot;c&quot;
+<div class="highlight"><pre><span></span><code><span class="nx">list</span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">empty</span><span class="w"> </span><span class="nx">list</span><span class="w"></span>
+<span class="nx">list</span><span class="p">(</span><span class="mf">1</span><span class="p">,</span><span class="w"> </span><span class="mf">2</span><span class="p">,</span><span class="w"> </span><span class="mf">3</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">list</span><span class="w"> </span><span class="kd">with</span><span class="w"> </span><span class="mf">1</span><span class="p">,</span><span class="w"> </span><span class="mf">2</span><span class="p">,</span><span class="w"> </span><span class="nx">and</span><span class="w"> </span><span class="mf">3</span><span class="w"></span>
+<span class="nx">list</span><span class="p">(</span><span class="s2">&quot;a&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;b&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;c&quot;</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">list</span><span class="w"> </span><span class="kd">with</span><span class="w"> </span><span class="s2">&quot;a&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;b&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">and</span><span class="w"> </span><span class="s2">&quot;c&quot;</span><span class="w"></span>
 </code></pre></div>
 
 <h3 id="dateany"><code>date(any)</code></h3>
 <p>Parses a date from the provided string, date, or link object, if possible, returning null otherwise.</p>
-<div class="highlight"><pre><span></span><code>date(&quot;2020-04-18&quot;) = &lt;date object representing April 18th, 2020&gt;
-date([[2021-04-16]]) = &lt;date object for the given page, refering to file.day&gt;
+<div class="highlight"><pre><span></span><code><span class="nx">date</span><span class="p">(</span><span class="s2">&quot;2020-04-18&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">&lt;</span><span class="nx">date</span><span class="w"> </span><span class="nx">object</span><span class="w"> </span><span class="nx">representing</span><span class="w"> </span><span class="nx">April</span><span class="w"> </span><span class="mf">18</span><span class="nx">th</span><span class="p">,</span><span class="w"> </span><span class="mf">2020</span><span class="o">&gt;</span><span class="w"></span>
+<span class="nx">date</span><span class="p">([[</span><span class="mf">2021</span><span class="o">-</span><span class="mo">04</span><span class="o">-</span><span class="mf">16</span><span class="p">]])</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">&lt;</span><span class="nx">date</span><span class="w"> </span><span class="nx">object</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="nx">the</span><span class="w"> </span><span class="nx">given</span><span class="w"> </span><span class="nx">page</span><span class="p">,</span><span class="w"> </span><span class="nx">refering</span><span class="w"> </span><span class="nx">to</span><span class="w"> </span><span class="nx">file</span><span class="p">.</span><span class="nx">day</span><span class="o">&gt;</span><span class="w"></span>
 </code></pre></div>
 
 <h3 id="durany"><code>dur(any)</code></h3>
 <p>Parses a duration from the provided string or duration, returning null on failure.</p>
-<div class="highlight"><pre><span></span><code>dur(8 minutes) = &lt;8 minutes&gt;
-dur(&quot;8 minutes, 4 seconds&quot;) = &lt;8 minutes, 4 seconds&gt;
-dur(dur(8 minutes)) = dur(8 minutes) = &lt;8 minutes&gt;
+<div class="highlight"><pre><span></span><code><span class="nx">dur</span><span class="p">(</span><span class="mf">8</span><span class="w"> </span><span class="nx">minutes</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">&lt;</span><span class="mf">8</span><span class="w"> </span><span class="nx">minutes</span><span class="o">&gt;</span><span class="w"></span>
+<span class="nx">dur</span><span class="p">(</span><span class="s2">&quot;8 minutes, 4 seconds&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">&lt;</span><span class="mf">8</span><span class="w"> </span><span class="nx">minutes</span><span class="p">,</span><span class="w"> </span><span class="mf">4</span><span class="w"> </span><span class="nx">seconds</span><span class="o">&gt;</span><span class="w"></span>
+<span class="nx">dur</span><span class="p">(</span><span class="nx">dur</span><span class="p">(</span><span class="mf">8</span><span class="w"> </span><span class="nx">minutes</span><span class="p">))</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">dur</span><span class="p">(</span><span class="mf">8</span><span class="w"> </span><span class="nx">minutes</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">&lt;</span><span class="mf">8</span><span class="w"> </span><span class="nx">minutes</span><span class="o">&gt;</span><span class="w"></span>
 </code></pre></div>
 
 <h3 id="numberstring"><code>number(string)</code></h3>
 <p>Pulls the first number out of the given string, returning it if possible. Returns null if there are no numbers in the
 string.</p>
-<div class="highlight"><pre><span></span><code>number(&quot;18 years&quot;) = 18
-number(34) = 34
-number(&quot;hmm&quot;) = null
+<div class="highlight"><pre><span></span><code><span class="nx">number</span><span class="p">(</span><span class="s2">&quot;18 years&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">18</span><span class="w"></span>
+<span class="nx">number</span><span class="p">(</span><span class="mf">34</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">34</span><span class="w"></span>
+<span class="nx">number</span><span class="p">(</span><span class="s2">&quot;hmm&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">null</span><span class="w"></span>
 </code></pre></div>
 
 <h3 id="stringany"><code>string(any)</code></h3>
 <p>Converts any value into a "reasonable" string representation. This sometimes produces less pretty results than just directly using
 the value in a query - it is mostly useful for coercing dates, durations, numbers, and so on into strings for
 manipulation.</p>
-<div class="highlight"><pre><span></span><code>string(18) = &quot;18&quot;
-string(dur(8 hours)) = &quot;8 hours&quot;
-string(date(2021-08-15)) = &quot;August 15th, 2021&quot;
+<div class="highlight"><pre><span></span><code><span class="nx">string</span><span class="p">(</span><span class="mf">18</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;18&quot;</span><span class="w"></span>
+<span class="nx">string</span><span class="p">(</span><span class="nx">dur</span><span class="p">(</span><span class="mf">8</span><span class="w"> </span><span class="nx">hours</span><span class="p">))</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;8 hours&quot;</span><span class="w"></span>
+<span class="nx">string</span><span class="p">(</span><span class="nx">date</span><span class="p">(</span><span class="mf">2021</span><span class="o">-</span><span class="mf">08</span><span class="o">-</span><span class="mf">15</span><span class="p">))</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;August 15th, 2021&quot;</span><span class="w"></span>
 </code></pre></div>
 
 <h3 id="linkpath-display"><code>link(path, [display])</code></h3>
 <p>Construct a link object from the given file path or name. If provided with two arguments, the second argument is the
 display name for the link.</p>
-<div class="highlight"><pre><span></span><code>link(&quot;Hello&quot;) =&gt; link to page named &#39;Hello&#39;
-link(&quot;Hello&quot;, &quot;Goodbye&quot;) =&gt; link to page named &#39;Hello&#39;, displays as &#39;Goodbye&#39;
+<div class="highlight"><pre><span></span><code><span class="nx">link</span><span class="p">(</span><span class="s2">&quot;Hello&quot;</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">link</span><span class="w"> </span><span class="nx">to</span><span class="w"> </span><span class="nx">page</span><span class="w"> </span><span class="nx">named</span><span class="w"> </span><span class="s1">&#39;Hello&#39;</span><span class="w"></span>
+<span class="nx">link</span><span class="p">(</span><span class="s2">&quot;Hello&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Goodbye&quot;</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">link</span><span class="w"> </span><span class="nx">to</span><span class="w"> </span><span class="nx">page</span><span class="w"> </span><span class="nx">named</span><span class="w"> </span><span class="s1">&#39;Hello&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">displays</span><span class="w"> </span><span class="kr">as</span><span class="w"> </span><span class="s1">&#39;Goodbye&#39;</span><span class="w"></span>
 </code></pre></div>
 
 <h3 id="embedlink-embed"><code>embed(link, [embed?])</code></h3>
 <p>Convert a link object into an embedded link; support for embedded links is somewhat spotty in Dataview views, though
 embedding of images should work.</p>
-<div class="highlight"><pre><span></span><code>embed(link(&quot;Hello.png&quot;)) =&gt; embedded link to the &quot;Hello.png&quot; image, which will render as an actual image.
+<div class="highlight"><pre><span></span><code><span class="nx">embed</span><span class="p">(</span><span class="nx">link</span><span class="p">(</span><span class="s2">&quot;Hello.png&quot;</span><span class="p">))</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">embedded</span><span class="w"> </span><span class="nx">link</span><span class="w"> </span><span class="nx">to</span><span class="w"> </span><span class="nx">the</span><span class="w"> </span><span class="s2">&quot;Hello.png&quot;</span><span class="w"> </span><span class="nx">image</span><span class="p">,</span><span class="w"> </span><span class="nx">which</span><span class="w"> </span><span class="nx">will</span><span class="w"> </span><span class="nx">render</span><span class="w"> </span><span class="kr">as</span><span class="w"> </span><span class="nx">an</span><span class="w"> </span><span class="nx">actual</span><span class="w"> </span><span class="nx">image</span><span class="p">.</span><span class="w"></span>
 </code></pre></div>
 
 <h3 id="elinkurl-display"><code>elink(url, [display])</code></h3>
 <p>Construct a link to an external url (like <code>www.google.com</code>). If provided with two arguments, the second
 argument is the display name for the link.</p>
-<div class="highlight"><pre><span></span><code>elink(&quot;www.google.com&quot;) =&gt; link element to google.com
-elink(&quot;www.google.com&quot;, &quot;Google&quot;) =&gt; link element to google.com, displays as &quot;Google&quot;
+<div class="highlight"><pre><span></span><code><span class="nx">elink</span><span class="p">(</span><span class="s2">&quot;www.google.com&quot;</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">link</span><span class="w"> </span><span class="nx">element</span><span class="w"> </span><span class="nx">to</span><span class="w"> </span><span class="nx">google</span><span class="p">.</span><span class="nx">com</span><span class="w"></span>
+<span class="nx">elink</span><span class="p">(</span><span class="s2">&quot;www.google.com&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Google&quot;</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">link</span><span class="w"> </span><span class="nx">element</span><span class="w"> </span><span class="nx">to</span><span class="w"> </span><span class="nx">google</span><span class="p">.</span><span class="nx">com</span><span class="p">,</span><span class="w"> </span><span class="nx">displays</span><span class="w"> </span><span class="kr">as</span><span class="w"> </span><span class="s2">&quot;Google&quot;</span><span class="w"></span>
 </code></pre></div>
 
 <h3 id="typeofany"><code>typeof(any)</code></h3>
 <p>Get the type of any object for inspection. Can be used in conjunction with other operators to change behavior based on type.</p>
-<div class="highlight"><pre><span></span><code>typeof(8) =&gt; &quot;number&quot;
-typeof(&quot;text&quot;) =&gt; &quot;string&quot;
-typeof([1, 2, 3]) =&gt; &quot;array&quot;
-typeof({ a: 1, b: 2 }) =&gt; &quot;object&quot;
-typeof(date(2020-01-01)) =&gt; &quot;date&quot;
-typeof(dur(8 minutes)) =&gt; &quot;duration&quot;
+<div class="highlight"><pre><span></span><code><span class="ow">typeof</span><span class="p">(</span><span class="mf">8</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="s2">&quot;number&quot;</span><span class="w"></span>
+<span class="ow">typeof</span><span class="p">(</span><span class="s2">&quot;text&quot;</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="s2">&quot;string&quot;</span><span class="w"></span>
+<span class="ow">typeof</span><span class="p">([</span><span class="mf">1</span><span class="p">,</span><span class="w"> </span><span class="mf">2</span><span class="p">,</span><span class="w"> </span><span class="mf">3</span><span class="p">])</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="s2">&quot;array&quot;</span><span class="w"></span>
+<span class="ow">typeof</span><span class="p">({</span><span class="w"> </span><span class="nx">a</span><span class="o">:</span><span class="w"> </span><span class="mf">1</span><span class="p">,</span><span class="w"> </span><span class="nx">b</span><span class="o">:</span><span class="w"> </span><span class="mf">2</span><span class="w"> </span><span class="p">})</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="s2">&quot;object&quot;</span><span class="w"></span>
+<span class="ow">typeof</span><span class="p">(</span><span class="nx">date</span><span class="p">(</span><span class="mf">2020</span><span class="o">-</span><span class="mo">01</span><span class="o">-</span><span class="mo">01</span><span class="p">))</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="s2">&quot;date&quot;</span><span class="w"></span>
+<span class="ow">typeof</span><span class="p">(</span><span class="nx">dur</span><span class="p">(</span><span class="mf">8</span><span class="w"> </span><span class="nx">minutes</span><span class="p">))</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="s2">&quot;duration&quot;</span><span class="w"></span>
 </code></pre></div>
 
 <hr />
@@ -1800,65 +1835,65 @@ typeof(dur(8 minutes)) =&gt; &quot;duration&quot;
 <h3 id="roundnumber-digits"><code>round(number, [digits])</code></h3>
 <p>Round a number to a given number of digits. If the second argument is not specified, rounds to the nearest whole number;
 otherwise, rounds to the given number of digits.</p>
-<div class="highlight"><pre><span></span><code>round(16.555555) = 7
-round(16.555555, 2) = 16.56
+<div class="highlight"><pre><span></span><code><span class="nx">round</span><span class="p">(</span><span class="mf">16.555555</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">7</span><span class="w"></span>
+<span class="nx">round</span><span class="p">(</span><span class="mf">16.555555</span><span class="p">,</span><span class="w"> </span><span class="mf">2</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">16.56</span><span class="w"></span>
 </code></pre></div>
 
 <h3 id="mina-b"><code>min(a, b, ..)</code></h3>
 <p>Compute the minimum value of a list of arguments, or an array.</p>
-<div class="highlight"><pre><span></span><code>min(1, 2, 3) = 1
-min([1, 2, 3]) = 1
+<div class="highlight"><pre><span></span><code><span class="nx">min</span><span class="p">(</span><span class="mf">1</span><span class="p">,</span><span class="w"> </span><span class="mf">2</span><span class="p">,</span><span class="w"> </span><span class="mf">3</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">1</span><span class="w"></span>
+<span class="nx">min</span><span class="p">([</span><span class="mf">1</span><span class="p">,</span><span class="w"> </span><span class="mf">2</span><span class="p">,</span><span class="w"> </span><span class="mf">3</span><span class="p">])</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">1</span><span class="w"></span>
 
-min(&quot;a&quot;, &quot;ab&quot;, &quot;abc&quot;) = &quot;a&quot;
+<span class="nx">min</span><span class="p">(</span><span class="s2">&quot;a&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;ab&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;abc&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;a&quot;</span><span class="w"></span>
 </code></pre></div>
 
 <h3 id="maxa-b"><code>max(a, b, ...)</code></h3>
 <p>Compute the maximum value of a list of arguments, or an array.</p>
-<div class="highlight"><pre><span></span><code>max(1, 2, 3) = 3
-max([1, 2, 3]) = 3
+<div class="highlight"><pre><span></span><code><span class="nx">max</span><span class="p">(</span><span class="mf">1</span><span class="p">,</span><span class="w"> </span><span class="mf">2</span><span class="p">,</span><span class="w"> </span><span class="mf">3</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">3</span><span class="w"></span>
+<span class="nx">max</span><span class="p">([</span><span class="mf">1</span><span class="p">,</span><span class="w"> </span><span class="mf">2</span><span class="p">,</span><span class="w"> </span><span class="mf">3</span><span class="p">])</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">3</span><span class="w"></span>
 
-max(&quot;a&quot;, &quot;ab&quot;, &quot;abc&quot;) = &quot;abc&quot;
+<span class="nx">max</span><span class="p">(</span><span class="s2">&quot;a&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;ab&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;abc&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;abc&quot;</span><span class="w"></span>
 </code></pre></div>
 
 <h3 id="sumarray"><code>sum(array)</code></h3>
 <p>Sums all numeric values in the array. If you have null values in your average, you can eliminate them via the <code>nonnull</code> function.</p>
-<div class="highlight"><pre><span></span><code>sum([1, 2, 3]) = 6
-sum([]) = null
+<div class="highlight"><pre><span></span><code><span class="nx">sum</span><span class="p">([</span><span class="mf">1</span><span class="p">,</span><span class="w"> </span><span class="mf">2</span><span class="p">,</span><span class="w"> </span><span class="mf">3</span><span class="p">])</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">6</span><span class="w"></span>
+<span class="nx">sum</span><span class="p">([])</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">null</span><span class="w"></span>
 
-sum(nonnull([null, 1, 8])) = 9
+<span class="nx">sum</span><span class="p">(</span><span class="nx">nonnull</span><span class="p">([</span><span class="kc">null</span><span class="p">,</span><span class="w"> </span><span class="mf">1</span><span class="p">,</span><span class="w"> </span><span class="mf">8</span><span class="p">]))</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">9</span><span class="w"></span>
 </code></pre></div>
 
 <h3 id="productarray"><code>product(array)</code></h3>
 <p>Calculates the product of a list of numbers. If you have null values in your average, you can eliminate them via the <code>nonnull</code> function.</p>
-<div class="highlight"><pre><span></span><code>product([1,2,3]) = 6
-product([]) = null
+<div class="highlight"><pre><span></span><code><span class="nx">product</span><span class="p">([</span><span class="mf">1</span><span class="p">,</span><span class="mf">2</span><span class="p">,</span><span class="mf">3</span><span class="p">])</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">6</span><span class="w"></span>
+<span class="nx">product</span><span class="p">([])</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">null</span><span class="w"></span>
 
-product(nonnull([null, 1, 2, 4])) = 8
+<span class="nx">product</span><span class="p">(</span><span class="nx">nonnull</span><span class="p">([</span><span class="kc">null</span><span class="p">,</span><span class="w"> </span><span class="mf">1</span><span class="p">,</span><span class="w"> </span><span class="mf">2</span><span class="p">,</span><span class="w"> </span><span class="mf">4</span><span class="p">]))</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">8</span><span class="w"></span>
 </code></pre></div>
 
 <h3 id="averagearray"><code>average(array)</code></h3>
 <p>Computes the numeric average of numeric values. If you have null values in your average, you can eliminate them via the
 <code>nonnull</code> function.</p>
-<div class="highlight"><pre><span></span><code>average([1, 2, 3]) = 2
-average([]) = null
+<div class="highlight"><pre><span></span><code><span class="nx">average</span><span class="p">([</span><span class="mf">1</span><span class="p">,</span><span class="w"> </span><span class="mf">2</span><span class="p">,</span><span class="w"> </span><span class="mf">3</span><span class="p">])</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">2</span><span class="w"></span>
+<span class="nx">average</span><span class="p">([])</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">null</span><span class="w"></span>
 
-average(nonnull([null, 1, 2])) = 1.5
+<span class="nx">average</span><span class="p">(</span><span class="nx">nonnull</span><span class="p">([</span><span class="kc">null</span><span class="p">,</span><span class="w"> </span><span class="mf">1</span><span class="p">,</span><span class="w"> </span><span class="mf">2</span><span class="p">]))</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">1.5</span><span class="w"></span>
 </code></pre></div>
 
 <h3 id="minbyarray-function"><code>minby(array, function)</code></h3>
 <p>Compute the minimum value of an array, using the provided function.</p>
-<div class="highlight"><pre><span></span><code>minby([1, 2, 3], (k) =&gt; k) = 1
-minby([1, 2, 3], (k) =&gt; 0 - k) =&gt; 3
+<div class="highlight"><pre><span></span><code><span class="nx">minby</span><span class="p">([</span><span class="mf">1</span><span class="p">,</span><span class="w"> </span><span class="mf">2</span><span class="p">,</span><span class="w"> </span><span class="mf">3</span><span class="p">],</span><span class="w"> </span><span class="p">(</span><span class="nx">k</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">k</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">1</span><span class="w"></span>
+<span class="nx">minby</span><span class="p">([</span><span class="mf">1</span><span class="p">,</span><span class="w"> </span><span class="mf">2</span><span class="p">,</span><span class="w"> </span><span class="mf">3</span><span class="p">],</span><span class="w"> </span><span class="p">(</span><span class="nx">k</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="mf">0</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="nx">k</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="mf">3</span><span class="w"></span>
 
-minby(this.file.tasks, (k) =&gt; k.due) =&gt; (earliest due)
+<span class="nx">minby</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">file</span><span class="p">.</span><span class="nx">tasks</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="nx">k</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">k</span><span class="p">.</span><span class="nx">due</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">(</span><span class="nx">earliest</span><span class="w"> </span><span class="nx">due</span><span class="p">)</span><span class="w"></span>
 </code></pre></div>
 
 <h3 id="maxbyarray-function"><code>maxby(array, function)</code></h3>
 <p>Compute the maximum value of an array, using the provided function.</p>
-<div class="highlight"><pre><span></span><code>maxby([1, 2, 3], (k) =&gt; k) = 3
-maxby([1, 2, 3], (k) =&gt; 0 - k) =&gt; 1
+<div class="highlight"><pre><span></span><code><span class="nx">maxby</span><span class="p">([</span><span class="mf">1</span><span class="p">,</span><span class="w"> </span><span class="mf">2</span><span class="p">,</span><span class="w"> </span><span class="mf">3</span><span class="p">],</span><span class="w"> </span><span class="p">(</span><span class="nx">k</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">k</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">3</span><span class="w"></span>
+<span class="nx">maxby</span><span class="p">([</span><span class="mf">1</span><span class="p">,</span><span class="w"> </span><span class="mf">2</span><span class="p">,</span><span class="w"> </span><span class="mf">3</span><span class="p">],</span><span class="w"> </span><span class="p">(</span><span class="nx">k</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="mf">0</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="nx">k</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="mf">1</span><span class="w"></span>
 
-maxby(this.file.tasks, (k) =&gt; k.due) =&gt; (latest due)
+<span class="nx">maxby</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">file</span><span class="p">.</span><span class="nx">tasks</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="nx">k</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">k</span><span class="p">.</span><span class="nx">due</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">(</span><span class="nx">latest</span><span class="w"> </span><span class="nx">due</span><span class="p">)</span><span class="w"></span>
 </code></pre></div>
 
 <p>--</p>
@@ -1866,16 +1901,16 @@ maxby(this.file.tasks, (k) =&gt; k.due) =&gt; (latest due)
 <p>Operations that manipulate values inside of container objects.</p>
 <h3 id="contains-and-friends"><code>contains()</code> and friends</h3>
 <p>For a quick summary, here are some examples:</p>
-<div class="highlight"><pre><span></span><code>contains(&quot;Hello&quot;, &quot;Lo&quot;) = false
-contains(&quot;Hello&quot;, &quot;lo&quot;) = true
+<div class="highlight"><pre><span></span><code><span class="nx">contains</span><span class="p">(</span><span class="s2">&quot;Hello&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Lo&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">false</span><span class="w"></span>
+<span class="nx">contains</span><span class="p">(</span><span class="s2">&quot;Hello&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;lo&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span><span class="w"></span>
 
-icontains(&quot;Hello&quot;, &quot;Lo&quot;) = true
-icontains(&quot;Hello&quot;, &quot;lo&quot;) = true
+<span class="nx">icontains</span><span class="p">(</span><span class="s2">&quot;Hello&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Lo&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span><span class="w"></span>
+<span class="nx">icontains</span><span class="p">(</span><span class="s2">&quot;Hello&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;lo&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span><span class="w"></span>
 
-econtains(&quot;Hello&quot;, &quot;Lo&quot;) = false
-econtains(&quot;Hello&quot;, &quot;lo&quot;) = true
-econtains([&quot;this&quot;,&quot;is&quot;,&quot;example&quot;], &quot;ex&quot;) = false
-econtains([&quot;this&quot;,&quot;is&quot;,&quot;example&quot;], &quot;is&quot;) = true
+<span class="nx">econtains</span><span class="p">(</span><span class="s2">&quot;Hello&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Lo&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">false</span><span class="w"></span>
+<span class="nx">econtains</span><span class="p">(</span><span class="s2">&quot;Hello&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;lo&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span><span class="w"></span>
+<span class="nx">econtains</span><span class="p">([</span><span class="s2">&quot;this&quot;</span><span class="p">,</span><span class="s2">&quot;is&quot;</span><span class="p">,</span><span class="s2">&quot;example&quot;</span><span class="p">],</span><span class="w"> </span><span class="s2">&quot;ex&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">false</span><span class="w"></span>
+<span class="nx">econtains</span><span class="p">([</span><span class="s2">&quot;this&quot;</span><span class="p">,</span><span class="s2">&quot;is&quot;</span><span class="p">,</span><span class="s2">&quot;example&quot;</span><span class="p">],</span><span class="w"> </span><span class="s2">&quot;is&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span><span class="w"></span>
 </code></pre></div>
 
 <h4 id="containsobjectliststring-value"><code>contains(object|list|string, value)</code></h4>
@@ -2035,138 +2070,148 @@ join(list()) = &quot;&quot;
 
 <h3 id="filterarray-predicate"><code>filter(array, predicate)</code></h3>
 <p>Filters elements in an array according to the predicate, returning a new list of the elements which matched.</p>
-<div class="highlight"><pre><span></span><code>filter([1, 2, 3], (x) =&gt; x &gt;= 2) = [2, 3]
-filter([&quot;yes&quot;, &quot;no&quot;, &quot;yas&quot;], (x) =&gt; startswith(x, &quot;y&quot;)) = [&quot;yes&quot;, &quot;yas&quot;]
+<div class="highlight"><pre><span></span><code><span class="nx">filter</span><span class="p">([</span><span class="mf">1</span><span class="p">,</span><span class="w"> </span><span class="mf">2</span><span class="p">,</span><span class="w"> </span><span class="mf">3</span><span class="p">],</span><span class="w"> </span><span class="p">(</span><span class="nx">x</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">x</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mf">2</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="mf">2</span><span class="p">,</span><span class="w"> </span><span class="mf">3</span><span class="p">]</span><span class="w"></span>
+<span class="nx">filter</span><span class="p">([</span><span class="s2">&quot;yes&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;no&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;yas&quot;</span><span class="p">],</span><span class="w"> </span><span class="p">(</span><span class="nx">x</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">startswith</span><span class="p">(</span><span class="nx">x</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;y&quot;</span><span class="p">))</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;yes&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;yas&quot;</span><span class="p">]</span><span class="w"></span>
 </code></pre></div>
 
 <h3 id="maparray-func"><code>map(array, func)</code></h3>
 <p>Applies the function to each element in the array, returning a list of the mapped results.</p>
-<div class="highlight"><pre><span></span><code>map([1, 2, 3], (x) =&gt; x + 2) = [3, 4, 5]
-map([&quot;yes&quot;, &quot;no&quot;], (x) =&gt; x + &quot;?&quot;) = [&quot;yes?&quot;, &quot;no?&quot;]
+<div class="highlight"><pre><span></span><code><span class="nx">map</span><span class="p">([</span><span class="mf">1</span><span class="p">,</span><span class="w"> </span><span class="mf">2</span><span class="p">,</span><span class="w"> </span><span class="mf">3</span><span class="p">],</span><span class="w"> </span><span class="p">(</span><span class="nx">x</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">x</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mf">2</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="mf">3</span><span class="p">,</span><span class="w"> </span><span class="mf">4</span><span class="p">,</span><span class="w"> </span><span class="mf">5</span><span class="p">]</span><span class="w"></span>
+<span class="nx">map</span><span class="p">([</span><span class="s2">&quot;yes&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;no&quot;</span><span class="p">],</span><span class="w"> </span><span class="p">(</span><span class="nx">x</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">x</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s2">&quot;?&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;yes?&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;no?&quot;</span><span class="p">]</span><span class="w"></span>
 </code></pre></div>
 
 <hr />
 <h2 id="string-operations">String Operations</h2>
+<h3 id="regextestpattern-string"><code>regextest(pattern, string)</code></h3>
+<p>Checks if the given regex pattern can be found in the string (using the JavaScript regex engine).</p>
+<div class="highlight"><pre><span></span><code><span class="nx">regextest</span><span class="p">(</span><span class="s2">&quot;\w+&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;hello&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span><span class="w"></span>
+<span class="nx">regextest</span><span class="p">(</span><span class="s2">&quot;.&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;a&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span><span class="w"></span>
+<span class="nx">regextest</span><span class="p">(</span><span class="s2">&quot;yes|no&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;maybe&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">false</span><span class="w"></span>
+<span class="nx">regextest</span><span class="p">(</span><span class="s2">&quot;what&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;what&#39;s up dog?&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span><span class="w"></span>
+</code></pre></div>
+
 <h3 id="regexmatchpattern-string"><code>regexmatch(pattern, string)</code></h3>
-<p>Checks if the given string matches the given pattern (using the JavaScript regex engine).</p>
-<div class="highlight"><pre><span></span><code>regexmatch(&quot;\w+&quot;, &quot;hello&quot;) = true
-regexmatch(&quot;.&quot;, &quot;a&quot;) = true
-regexmatch(&quot;yes|no&quot;, &quot;maybe&quot;) = false
+<p>Checks if the given regex pattern matches the <em>entire</em> string, using the JavaScript regex engine.
+This differs from <code>regextest</code> in that regextest can match just parts of the text.</p>
+<div class="highlight"><pre><span></span><code><span class="nx">regexmatch</span><span class="p">(</span><span class="s2">&quot;\w+&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;hello&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span><span class="w"></span>
+<span class="nx">regexmatch</span><span class="p">(</span><span class="s2">&quot;.&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;a&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span><span class="w"></span>
+<span class="nx">regexmatch</span><span class="p">(</span><span class="s2">&quot;yes|no&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;maybe&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">false</span><span class="w"></span>
+<span class="nx">regexmatch</span><span class="p">(</span><span class="s2">&quot;what&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;what&#39;s up dog?&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">false</span><span class="w"></span>
 </code></pre></div>
 
 <h3 id="regexreplacestring-pattern-replacement"><code>regexreplace(string, pattern, replacement)</code></h3>
 <p>Replaces all instances where the <em>regex</em> <code>pattern</code> matches in <code>string</code>, with <code>replacement</code>. This uses the JavaScript
 replace method under the hood, so you can use special characters like <code>$1</code> to refer to the first capture group, and so on.</p>
-<div class="highlight"><pre><span></span><code>regexreplace(&quot;yes&quot;, &quot;[ys]&quot;, &quot;a&quot;) = &quot;aea&quot;
-regexreplace(&quot;Suite 1000&quot;, &quot;\d+&quot;, &quot;-&quot;) = &quot;Suite -&quot;
+<div class="highlight"><pre><span></span><code><span class="nx">regexreplace</span><span class="p">(</span><span class="s2">&quot;yes&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;[ys]&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;a&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;aea&quot;</span><span class="w"></span>
+<span class="nx">regexreplace</span><span class="p">(</span><span class="s2">&quot;Suite 1000&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;\d+&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;-&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;Suite -&quot;</span><span class="w"></span>
 </code></pre></div>
 
 <h3 id="replacestring-pattern-replacement"><code>replace(string, pattern, replacement)</code></h3>
 <p>Replace all instances of <code>pattern</code> in <code>string</code> with <code>replacement</code>.</p>
-<div class="highlight"><pre><span></span><code>replace(&quot;what&quot;, &quot;wh&quot;, &quot;h&quot;) = &quot;hat&quot;
-replace(&quot;The big dog chased the big cat.&quot;, &quot;big&quot;, &quot;small&quot;) = &quot;The small dog chased the small cat.&quot;
-replace(&quot;test&quot;, &quot;test&quot;, &quot;no&quot;) = &quot;no&quot;
+<div class="highlight"><pre><span></span><code><span class="nx">replace</span><span class="p">(</span><span class="s2">&quot;what&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;wh&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;h&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;hat&quot;</span><span class="w"></span>
+<span class="nx">replace</span><span class="p">(</span><span class="s2">&quot;The big dog chased the big cat.&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;big&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;small&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;The small dog chased the small cat.&quot;</span><span class="w"></span>
+<span class="nx">replace</span><span class="p">(</span><span class="s2">&quot;test&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;test&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;no&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;no&quot;</span><span class="w"></span>
 </code></pre></div>
 
 <h3 id="lowerstring"><code>lower(string)</code></h3>
 <p>Convert a string to all lower case.</p>
-<div class="highlight"><pre><span></span><code>lower(&quot;Test&quot;) = &quot;test&quot;
-lower(&quot;TEST&quot;) = &quot;test&quot;
+<div class="highlight"><pre><span></span><code><span class="nx">lower</span><span class="p">(</span><span class="s2">&quot;Test&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;test&quot;</span><span class="w"></span>
+<span class="nx">lower</span><span class="p">(</span><span class="s2">&quot;TEST&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;test&quot;</span><span class="w"></span>
 </code></pre></div>
 
 <h3 id="upperstring"><code>upper(string)</code></h3>
 <p>Convert a string to all upper case.</p>
-<div class="highlight"><pre><span></span><code>upper(&quot;Test&quot;) = &quot;TEST&quot;
-upper(&quot;test&quot;) = &quot;TEST&quot;
+<div class="highlight"><pre><span></span><code><span class="nx">upper</span><span class="p">(</span><span class="s2">&quot;Test&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;TEST&quot;</span><span class="w"></span>
+<span class="nx">upper</span><span class="p">(</span><span class="s2">&quot;test&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;TEST&quot;</span><span class="w"></span>
 </code></pre></div>
 
 <h3 id="splitstring-delimiter-limit"><code>split(string, delimiter, [limit])</code></h3>
 <p>Split a string on the given delimiter string. If a third argument is provided, it limits the number of splits that occur. The delimiter string is interpreted as a regular expression. If there are capture groups in the delimiter, matches are spliced into the result array, and non-matching captures are empty strings.</p>
-<div class="highlight"><pre><span></span><code>split(&quot;hello world&quot;, &quot; &quot;) = list(&quot;hello&quot;, &quot;world&quot;)
-split(&quot;hello  world&quot;, &quot;\s&quot;) = list(&quot;hello&quot;, &quot;world&quot;)
-split(&quot;hello there world&quot;, &quot; &quot;, 2) = list(&quot;hello&quot;, &quot;there&quot;)
-split(&quot;hello there world&quot;, &quot;(t?here)&quot;) = list(&quot;hello &quot;, &quot;there&quot;, &quot; world&quot;)
-split(&quot;hello there world&quot;, &quot;( )(x)?&quot;) = list(&quot;hello&quot;, &quot; &quot;, &quot;&quot;, &quot;there&quot;, &quot; &quot;, &quot;&quot;, &quot;world&quot;)
+<div class="highlight"><pre><span></span><code><span class="nx">split</span><span class="p">(</span><span class="s2">&quot;hello world&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot; &quot;</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">list</span><span class="p">(</span><span class="s2">&quot;hello&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;world&quot;</span><span class="p">)</span><span class="w"></span>
+<span class="nx">split</span><span class="p">(</span><span class="s2">&quot;hello  world&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;\s&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">list</span><span class="p">(</span><span class="s2">&quot;hello&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;world&quot;</span><span class="p">)</span><span class="w"></span>
+<span class="nx">split</span><span class="p">(</span><span class="s2">&quot;hello there world&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot; &quot;</span><span class="p">,</span><span class="w"> </span><span class="mf">2</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">list</span><span class="p">(</span><span class="s2">&quot;hello&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;there&quot;</span><span class="p">)</span><span class="w"></span>
+<span class="nx">split</span><span class="p">(</span><span class="s2">&quot;hello there world&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;(t?here)&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">list</span><span class="p">(</span><span class="s2">&quot;hello &quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;there&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot; world&quot;</span><span class="p">)</span><span class="w"></span>
+<span class="nx">split</span><span class="p">(</span><span class="s2">&quot;hello there world&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;( )(x)?&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">list</span><span class="p">(</span><span class="s2">&quot;hello&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot; &quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;there&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot; &quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;world&quot;</span><span class="p">)</span><span class="w"></span>
 </code></pre></div>
 
 <h3 id="startswithstring-prefix"><code>startswith(string, prefix)</code></h3>
 <p>Checks if a string starts with the given prefix.</p>
-<div class="highlight"><pre><span></span><code>startswith(&quot;yes&quot;, &quot;ye&quot;) = true
-startswith(&quot;path/to/something&quot;, &quot;path/&quot;) = true
-startswith(&quot;yes&quot;, &quot;no&quot;) = false
+<div class="highlight"><pre><span></span><code><span class="nx">startswith</span><span class="p">(</span><span class="s2">&quot;yes&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;ye&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span><span class="w"></span>
+<span class="nx">startswith</span><span class="p">(</span><span class="s2">&quot;path/to/something&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;path/&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span><span class="w"></span>
+<span class="nx">startswith</span><span class="p">(</span><span class="s2">&quot;yes&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;no&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">false</span><span class="w"></span>
 </code></pre></div>
 
 <h3 id="endswithstring-suffix"><code>endswith(string, suffix)</code></h3>
 <p>Checks if a string ends with the given suffix.</p>
-<div class="highlight"><pre><span></span><code>endswith(&quot;yes&quot;, &quot;es&quot;) = true
-endswith(&quot;path/to/something&quot;, &quot;something&quot;) = true
-endswith(&quot;yes&quot;, &quot;ye&quot;) = false
+<div class="highlight"><pre><span></span><code><span class="nx">endswith</span><span class="p">(</span><span class="s2">&quot;yes&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;es&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span><span class="w"></span>
+<span class="nx">endswith</span><span class="p">(</span><span class="s2">&quot;path/to/something&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;something&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span><span class="w"></span>
+<span class="nx">endswith</span><span class="p">(</span><span class="s2">&quot;yes&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;ye&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">false</span><span class="w"></span>
 </code></pre></div>
 
 <h3 id="padleftstring-length-padding"><code>padleft(string, length, [padding])</code></h3>
 <p>Pads a string up to the desired length by adding padding on the left side. If you omit the padding character, spaces
 will be used by default.</p>
-<div class="highlight"><pre><span></span><code>padleft(&quot;hello&quot;, 7) = &quot;  hello&quot;
-padleft(&quot;yes&quot;, 5, &quot;!&quot;) = &quot;!!yes&quot;
+<div class="highlight"><pre><span></span><code><span class="nx">padleft</span><span class="p">(</span><span class="s2">&quot;hello&quot;</span><span class="p">,</span><span class="w"> </span><span class="mf">7</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;  hello&quot;</span><span class="w"></span>
+<span class="nx">padleft</span><span class="p">(</span><span class="s2">&quot;yes&quot;</span><span class="p">,</span><span class="w"> </span><span class="mf">5</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;!&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;!!yes&quot;</span><span class="w"></span>
 </code></pre></div>
 
 <h3 id="padrightstring-length-padding"><code>padright(string, length, [padding])</code></h3>
 <p>Equivalent to <code>padleft</code>, but pads to the right instead.</p>
-<div class="highlight"><pre><span></span><code>padright(&quot;hello&quot;, 7) = &quot;hello  &quot;
-padright(&quot;yes&quot;, 5, &quot;!&quot;) = &quot;yes!!&quot;
+<div class="highlight"><pre><span></span><code><span class="nx">padright</span><span class="p">(</span><span class="s2">&quot;hello&quot;</span><span class="p">,</span><span class="w"> </span><span class="mf">7</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;hello  &quot;</span><span class="w"></span>
+<span class="nx">padright</span><span class="p">(</span><span class="s2">&quot;yes&quot;</span><span class="p">,</span><span class="w"> </span><span class="mf">5</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;!&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;yes!!&quot;</span><span class="w"></span>
 </code></pre></div>
 
 <h3 id="substringstring-start-end"><code>substring(string, start, [end])</code></h3>
 <p>Take a slice of a string, starting at <code>start</code> and ending at <code>end</code> (or the end of the string if unspecified).</p>
-<div class="highlight"><pre><span></span><code>substring(&quot;hello&quot;, 0, 2) = &quot;he&quot;
-substring(&quot;hello&quot;, 2, 4) = &quot;ll&quot;
-substring(&quot;hello&quot;, 2) = &quot;llo&quot;
-substring(&quot;hello&quot;, 0) = &quot;hello&quot;
+<div class="highlight"><pre><span></span><code><span class="nx">substring</span><span class="p">(</span><span class="s2">&quot;hello&quot;</span><span class="p">,</span><span class="w"> </span><span class="mf">0</span><span class="p">,</span><span class="w"> </span><span class="mf">2</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;he&quot;</span><span class="w"></span>
+<span class="nx">substring</span><span class="p">(</span><span class="s2">&quot;hello&quot;</span><span class="p">,</span><span class="w"> </span><span class="mf">2</span><span class="p">,</span><span class="w"> </span><span class="mf">4</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;ll&quot;</span><span class="w"></span>
+<span class="nx">substring</span><span class="p">(</span><span class="s2">&quot;hello&quot;</span><span class="p">,</span><span class="w"> </span><span class="mf">2</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;llo&quot;</span><span class="w"></span>
+<span class="nx">substring</span><span class="p">(</span><span class="s2">&quot;hello&quot;</span><span class="p">,</span><span class="w"> </span><span class="mf">0</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;hello&quot;</span><span class="w"></span>
 </code></pre></div>
 
 <h3 id="truncatestring-length-suffix"><code>truncate(string, length, [suffix])</code></h3>
 <p>Truncate a string to be at most the given length, including the <code>suffix</code> (which defaults to <code>...</code>). Generally useful
 to cut off long text in tables.</p>
-<div class="highlight"><pre><span></span><code>truncate(&quot;Hello there!&quot;, 8) = &quot;Hello...&quot;
-truncate(&quot;Hello there!&quot;, 8, &quot;/&quot;) = &quot;Hello t/&quot;
-truncate(&quot;Hello there!&quot;, 10) = &quot;Hello t...&quot;
-truncate(&quot;Hello there!&quot;, 10, &quot;!&quot;) = &quot;Hello the!&quot;
-truncate(&quot;Hello there!&quot;, 20) = &quot;Hello there!&quot;
+<div class="highlight"><pre><span></span><code><span class="nx">truncate</span><span class="p">(</span><span class="s2">&quot;Hello there!&quot;</span><span class="p">,</span><span class="w"> </span><span class="mf">8</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;Hello...&quot;</span><span class="w"></span>
+<span class="nx">truncate</span><span class="p">(</span><span class="s2">&quot;Hello there!&quot;</span><span class="p">,</span><span class="w"> </span><span class="mf">8</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;/&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;Hello t/&quot;</span><span class="w"></span>
+<span class="nx">truncate</span><span class="p">(</span><span class="s2">&quot;Hello there!&quot;</span><span class="p">,</span><span class="w"> </span><span class="mf">10</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;Hello t...&quot;</span><span class="w"></span>
+<span class="nx">truncate</span><span class="p">(</span><span class="s2">&quot;Hello there!&quot;</span><span class="p">,</span><span class="w"> </span><span class="mf">10</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;!&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;Hello the!&quot;</span><span class="w"></span>
+<span class="nx">truncate</span><span class="p">(</span><span class="s2">&quot;Hello there!&quot;</span><span class="p">,</span><span class="w"> </span><span class="mf">20</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;Hello there!&quot;</span><span class="w"></span>
 </code></pre></div>
 
 <h2 id="utility-functions">Utility Functions</h2>
 <h3 id="defaultfield-value"><code>default(field, value)</code></h3>
 <p>If <code>field</code> is null, return <code>value</code>; otherwise return <code>field</code>. Useful for replacing null values with defaults. For example, to show projects which haven't been completed yet, use <code>"incomplete"</code> as their default value:</p>
-<div class="highlight"><pre><span></span><code>default(dateCompleted, &quot;incomplete&quot;)
+<div class="highlight"><pre><span></span><code><span class="k">default</span><span class="p">(</span><span class="nx">dateCompleted</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;incomplete&quot;</span><span class="p">)</span><span class="w"></span>
 </code></pre></div>
 
 <p>Default is vectorized in both arguments; if you need to use default explicitly on a list argument, use <code>ldefault</code>, which
 is the same as default but is not vectorized.</p>
-<div class="highlight"><pre><span></span><code>default(list(1, 2, null), 3) = list(1, 2, 3)
-ldefault(list(1, 2, null), 3) = list(1, 2, null)
+<div class="highlight"><pre><span></span><code><span class="k">default</span><span class="p">(</span><span class="nx">list</span><span class="p">(</span><span class="mf">1</span><span class="p">,</span><span class="w"> </span><span class="mf">2</span><span class="p">,</span><span class="w"> </span><span class="kc">null</span><span class="p">),</span><span class="w"> </span><span class="mf">3</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">list</span><span class="p">(</span><span class="mf">1</span><span class="p">,</span><span class="w"> </span><span class="mf">2</span><span class="p">,</span><span class="w"> </span><span class="mf">3</span><span class="p">)</span><span class="w"></span>
+<span class="nx">ldefault</span><span class="p">(</span><span class="nx">list</span><span class="p">(</span><span class="mf">1</span><span class="p">,</span><span class="w"> </span><span class="mf">2</span><span class="p">,</span><span class="w"> </span><span class="kc">null</span><span class="p">),</span><span class="w"> </span><span class="mf">3</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">list</span><span class="p">(</span><span class="mf">1</span><span class="p">,</span><span class="w"> </span><span class="mf">2</span><span class="p">,</span><span class="w"> </span><span class="kc">null</span><span class="p">)</span><span class="w"></span>
 </code></pre></div>
 
 <h3 id="choicebool-left-right"><code>choice(bool, left, right)</code></h3>
 <p>A primitive if statement - if the first argument is truthy, returns left; otherwise, returns right.</p>
-<div class="highlight"><pre><span></span><code>choice(true, &quot;yes&quot;, &quot;no&quot;) = &quot;yes&quot;
-choice(false, &quot;yes&quot;, &quot;no&quot;) = &quot;no&quot;
-choice(x &gt; 4, y, z) = y if x &gt; 4, else z
+<div class="highlight"><pre><span></span><code><span class="nx">choice</span><span class="p">(</span><span class="kc">true</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;yes&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;no&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;yes&quot;</span><span class="w"></span>
+<span class="nx">choice</span><span class="p">(</span><span class="kc">false</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;yes&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;no&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;no&quot;</span><span class="w"></span>
+<span class="nx">choice</span><span class="p">(</span><span class="nx">x</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mf">4</span><span class="p">,</span><span class="w"> </span><span class="nx">y</span><span class="p">,</span><span class="w"> </span><span class="nx">z</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">y</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="nx">x</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mf">4</span><span class="p">,</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="nx">z</span><span class="w"></span>
 </code></pre></div>
 
 <h3 id="striptimedate"><code>striptime(date)</code></h3>
 <p>Strip the time component of a date, leaving only the year, month, and day. Good for date comparisons if you don't care
 about the time.</p>
-<div class="highlight"><pre><span></span><code>striptime(file.ctime) = file.cday
-striptime(file.mtime) = file.mday
+<div class="highlight"><pre><span></span><code><span class="nx">striptime</span><span class="p">(</span><span class="nx">file</span><span class="p">.</span><span class="nx">ctime</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">file</span><span class="p">.</span><span class="nx">cday</span><span class="w"></span>
+<span class="nx">striptime</span><span class="p">(</span><span class="nx">file</span><span class="p">.</span><span class="nx">mtime</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">file</span><span class="p">.</span><span class="nx">mday</span><span class="w"></span>
 </code></pre></div>
 
 <h3 id="dateformatdatedatetime-string"><code>dateformat(date|datetime, string)</code></h3>
 <p>Format a Dataview date using a formatting string.
 Uses <a href="https://moment.github.io/luxon/#/formatting?id=table-of-tokens">Luxon tokens</a>.</p>
-<div class="highlight"><pre><span></span><code>dateformat(file.ctime,&quot;yyyy-MM-dd&quot;) = &quot;2022-01-05&quot;
-dateformat(file.ctime,&quot;HH:mm:ss&quot;) = &quot;12:18:04&quot;
-dateformat(date(now),&quot;x&quot;) = &quot;1407287224054&quot;
-dateformat(file.mtime,&quot;ffff&quot;) = &quot;Wednesday, August 6, 2014, 1:07 PM Eastern Daylight Time&quot;
+<div class="highlight"><pre><span></span><code><span class="nx">dateformat</span><span class="p">(</span><span class="nx">file</span><span class="p">.</span><span class="nx">ctime</span><span class="p">,</span><span class="s2">&quot;yyyy-MM-dd&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;2022-01-05&quot;</span><span class="w"></span>
+<span class="nx">dateformat</span><span class="p">(</span><span class="nx">file</span><span class="p">.</span><span class="nx">ctime</span><span class="p">,</span><span class="s2">&quot;HH:mm:ss&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;12:18:04&quot;</span><span class="w"></span>
+<span class="nx">dateformat</span><span class="p">(</span><span class="nx">date</span><span class="p">(</span><span class="nx">now</span><span class="p">),</span><span class="s2">&quot;x&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;1407287224054&quot;</span><span class="w"></span>
+<span class="nx">dateformat</span><span class="p">(</span><span class="nx">file</span><span class="p">.</span><span class="nx">mtime</span><span class="p">,</span><span class="s2">&quot;ffff&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;Wednesday, August 6, 2014, 1:07 PM Eastern Daylight Time&quot;</span><span class="w"></span>
 </code></pre></div>
 
 <h3 id="localtimedate"><code>localtime(date)</code></h3>
@@ -2177,8 +2222,8 @@ value from the linked file. The <code>meta</code> function makes it possible to 
 <p>There are several properties on the object returned by <code>meta</code>:</p>
 <h4 id="metalinkdisplay"><code>meta(link).display</code></h4>
 <p>Get the display text of a link, or null if the link does not have defined display text.</p>
-<div class="highlight"><pre><span></span><code>meta([[2021-11-01|Displayed link text]]).display = &quot;Displayed link text&quot;
-meta([[2021-11-01]]).display = null
+<div class="highlight"><pre><span></span><code><span class="nx">meta</span><span class="p">([[</span><span class="mf">2021</span><span class="o">-</span><span class="mf">11</span><span class="o">-</span><span class="mo">01</span><span class="o">|</span><span class="nx">Displayed</span><span class="w"> </span><span class="nx">link</span><span class="w"> </span><span class="nx">text</span><span class="p">]]).</span><span class="nx">display</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;Displayed link text&quot;</span><span class="w"></span>
+<span class="nx">meta</span><span class="p">([[</span><span class="mf">2021</span><span class="o">-</span><span class="mf">11</span><span class="o">-</span><span class="mo">01</span><span class="p">]]).</span><span class="nx">display</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">null</span><span class="w"></span>
 </code></pre></div>
 
 <h4 id="metalinkembed"><code>meta(link).embed</code></h4>
@@ -2186,17 +2231,17 @@ meta([[2021-11-01]]).display = null
 <code>![[Some Link]]</code>.</p>
 <h4 id="metalinkpath"><code>meta(link).path</code></h4>
 <p>Get the path portion of a link.</p>
-<div class="highlight"><pre><span></span><code>meta([[My Project]]).path = &quot;My Project&quot;
-meta([[My Project#Next Actions]]).path = &quot;My Project&quot;
-meta([[My Project#^9bcbe8]]).path = &quot;My Project&quot;
+<div class="highlight"><pre><span></span><code><span class="nx">meta</span><span class="p">([[</span><span class="nx">My</span><span class="w"> </span><span class="nx">Project</span><span class="p">]]).</span><span class="nx">path</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;My Project&quot;</span><span class="w"></span>
+<span class="nx">meta</span><span class="p">([[</span><span class="nx">My</span><span class="w"> </span><span class="nx">Project</span><span class="err">#</span><span class="nx">Next</span><span class="w"> </span><span class="nx">Actions</span><span class="p">]]).</span><span class="nx">path</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;My Project&quot;</span><span class="w"></span>
+<span class="nx">meta</span><span class="p">([[</span><span class="nx">My</span><span class="w"> </span><span class="nx">Project</span><span class="err">#</span><span class="o">^</span><span class="mf">9</span><span class="nx">bcbe8</span><span class="p">]]).</span><span class="nx">path</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;My Project&quot;</span><span class="w"></span>
 </code></pre></div>
 
 <h4 id="metalinksubpath"><code>meta(link).subpath</code></h4>
 <p>Get the subpath of a link. For links to a heading within a file the subpath will be the text of the heading. For links
 to a block the subpath will be the block ID. If neither of those cases applies then the subpath will be null.</p>
-<div class="highlight"><pre><span></span><code>meta([[My Project#Next Actions]]).subpath = &quot;Next Actions&quot;
-meta([[My Project#^9bcbe8]]).subpath = &quot;9bcbe8&quot;
-meta([[My Project]]).subpath = null
+<div class="highlight"><pre><span></span><code><span class="nx">meta</span><span class="p">([[</span><span class="nx">My</span><span class="w"> </span><span class="nx">Project</span><span class="err">#</span><span class="nx">Next</span><span class="w"> </span><span class="nx">Actions</span><span class="p">]]).</span><span class="nx">subpath</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;Next Actions&quot;</span><span class="w"></span>
+<span class="nx">meta</span><span class="p">([[</span><span class="nx">My</span><span class="w"> </span><span class="nx">Project</span><span class="err">#</span><span class="o">^</span><span class="mf">9</span><span class="nx">bcbe8</span><span class="p">]]).</span><span class="nx">subpath</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;9bcbe8&quot;</span><span class="w"></span>
+<span class="nx">meta</span><span class="p">([[</span><span class="nx">My</span><span class="w"> </span><span class="nx">Project</span><span class="p">]]).</span><span class="nx">subpath</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">null</span><span class="w"></span>
 </code></pre></div>
 
 <p>This can be used to select tasks under specific headings.</p>
@@ -2209,9 +2254,9 @@ where meta(section).subpath = &quot;Next Actions&quot;
 <h4 id="metalinktype"><code>meta(link).type</code></h4>
 <p>Has the value "file", "header", or "block" depending on whether the link links to an entire file, a heading within
 a file, or to a block within a file.</p>
-<div class="highlight"><pre><span></span><code>meta([[My Project]]).type = &quot;file&quot;
-meta([[My Project#Next Actions]]).type = &quot;header&quot;
-meta([[My Project#^9bcbe8]]).type = &quot;block&quot;
+<div class="highlight"><pre><span></span><code><span class="nx">meta</span><span class="p">([[</span><span class="nx">My</span><span class="w"> </span><span class="nx">Project</span><span class="p">]]).</span><span class="nx">type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;file&quot;</span><span class="w"></span>
+<span class="nx">meta</span><span class="p">([[</span><span class="nx">My</span><span class="w"> </span><span class="nx">Project</span><span class="err">#</span><span class="nx">Next</span><span class="w"> </span><span class="nx">Actions</span><span class="p">]]).</span><span class="nx">type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;header&quot;</span><span class="w"></span>
+<span class="nx">meta</span><span class="p">([[</span><span class="nx">My</span><span class="w"> </span><span class="nx">Project</span><span class="err">#</span><span class="o">^</span><span class="mf">9</span><span class="nx">bcbe8</span><span class="p">]]).</span><span class="nx">type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;block&quot;</span><span class="w"></span>
 </code></pre></div>
 
 

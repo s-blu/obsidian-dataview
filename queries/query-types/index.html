@@ -917,19 +917,19 @@
 
 <h1 id="query-types">Query Types</h1>
 <p>The <strong>Query Type</strong> determines how the output of your dataview query looks like. It is the <strong>first and only mandatory</strong> specification you give to a dataview query. There are four available: <code>LIST</code>, <code>TABLE</code>, <code>TASK</code> and <code>CALENDAR</code>.</p>
-<p>The Query Type also determine on which <strong>information level</strong> a query is executed.  <code>LIST</code>, <code>TABLE</code> and <code>CALENDAR</code> operate on <strong>page level</strong>, whereas <code>TASK</code> queries operate on <code>file.tasks</code> level. More on that on the <code>TASK</code> Query Type. </p>
+<p>The Query Type also determines which <strong>information level</strong> a query is executed on. <code>LIST</code>, <code>TABLE</code> and <code>CALENDAR</code> operate at <strong>page level</strong> whereas <code>TASK</code> queries operate at the <code>file.tasks</code> level. More on that in the <code>TASK</code> Query Type. </p>
 <p>You can combine <strong>every Query Type with all available <a href="../data-commands/">Data Commands</a></strong> to refine your result set. Read more about the interconnection between Query Types and Data Commands on <a href="../..#how-to-use-dataview">How to Use Dataview</a> and the <a href="../structure/">structure page</a>.</p>
 <div class="admonition summary">
 <p class="admonition-title">Query Type</p>
 <p>The Query Type determines the output format of a query. It's the only mandatory information for a query.</p>
 </div>
 <h2 id="list">LIST</h2>
-<p><code>LIST</code> queries output a bullet point list consisting out of your file links or the group name, if you decided to <a href="../data-commands/#group-by">group</a>. You can specify up to <strong>one additional information</strong> to output alongside with your file or group information.</p>
+<p><code>LIST</code> queries output a bullet point list consisting of your file links or the group name, if you decided to <a href="../data-commands/#group-by">group</a>. You can specify up to <strong>one additional information</strong> to output alongside your file or group information.</p>
 <div class="admonition summary">
 <p class="admonition-title">Query Type <code>LIST</code></p>
 <p><code>LIST</code> outputs a bullet point list of page links or Group keys. You can specify one additional information to show for each result.</p>
 </div>
-<p>The most minimal LIST query outputs a bullet point list of all files in your vault:</p>
+<p>The simplest LIST query outputs a bullet point list of all files in your vault:</p>
 <div class="highlight"><pre><span></span><code>```dataview 
 LIST
 ```
@@ -1334,7 +1334,7 @@ FROM #games
 <p>If you want to rename the first column in all cases, change the name in Dataviews settings under Table Settings.</p>
 </div>
 <h2 id="task">TASK</h2>
-<p>The <code>TASK</code> Query outputs <strong>a interactive list of all tasks in your vault</strong> that match the given <a href="../data-commands/">data commands</a> (if any). <code>TASK</code> Queries are special compared to the other Query Types because they do give back <strong>Tasks as results and not pages</strong>. This implies that all <a href="../data-commands/">data commands</a> operate on <strong>Task level</strong> and makes it possible to fine granularly filter your tasks for i.e. their status or a meta data specified on the task itself.  </p>
+<p>The <code>TASK</code> Query outputs <strong>an interactive list of all tasks in your vault</strong> that match the given <a href="../data-commands/">data commands</a> (if any). <code>TASK</code> queries are special compared to the other Query Types because they do give back <strong>Tasks as results and not pages</strong>. This implies that all <a href="../data-commands/">data commands</a> operate on <strong>Task level</strong> and makes it possible to granularly filter your tasks i.e. for their status or meta data specified on the task itself.  </p>
 <p>Also, <code>TASK</code> Queries are the only possibility to <strong>manipulate your files through DQL</strong>. Normally, Dataview does not touch the content of your files; however, if you check a task through a dataview query, it'll get <strong>checked in its original file, too</strong>. In the Dataview Settings under "Task Settings", you can opt-in to automatically set a <code>completion</code> meta data field when checking a task in dataview. Mind though that this only works if you check the task inside a dataview block. </p>
 <div class="admonition summary">
 <p class="admonition-title"><code>TASK</code> Query Type</p>
@@ -1400,10 +1400,10 @@ GROUP BY file.link
 </ul>
 <div class="admonition hint">
 <p class="admonition-title">Counting tasks with subtask</p>
-<p>Noticing the (1) on the header of <code>2022-07-30</code>? Child tasks belong to their parent task and are not counted separately. Also, they do <strong>behave differently</strong> on filtering.</p>
+<p>Noticing the (1) on the header of <code>2022-07-30</code>? Child tasks belong to their parent task and are not counted separately. Also, they <strong>behave differently</strong> on filtering.</p>
 </div>
 <h3 id="child-tasks">Child Tasks</h3>
-<p>A task is considered <strong>child task</strong> if it is <strong>intended by a tab</strong> and below a not indented task list item.</p>
+<p>A task is considered a <strong>child task</strong> if it is <strong>indented by a tab</strong> and is below an unindented task.</p>
 <ul class="task-list">
 <li class="task-list-item"><input type="checkbox" disabled/> clean up the house<ul class="task-list">
 <li class="task-list-item"><input type="checkbox" disabled/> kitchen</li>
@@ -1414,7 +1414,7 @@ GROUP BY file.link
 </ul>
 <div class="admonition info">
 <p class="admonition-title">Childs of a bullet point item</p>
-<p>While intended tasks under a bullet point item are strictly speaking also children task, dataview will handle them like normal tasks in most cases.</p>
+<p>While indented tasks under a bulleted list item are, strictly speaking, also child tasks, Dataview will handle them like normal tasks in most cases.</p>
 </div>
 <p>Child Tasks <strong>belong to their parent</strong>. This means if you're querying for tasks, you'll get child tasks as part of their parent back.</p>
 <div class="highlight"><pre><span></span><code>```dataview
@@ -1433,7 +1433,7 @@ TASK
 <li class="task-list-item"><input type="checkbox" disabled/> Call the insurance about the car</li>
 <li class="task-list-item"><input type="checkbox" disabled checked/> Find out the transaction number</li>
 </ul>
-<p>This especially means that child task will be part of your result set <strong>as long as the parent matches the query</strong> - even if the child task itself doesn't.</p>
+<p>This specifically means that child task will be part of your result set <strong>as long as the parent matches the query</strong> - even if the child task itself doesn't.</p>
 <div class="highlight"><pre><span></span><code>```dataview
 TASK
 WHERE !completed
@@ -1450,6 +1450,7 @@ WHERE !completed
 </li>
 <li class="task-list-item"><input type="checkbox" disabled/> Call the insurance about the car</li>
 </ul>
+<p>Here, <code>living room</code> does <strong>not match</strong> the query, but is included anyway, because its parent <code>clean up the house</code> does match. </p>
 <p>Mind that you'll get individual children tasks back, if the child matches your predicate but the parent doesn't:</p>
 <div class="highlight"><pre><span></span><code>```dataview
 TASK

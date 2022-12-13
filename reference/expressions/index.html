@@ -479,8 +479,8 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#arrayobject-indexing" class="md-nav__link">
-    Array/Object Indexing
+  <a href="#listobject-indexing" class="md-nav__link">
+    List/Object Indexing
   </a>
   
 </li>
@@ -511,20 +511,6 @@
   
     <nav class="md-nav" aria-label="Type-specific Interactions &amp; Values">
       <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#dates" class="md-nav__link">
-    Dates
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#durations" class="md-nav__link">
-    Durations
-  </a>
-  
-</li>
         
           <li class="md-nav__item">
   <a href="#links" class="md-nav__link">
@@ -854,8 +840,8 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#arrayobject-indexing" class="md-nav__link">
-    Array/Object Indexing
+  <a href="#listobject-indexing" class="md-nav__link">
+    List/Object Indexing
   </a>
   
 </li>
@@ -888,20 +874,6 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#dates" class="md-nav__link">
-    Dates
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#durations" class="md-nav__link">
-    Durations
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
   <a href="#links" class="md-nav__link">
     Links
   </a>
@@ -932,8 +904,14 @@
 
 
 <h1 id="expressions">Expressions</h1>
-<p>Dataview query language <em>expressions</em> are anything that yields a value - all fields are expressions, as are literal
-values (like <code>6</code>), as are computed values (like <code>field - 9</code>). For a very high level summary:</p>
+<p>Dataview query language <strong>expressions</strong> are anything that yields a value:</p>
+<ul>
+<li>all <a href="../../annotation/add-metadata/">fields</a></li>
+<li>all <a href="../literals/">literals</a> </li>
+<li>and computed values, like <code>field - 9</code> of <a href="../functions/">function calls</a>. </li>
+</ul>
+<p>Basically, everything that is not a <a href="../../queries/query-types/">Query Type</a>, nor a <a href="../../queries/data-commands/">data command</a> is an expression.</p>
+<p>For a very high level summary, following is considered an <strong>expression</strong> in DQL:</p>
 <div class="highlight"><pre><span></span><code># Literals
 1                   (number)
 true/false          (boolean)
@@ -969,6 +947,11 @@ a != b              (check if a does not equal b)
 a &lt;= b              (check if a is less than or equal to b)
 a &gt;= b              (check if a is greater than or equal to b)
 
+# Strings
+
+a + b               (string concatenation)
+a * num             (repeat string &lt;num&gt; times)
+
 # Special Operations
 [[Link]].value      (fetch `value` from page `Link`)
 </code></pre></div>
@@ -976,27 +959,81 @@ a &gt;= b              (check if a is greater than or equal to b)
 <p>More detailed explanations of each follow.</p>
 <h2 id="expression-types">Expression Types</h2>
 <h3 id="fields-as-expressions">Fields as Expressions</h3>
-<p>The simplest expression is one that just directly refers to a field. If you have a field called "field", then you can
-refer to it directly by name - <code>field</code>. If the field name has spaces, punctuation, or other non-letter/number
-characters, then you can refer to it using Dataview's simplified name, which is all lower case with spaces replaced with
-"-". For example, <code>this is a field</code> becomes <code>this-is-a-field</code>; <code>Hello!</code> becomes <code>hello</code>, and so on.</p>
+<p>The simplest expression is one that just directly refers to a field. If you have a field called "duedate", then you can
+refer to it directly by name - <code>duedate</code>. </p>
+<div class="highlight"><pre><span></span><code>```dataview
+TABLE duedate, class, field-with-space
+```
+</code></pre></div>
+
+<div class="admonition info">
+<p class="admonition-title">Field names with spaces and punctuations</p>
+<p>If the field name has spaces, punctuation, or other non-letter/number characters, then you can refer to it using Dataview's simplified name, which is all lower case with spaces replaced with "-". For example, <code>this is a field</code> becomes <code>this-is-a-field</code>; <code>Hello!</code> becomes <code>hello</code>, and so on. Read more under <a href="../../annotation/add-metadata/#field-names">Field names</a></p>
+</div>
 <h3 id="literals">Literals</h3>
 <p>Constant values - things like <code>1</code> or <code>"hello"</code> or <code>date(som)</code> ("start of month"). There are literals for each data type
-that dataview supports; you can see the reference above for examples of what each literal type looks like.</p>
+that dataview supports; read more about them <a href="../literals/">here</a>.</p>
+<div class="highlight"><pre><span></span><code>```dataview
+LIST
+WHERE file.name = &quot;Scribble&quot;
+```
+</code></pre></div>
+
 <h3 id="arithmetic">Arithmetic</h3>
 <p>You can use standard arithmetic operators to combine fields: addition (<code>+</code>), subtraction (<code>-</code>), multiplication (<code>*</code>),
 and division (<code>/</code>). For example <code>field1 + field2</code> is an expression which computes the sum of the two fields.</p>
+<div class="highlight"><pre><span></span><code>```dataview
+TABLE start, end, (end - start) - dur(8 h) AS &quot;Overtime&quot; 
+FROM #work
+```
+
+```dataview
+TABLE hrs / 24 AS &quot;days&quot;
+FROM &quot;30 Projects&quot;
+```
+</code></pre></div>
+
 <h3 id="comparisons">Comparisons</h3>
 <p>You can compare most values using the various comparison operators: <code>&lt;</code>, <code>&gt;</code>, <code>&lt;=</code>, <code>&gt;=</code>, <code>=</code>, <code>!=</code>. This yields a
 boolean true or false value which can be used in <code>WHERE</code> blocks in queries.</p>
-<h3 id="arrayobject-indexing">Array/Object Indexing</h3>
-<p>You can retrieve data from arrays via the index operator <code>array[&lt;index&gt;]</code>, where <code>&lt;index&gt;</code> is any computed expression.
-Arrays are 0-indexed, so the first element is index 0, the second element is index 1, and so on.
-For example <code>list(1, 2, 3)[0] = 1</code>.</p>
-<p>A similar notation style works for objects.
+<div class="highlight"><pre><span></span><code>```dataview
+LIST
+FROM &quot;Games&quot;
+WHERE price &gt; 10
+```
+
+```dataview
+TASK
+WHERE due &lt;= date(today)
+```
+
+```dataview
+LIST
+FROM #homework
+WHERE status != &quot;done&quot;
+```
+</code></pre></div>
+
+<div class="admonition hint">
+<p class="admonition-title">Comparing different types</p>
+<p>Comparing different <a href="../../annotation/types-of-metadata/">data types</a> with each other can lead to unexpected results. Take the second example: If <code>due</code> is not set (neither on page nor task level), it is <code>null</code> and <code>null &lt;= date(today)</code> returns true, including tasks without any due date. If this is not wanted, add a type check to make sure you're always comparing the same types:
+<div class="highlight"><pre><span></span><code>```dataview
+TASK
+WHERE typeof(due) = &quot;date&quot; AND due &lt;= date(today)
+```
+</code></pre></div>
+Most often, it is sufficient to check if the meta data is available via <code>WHERE due AND due &lt;= date(today)</code>, but checking the type is the safer way to get forseeable results. </p>
+</div>
+<h3 id="listobject-indexing">List/Object Indexing</h3>
+<p>You can retrieve data from <a href="../../annotation/types-of-metadata/#list">lists/arrays</a> via the index operator <code>list[&lt;index&gt;]</code>, where <code>&lt;index&gt;</code> is any computed expression.
+Lists are 0-indexed, so the first element is index 0, the second element is index 1, and so on.
+For example <code>list("A", "B", "C")[0] = "A"</code>.</p>
+<p>A similar notation style works for <a href="../../annotation/types-of-metadata/#object">objects</a>.
 You can use <code>field["nestedfield"]</code> to reference fields inside an object or otherwise similarly nested.
 For example, in the YAML defined below, we can reference <code>previous</code> via <code>episode_metadata["previous"]</code>.
 <div class="highlight"><pre><span></span><code><span class="nn">---</span><span class="w"></span>
+<span class="nt">aliases</span><span class="p">:</span><span class="w"></span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;ABC&quot;</span><span class="w"></span>
 <span class="nt">current_episode</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;S01E03&quot;</span><span class="w"></span>
 <span class="nt">episode_metadata</span><span class="p">:</span><span class="w"></span>
 <span class="w">  </span><span class="nt">previous</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;S01E02&quot;</span><span class="w"></span>
@@ -1010,10 +1047,26 @@ For the previous frontmatter example, we could also use <code>episode_metadata.p
 A good example is <code>where</code>, since it is a keyword.
 If your frontmatter/metadata contains a field <code>where</code>, you can reference it via the <code>row</code> syntax: <code>row["where"]</code>.
 See the <a href="../../resources/faq/#how-do-i-use-fields-with-the-same-name-as-keywords-like-from-where">note in the FAQ</a> and <a href="https://github.com/blacksmithgu/obsidian-dataview/issues/1164">the corresponding issue</a> for further information.</p>
+<div class="highlight"><pre><span></span><code>```dataview
+TABLE id, episode_metadata.next, aliases[0]
+```
+</code></pre></div>
+
 <h3 id="function-calls">Function Calls</h3>
 <p>Dataview supports various functions for manipulating data, which are described in full in the <a href="../functions">functions
-documentation</a>. They have the general syntax <code>function(arg1, arg2, ...)</code> - i.e., <code>lower("yes")</code> or
-<code>regexmatch("text", ".+")</code>.</p>
+documentation</a>. They have the general syntax <code>function(arg1, arg2, ...)</code> - i.e., <code>lower(file.name)</code> or
+<code>regexmatch(file.folder, "A.+")</code>.</p>
+<div class="highlight"><pre><span></span><code>```dataview
+LIST
+WHERE contains(file.name, &quot;WIP&quot;)
+```
+
+```dataview
+LIST
+WHERE string(file.day.year) = split(this.file.name, &quot;-W&quot;)[0]
+```
+</code></pre></div>
+
 <h3 id="lambdas">Lambdas</h3>
 <p>Lambdas are advanced literals which let you define a function that takes some number of inputs, and produces an output.
 They have the general form:</p>
@@ -1022,29 +1075,31 @@ They have the general form:</p>
 
 <p>Lambdas are used in several advanced operators like <code>reduce</code> and <code>map</code> to allow for complex transformations of data. A
 few examples:</p>
-<div class="highlight"><pre><span></span><code>(x, y) =&gt; x + y                 (sum x and y)
+<div class="highlight"><pre><span></span><code>(x) =&gt; x.field                  (return field of x, often used for map)
+(x, y) =&gt; x + y                 (sum x and y)
 (x) =&gt; 2 * x                    (double x)
 (value) =&gt; length(value) = 4    (return true if value is length 4)
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code>```dataview
+CALENDAR file.day
+FLATTEN all(map(file.tasks, (x) =&gt; x.completed)) AS &quot;allCompleted&quot;
+WHERE !allCompleted
+```
 </code></pre></div>
 
 <hr />
 <h2 id="type-specific-interactions-values">Type-specific Interactions &amp; Values</h2>
 <p>Most dataview types have special interactions with operators, or have additional fields that can be retrieved using the
-index operator.</p>
-<h3 id="dates">Dates</h3>
-<p>You can retrieve various components of a date via indexing: <code>date.year</code>, <code>date.month</code>, <code>date.day</code>, <code>date.hour</code>,
-<code>date.minute</code>, <code>date.second</code>, <code>date.week</code>, <code>date.weekyear</code>. You can also add durations to dates to get new dates.</p>
-<h3 id="durations">Durations</h3>
-<p>Durations can be added to each other or to dates. You can retrieve various components of a duration via indexing:
-<code>duration.years</code>, <code>duration.months</code>, <code>duration.days</code>, <code>duration.hours</code>, <code>duration.minutes</code>, <code>duration.seconds</code>.</p>
+index operator. This is true for <a href="../../annotation/types-of-metadata/#date">dates</a> and <a href="../../annotation/types-of-metadata/#duration">durations</a> and as well for links. Read more about date and durations on their respective section in <a href="../../annotation/types-of-metadata/">Types of Metadata</a>.</p>
 <h3 id="links">Links</h3>
-<p>You can "index through" a link to get values on the corresponding page. For example <code>[[Link]].value</code> would get the value
-<code>value</code> from page <code>Link</code>.</p>
+<p>You can "index through" a link to get values on the corresponding page. For example <code>[[Assignment Math]].duedate</code> would get the value
+<code>duedate</code> from page <code>Assignment Math</code>.</p>
 <div class="admonition note">
 <p class="admonition-title">Link Indexing in Expressions</p>
-<p>If your link is a field that you defined in an inline field or in front-matter, like <code>Key:: [[Link]]</code>, then you
-should index into it by just writing <code>Key.value</code>; Using <code>[[Key]].value</code> would look up the page literally called <code>Key</code>,
-which is probably not what you want!</p>
+<p>If your link is a field that you defined in an inline field or in front-matter, like <code>Class:: [[Math]]</code> and you want to get the field <code>timetable</code>, then you
+index into it by writing <code>Class.timetable</code>.
+Using <code>[[Class]].timetable</code> would look up the page literally called <code>Class</code>, and not <code>Math</code>!</p>
 </div>
 
 
