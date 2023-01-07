@@ -154,7 +154,7 @@ will be finishing up the associated new "extension" functionality shortly, which
 2. For custom renderable objects (progress bars, embedded task lists, embedded tables) to be added to any Dataview view via plugins.
 3. For plugins to provide alternative behavior for some dataview functionality (such as integrating task plugins with
    the dataview task query).
-   
+
 As part of the API revamp, it is now possible to programmatically execute Dataview and DataviewJS queries - either for
 using the existing Dataview query language in your own plugin, or for embedding dataview. The Dataview npm library also
 now exposes many useful internal Dataview types, including the AST structure for all dataview queries.
@@ -176,6 +176,7 @@ links in them.
 # 0.5.30
 
 - Added the `typeof(any)` function in Dataview, which obtains the type of any value for comparison:
+
 ```javascript
 typeof("text") = "string"
 typeof(1) = "number"
@@ -438,7 +439,7 @@ Inline images are now rendered correctly in Dataview tables and lists - no more 
 - Temporarily revert the new task metadata behavior: inline fields in sublists of tasks are added to the page, instead
   of the task. This behavior is not good, but is compatible with legacy usages of task metadata, which should uinbreak
   some existing queries.
-    - This behavior will be removed in the future behind a flag.
+  - This behavior will be removed in the future behind a flag.
 - Added the 'visual' field to tasks - if set, tasks render 'visual' instead of their regular text.
 - Fixed `DataArray#mutate()`.
 
@@ -447,8 +448,8 @@ Inline images are now rendered correctly in Dataview tables and lists - no more 
 # 0.5.0 (Beta)
 
 Re-release of broken release 0.4.23, now hopefully with fixes that make it work on (most) machines. I'll be doing beta
-releases for a little while until I can confirm the new version is stable; use BRAT
-(https://github.com/TfTHacker/obsidian42-brat) to easily track Dataview beta versions if you are interested in cutting
+releases for a little while until I can confirm the new version is stable; use [BRAT]
+(<https://github.com/TfTHacker/obsidian42-brat>) to easily track Dataview beta versions if you are interested in cutting
 edge features.
 
 ---
@@ -618,7 +619,7 @@ Minor feature release to patch up more implementation holes.
 
 You can now query from a specific file (instead of just folders and tags) by specifying the full file path:
 
-```
+```sql
 TASK FROM "dataview/Test"
 ...
 ```
@@ -689,7 +690,7 @@ editing easier to do:
 
 - [ ] A Task. 🔗
 - [ ] Another Task. 🔗
-    - [ ] Some Random Subtask. 🔗
+  - [ ] Some Random Subtask. 🔗
 
 You can configure the symbol for the link or disable it altogether.
 
@@ -738,7 +739,7 @@ Task queries are now much improved from their primitive foundations - you can no
 block is still page-based, sadly, though you can simply use `WHERE` instead if desired. For example, you can now access
 task fields like `text`, `line`, or `completed`:
 
-```
+```sql
 TASK WHERE contains(text, "#tag")
 WHERE !completed
 GROUP BY file.folder
@@ -758,13 +759,12 @@ more intuitive/useful than it currently is) will likely also be revisited.
 Early support for truly inline fields have been added, where you can add metadata in the middle of a sentence. It looks
 similar to existing inline field syntax, but with brackets or parenthesis:
 
-```
+```text
 I would rate this a [rating:: 6]. It was (thoughts:: acceptable).
 ```
 
 Improved rendering for all inline fields is coming in an upcoming update to improve the visual look of these inline
 fields.
-
 
 ## Issues
 
