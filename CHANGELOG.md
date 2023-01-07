@@ -1,3 +1,17 @@
+# 0.5.52
+
+Substantial documentation improvements thanks to @s-blu and @AB1908!
+
+- For people concerned about dataviewjs code execution from copy-pasting, @eyuelt has made it possible to change the
+  dataviewjs codeblock prefix.
+- @sohanglal has added some documentation for `task.visual` for changing the visual text of a task.
+- @Chouffy and @Daryl-Horton have fixed some bad documentation links!
+- @vrtmrz swapped the regex used for parsing tags to better match Obsidian's own parser.
+- @alexfertel has added `regextest`, which allows for matching parts of a string instead of the whole thing.
+- @iamrecursion has added more metadata to file links, so they now include section metadata. This may cause some slight
+  visual changes in link views.
+
+---
 
 # 0.5.51 (Beta)
 
@@ -14,7 +28,7 @@
 
 # 0.5.49 (Beta)
 
-- Add the `average` function to compute averages of lists (`average([list of things])`).
+- Add the `average` function to compute averages of lists (`average(list of things)`).
 - Added documentation for `average`, `min`, `max`, `minby`, and `maxby` functions.
 - Fixed the broken `nonnull` function and documented it.
 
@@ -159,7 +173,7 @@ As part of the API revamp, it is now possible to programmatically execute Datavi
 using the existing Dataview query language in your own plugin, or for embedding dataview. The Dataview npm library also
 now exposes many useful internal Dataview types, including the AST structure for all dataview queries.
 
-I am hoping that cleaning up the Dataview API and making it much more extensible will allow for Dataview [to](to) integrate
+I am hoping that cleaning up the Dataview API and making it much more extensible will allow for Dataview to(to) integrate
 much better with existing plugins, and to provide the full power of the in-memory index for plugins. I have been very
 carefully watching index performance in recent weeks to ensure smooth frontend performance for anyone using the API
 (with a goal of <10ms for most queries).
@@ -179,7 +193,7 @@ links in them.
 ```javascript
 typeof("text") = "string"
 typeof(1) = "number"
-typeof([1, 2, 3]) = "array"
+typeof(1, 2, 3) = "array"
 ```
 
 - Added the modulo operator (`%`) for doing integer division remainder. I.e., `14 % 2 = 0` and `14 % 3 = 2`.
@@ -399,8 +413,8 @@ More small features:
 
 - Fix issues with task sorting not doing anything. Sort away!
 - Table headers can now be arbitrary markdown. So you can put things like links in your headers: `TABLE (1 + 2) AS
-  "[[File]]".
-- You can now specify the size of an image embed by providing WxH in it's display property: `![[image.png|50x50]]`.
+  "File".
+- You can now specify the size of an image embed by providing WxH in it's display property: `!image.png|50x50`.
 
 ---
 
@@ -525,7 +539,7 @@ several community-contributed API improvements:
   the innermost (original) data in the array instead of the top level groups. This allows for more easily grouping
   recursively, such as `dv.pages().groupBy(page => page.file.folder).groupIn(page => page.title)` producing a grouping
   of folders, then page titles.
-- `substring(string, start[, end])`: The last major missing string function is now available! Take slices of strings.
+- `substring(string, start, end)`: The last major missing string function is now available! Take slices of strings.
 - Improved `dv.el()` and other HTML functions - thanks @vitaly.
 - null and undefined entries sort at the end instead of the beginning by default; sorry to those whose code sorts wrong
   because of this, but it is a better default for most people's use cases.
@@ -606,7 +620,7 @@ durations by commas, or use the abbreviated syntax with/without spaces.
 
 # 0.4.18
 
-Bugfix release which fixes bad inline field highlighting if '[' and '(' are mixed on the same line in particular orders.
+Bugfix release which fixes bad inline field highlighting if '' and '(' are mixed on the same line in particular orders.
 
 ---
 
@@ -675,7 +689,7 @@ Bugfix release which adds fancy rendering to inline-inline fields and includes a
 
 ## Pretty Inline Fields
 
-Inline fields of the form `[key:: value]` will now be rendered with fancy new HTML! By default, they are rendered with
+Inline fields of the form `key:: value` will now be rendered with fancy new HTML! By default, they are rendered with
 both the key and value. You can only render the value using parenthesis instead: `(key:: value)`. You can disable
 this feature in the configuration.
 
@@ -687,9 +701,9 @@ meanwhile, give the new syntax a try!
 Tasks now render with a link to the page/section that they are defined in, making `GROUP BY` and custom task
 editing easier to do:
 
-- [ ] A Task. 🔗
-- [ ] Another Task. 🔗
-    - [ ] Some Random Subtask. 🔗
+-   A Task. 🔗
+-   Another Task. 🔗
+    -   Some Random Subtask. 🔗
 
 You can configure the symbol for the link or disable it altogether.
 
@@ -745,7 +759,7 @@ GROUP BY file.folder
 ```
 
 The full list of all available task metadata can be found
-[here](https://blacksmithgu.github.io/obsidian-dataview/data-annotation/#tasks); tasks include all the information
+here(https://blacksmithgu.github.io/obsidian-dataview/data-annotation/#tasks); tasks include all the information
 needed to uniquely identify them, and automatically inherit all of the metadata from their parent file as well (so you
 can access `file.name`, for example). You can also annotate tasks with inline fields, as described in the section below.
 
@@ -759,7 +773,7 @@ Early support for truly inline fields have been added, where you can add metadat
 similar to existing inline field syntax, but with brackets or parenthesis:
 
 ```
-I would rate this a [rating:: 6]. It was (thoughts:: acceptable).
+I would rate this a rating:: 6. It was (thoughts:: acceptable).
 ```
 
 Improved rendering for all inline fields is coming in an upcoming update to improve the visual look of these inline
