@@ -41,20 +41,20 @@ Improves `date + duration` behavior when either the date or duration are null.
 
 # 0.5.46
 
-- Fix \#1412: Fix bad `file.cday` and `file.ctime` comparisons due to wrong timezone being set. Ugh.
+- Fix 1412: Fix bad `file.cday` and `file.ctime` comparisons due to wrong timezone being set. Ugh.
 
 ---
 
 # 0.5.45
 
-- \#1400: Properly use the group by field for the group name.
+- 1400: Properly use the group by field for the group name.
 - Fix bad table highlighting in some themes.
 
 ---
 
 # 0.5.44
 
-- \#1404: Fixed dates in non-local timezones parsing incorrectly.
+- 1404: Fixed dates in non-local timezones parsing incorrectly.
 - Fixed some build non-determinism issues.
 - Swapped to pull requests for adding new functionality, and added some more internal tests.
 
@@ -62,7 +62,7 @@ Improves `date + duration` behavior when either the date or duration are null.
 
 # 0.5.43
 
-- Fix \#1366: Better handling of calendar emoji (used as due dates in tasks).
+- Fix 1366: Better handling of calendar emoji (used as due dates in tasks).
 
 ---
 
@@ -125,7 +125,7 @@ inline queries in codeblocks.
 
 # 0.5.35
 
-- Fix \#1196, \#1176: Re-enable HTML values. This was never a featured I advertised since it was just for some internal
+- Fix 1196, 1176: Re-enable HTML values. This was never a featured I advertised since it was just for some internal
   hackery, but it appears people just discovered it in DataviewJS queries.
 - Improved initial time to popular queries that use `file.starred`.
 
@@ -133,7 +133,7 @@ inline queries in codeblocks.
 
 # 0.5.34
 
-- Fix \#1174: Fix indexing with a variable.
+- Fix 1174: Fix indexing with a variable.
 - Fix an issue with the experimental calendar view.
 
 ---
@@ -231,7 +231,7 @@ More small bugfixes:
 
 # 0.5.25
 
-- Fix \#1147: Fix there being a `#null` tag for files with an empty `tag` or `tags` frontmatter.
+- Fix 1147: Fix there being a `#null` tag for files with an empty `tag` or `tags` frontmatter.
 
 ---
 
@@ -248,13 +248,13 @@ Several bugfixes:
 
 # 0.5.23
 
-- Fix \#1140: Force API objects to be arrays if they are iterables.
+- Fix 1140: Force API objects to be arrays if they are iterables.
 
 ---
 
 # 0.5.22
 
-- Fix \#1135: Use 'x' instead of 'X' for checkboxes.
+- Fix 1135: Use 'x' instead of 'X' for checkboxes.
 
 ---
 
@@ -341,7 +341,7 @@ programmatically see this via `dataview:index-ready`, or by checking `api.index.
 
 Several smaller bugfixes!
 
-- Fix \#997: Use the group by field name in the table name.
+- Fix 997: Use the group by field name in the table name.
 - Prevent tons of errors if you incorrectly set the inline query prefix.
 
 ---
@@ -429,7 +429,7 @@ Inline images are now rendered correctly in Dataview tables and lists - no more 
 
 # 0.5.2 (Beta)
 
-- Fix \#971: Objects now work properly inside DataviewQL evaluation.
+- Fix 971: Objects now work properly inside DataviewQL evaluation.
 
 ---
 
@@ -455,7 +455,7 @@ edge features.
 
 # 0.4.25
 
-Fix \#867: Create a container div per taskList to allow for multiple task views.
+Fix 867: Create a container div per taskList to allow for multiple task views.
 
 ---
 
@@ -558,14 +558,14 @@ Dataview should perform much better on startup and when you have lots of tabs op
 Bugfix release which primarily fixes issues that Dataview had with the live preview mode in upcoming Obsidian versions;
 Dataview live preview should now be functional. Also includes a number of smaller bugfixes.
 
-- Fix \#646: Add `date(yesterday)` to create a date 24 hours ago.
-- Fix \#618: Luxon is now available on the dataview API (`dv.luxon`).
-- Fix \#510: Add `dv.duration()` for parsing durations.
-- Fix \#647: All HTML functions in the DataviewJS API now return their rendered objects.
-- Fix \#652: Fix parsing of invalid dates.
-- Fix \#629: Fix block link parsing.
-- Fix \#601: Timezones are now rendered properly and parsed properly in Dataview dates.
-- PR \#637: Add `meta(link)` which allows you to access various metadata about a link itself.
+- Fix 646: Add `date(yesterday)` to create a date 24 hours ago.
+- Fix 618: Luxon is now available on the dataview API (`dv.luxon`).
+- Fix 510: Add `dv.duration()` for parsing durations.
+- Fix 647: All HTML functions in the DataviewJS API now return their rendered objects.
+- Fix 652: Fix parsing of invalid dates.
+- Fix 629: Fix block link parsing.
+- Fix 601: Timezones are now rendered properly and parsed properly in Dataview dates.
+- PR 637: Add `meta(link)` which allows you to access various metadata about a link itself.
 - Various minor null safety fixes.
 - Dataview now reports it's exact version and build time in logs.
 
@@ -575,7 +575,7 @@ Dataview live preview should now be functional. Also includes a number of smalle
 
 Some feature work (mostly by other contributors) while I while away at section metadata. May also fix a few bugs!
 
-- Fix \#448: You can now use the "Task Completion Tracking" option to automatically add completion metadata to tasks
+- Fix 448: You can now use the "Task Completion Tracking" option to automatically add completion metadata to tasks
   which are checked/unchecked through Dataview. Thanks to @sheeley.
 - Add a search bar to documentation. Thanks to @tzhou.
 - Add new date expressions for the start of the week (`date(sow)`), and the end of the week (`date(eow)`). Thanks
@@ -593,8 +593,8 @@ Bugfix release which corrects emoji parsing & localization issues.
 - Add `DataArray#into`, which lets you index into objects without flattening.
 - Renamed 'header' to 'section' in task metadata; 'header' will remain around for a few major releases to let people
   naturally migrate.
-- Fix \#487: You no longer need spaces around '*' in expressions.
-- Fix \#559: Fix unicode issues in variable canonicalization which was causing problems with non-Latin inline field
+- Fix 487: You no longer need spaces around '*' in expressions.
+- Fix 559: Fix unicode issues in variable canonicalization which was causing problems with non-Latin inline field
   keys.
 
 ## Duration Parsing
@@ -653,7 +653,7 @@ using it instead of waiting for the `dataview:api-ready` event.
 
 # 0.4.15
 
-A simple fix for \#537 which properly 'awaits' value rendering in `dv.view()`. Fixes issues with values rendering out of
+A simple fix for 537 which properly 'awaits' value rendering in `dv.view()`. Fixes issues with values rendering out of
 order.
 
 ---
@@ -707,10 +707,10 @@ More improvements and better JavaScript sandboxing will follow.
 
 Re-release of 0.4.12 that fixes an important indexing issue.
 
-- Fix \#505: Use `completion` instead of `completed` when setting task completion time.
-- Fix \#509: Add `startswith` / `endswith` string functions.
-- Fix \#488: Add `padleft` and `padright`, and `string`.
-- Fix \#506, \#512: Fix date comparisons due to a bizarre date zone issue.
+- Fix 505: Use `completion` instead of `completed` when setting task completion time.
+- Fix 509: Add `startswith` / `endswith` string functions.
+- Fix 488: Add `padleft` and `padright`, and `string`.
+- Fix 506, 512: Fix date comparisons due to a bizarre date zone issue.
 
 ---
 
@@ -718,11 +718,11 @@ Re-release of 0.4.12 that fixes an important indexing issue.
 
 Bugfix release following up 0.4.11 which includes a few minor function additions.
 
-- Fix \#512: Strange zone issue causing dates to not be equal.
-- Fix \#506: Same as \#512.
-- Fix \#488: Add `padleft` / `padright` functions.
-- Fix \#509: Add `startswith` and `endswith` functions.
-- Fix \#505: Correctly read completion dates for tasks from `completion`.
+- Fix 512: Strange zone issue causing dates to not be equal.
+- Fix 506: Same as 512.
+- Fix 488: Add `padleft` / `padright` functions.
+- Fix 509: Add `startswith` and `endswith` functions.
+- Fix 505: Correctly read completion dates for tasks from `completion`.
 
 This release also includes improved testing thanks to mocking Obsidian plugin APIs!
 
@@ -768,9 +768,9 @@ fields.
 
 ## Issues
 
-- Fix \#496: Fix task `SORT` functionality to do something.
-- Fix \#492: Tasks now properly annotated with parent file information.
-- Fix \#498: Fix task checking/unchecking logic (which broke due to a change in the task regex...).
+- Fix 496: Fix task `SORT` functionality to do something.
+- Fix 492: Tasks now properly annotated with parent file information.
+- Fix 498: Fix task checking/unchecking logic (which broke due to a change in the task regex...).
 
 ---
 
